@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#8bc34a"
+    android:id="@+id/relativeLayoutCell"
+    android:layout_width="match_parent"
+    android:layout_height="36dp">
+
+    <LinearLayout
+        android:id="@+id/linearLayoutCell"
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:textSize="15dp"
+            android:textColor="#FFFFFF"
+            android:text="test"
+            android:id="@+id/textViewMessage"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/imageViewQuit"
+            android:src="@drawable/p0_img_close_white_x_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</RelativeLayout>

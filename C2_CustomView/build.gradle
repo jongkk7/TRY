@@ -1,0 +1,65 @@
+apply plugin: 'com.android.library'
+apply from: '../constants.gradle'
+
+android {
+    compileSdkVersion project.ext.compileSdkVersion
+    defaultConfig {
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
+        versionCode project.ext.VersionCode
+        versionName project.ext.VersionName
+
+        multiDexEnabled project.ext.multiDexEnabled
+    }
+    buildTypes {
+        release {
+            minifyEnabled project.ext.minifyEnabled
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    buildToolsVersion project.ext.buildToolsVersion
+}
+
+repositories {
+    flatDir {
+        dirs project(':C2_CustomView').file('libs')
+    }
+}
+
+dependencies {
+
+
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    // circleImageView
+    api 'de.hdodenhof:circleimageview:2.2.0'
+
+    // photoVIew
+    api 'com.github.chrisbanes:PhotoView:1.3.0'
+
+    // SpinnerDatePicker
+    api 'com.github.drawers:SpinnerDatePicker:1.0.6'
+
+    //스크롤
+    api 'ru.noties:scrollable:1.3.0'
+    api 'ru.noties:ccf:1.0.0'
+
+    // ChipsLayoutManager (불규칙적 레이아웃)
+    // https://github.com/BelooS/ChipsLayoutManager
+    api 'com.beloo.widget:ChipsLayoutManager:0.3.7@aar'
+
+    // swipyRefreshLayout
+    api 'com.github.orangegangsters:swipy:1.2.3@aar'
+
+    // 유튜브 플레이어
+    api files('libs/YouTubeAndroidPlayerApi.jar')
+
+    // pagerSlidingTabStrip
+    api 'com.astuetz:pagerslidingtabstrip:1.0.1'
+
+    implementation 'com.google.code.gson:gson:2.8.2'
+
+    implementation project(path: ':L12_ApplicationUtil')
+    implementation project(path: ':L0_Base')
+    implementation project(path: ':L5_Event')
+}

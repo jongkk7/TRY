@@ -1,0 +1,60 @@
+apply plugin: 'com.android.library'
+apply from: '../constants.gradle'
+
+android {
+    compileSdkVersion project.ext.compileSdkVersion
+    defaultConfig {
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
+        versionCode project.ext.VersionCode
+        versionName project.ext.VersionName
+
+        multiDexEnabled project.ext.multiDexEnabled
+    }
+    buildTypes {
+        release {
+            minifyEnabled project.ext.minifyEnabled
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    buildToolsVersion project.ext.buildToolsVersion
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //퍼미션
+    api 'gun0912.ted:tedpermission:2.1.0'
+    //MultiDex
+    api 'androidx.multidex:multidex:2.0.0'
+
+    api 'com.jakewharton:process-phoenix:2.0.0'
+
+
+    // design
+    api 'com.google.android.material:material:1.1.0-alpha06'
+
+    // FireBase
+    api 'com.google.firebase:firebase-auth:' + project.ext.fireBaseAuthApiVersion
+
+    api 'com.google.firebase:firebase-core:' + project.ext.fireBaseCoreApiVersion
+
+    api 'com.google.firebase:firebase-messaging:17.6.0'
+
+
+    api project(path: ':L0_Base')
+    api project(path: ':L4_Language')
+
+    api project(path: ':B2_CommonDialog')
+    api project(path: ':B3_CommonGallery')
+    api project(path: ':B4_CommonWebView')
+
+    api project(path: ':C1_ActivityManager')
+    api project(path: ':C2_CustomView')
+    api project(path: ':C3_BaseAF')
+
+    api project(path: ':L8_Room')
+
+    implementation project(path: ':L10_LitePal')
+
+}

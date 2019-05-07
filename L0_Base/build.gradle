@@ -1,0 +1,37 @@
+apply plugin: 'com.android.library'
+apply from: '../constants.gradle'
+
+android {
+    compileSdkVersion project.ext.compileSdkVersion
+    defaultConfig {
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
+        versionCode project.ext.VersionCode
+        versionName project.ext.VersionName
+
+        multiDexEnabled project.ext.multiDexEnabled
+    }
+    buildTypes {
+        release {
+            minifyEnabled project.ext.minifyEnabled
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    buildToolsVersion project.ext.buildToolsVersion
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    api 'androidx.appcompat:appcompat:1.1.0-alpha04'
+    api 'androidx.recyclerview:recyclerview:1.1.0-alpha04'
+    api 'com.google.code.gson:gson:2.8.2'
+    api 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    // media-compat
+    api 'androidx.media:media:1.1.0-alpha04'
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0-beta01'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-beta01'
+}

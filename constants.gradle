@@ -1,0 +1,47 @@
+// 마스의 상수
+project.ext {
+    // 최소 SDK
+    minSdkVersion = 21
+
+    // 타겟 SDK (반드시 26이상으로 한다)
+    targetSdkVersion = 28
+
+    // 컴파일 SDK 버전. 왠만하면 빌드 버전과 동일하게 한다.
+    compileSdkVersion = 28
+    // 빌드버전
+    buildToolsVersion = '28.0.3'
+
+    // 릴리즈 버전 코드
+    releaseVersionCode = 1
+
+    // 릴리즈 버전 이름
+    releaseVersion = '0.0.1'
+
+    // 버전 코드
+    VersionCode = 1
+    // 버전 이름
+    VersionName = '0.0.1'
+
+    // 멀티덱스
+    multiDexEnabled = true
+
+    // 벡터 서포트
+    vectorSupportLib = true
+
+    // minify
+    minifyEnabled = false
+
+    // appcompat, design, recyclerView 등에서 쓰는 버전
+    googlaApiVersion = "28.0.0"
+
+
+    // fireBaseVersion
+    fireBaseAuthApiVersion = "16.2.1"
+
+    fireBaseCoreApiVersion = "16.0.8"
+
+    modulePrefix = ':'
+    if (gradle.ext.has('exoplayerModulePrefix')) {
+        modulePrefix += gradle.ext.exoplayerModulePrefix
+    }
+}

@@ -1,0 +1,38 @@
+apply plugin: 'com.android.library'
+apply from: '../constants.gradle'
+
+android {
+    compileSdkVersion project.ext.compileSdkVersion
+    defaultConfig {
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
+        versionCode project.ext.VersionCode
+        versionName project.ext.VersionName
+
+        multiDexEnabled project.ext.multiDexEnabled
+    }
+    buildTypes {
+        release {
+            minifyEnabled project.ext.minifyEnabled
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    buildToolsVersion project.ext.buildToolsVersion
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //페북
+    api 'com.facebook.android:facebook-android-sdk:4.42.0'
+
+    //카카오
+    api group: 'com.kakao.sdk', name: 'usermgmt', version: '1.15.1'
+
+    //네이버
+    api 'com.naver.nid:naveridlogin-android-sdk:4.2.0'
+
+
+    implementation 'com.google.firebase:firebase-auth:' + project.ext.fireBaseAuthApiVersion
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
+}

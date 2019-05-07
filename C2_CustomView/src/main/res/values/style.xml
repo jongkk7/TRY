@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 2018-01-31 마스 컬러셋 재정의 -->
+
+
+    <!-- 배경화면에서 사용됨. -->
+    <style name="background">
+        <item name="android:background">@color/colorBg</item>
+    </style>
+
+
+
+    <!-- 탑바에서 배경으로 사용됨. (첫번째 값) -->
+    <style name="topbar1Bg">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">44dp</item>
+        <item name="android:background">@color/colorTopBar1Background</item>
+    </style>
+
+    <!-- 탑바에서 텍스트로 사용됨. (첫번째 값) -->
+    <style name="topbar1Text">
+        <item name="android:textColor">@color/colorTopBar1Text</item>
+        <item name="android:textSize">19dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerInParent">true</item>
+    </style>
+
+
+    <!-- 탑바에서 배경으로 사용됨. (첫번째 값) -->
+    <style name="topbar2Bg">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">44dp</item>
+        <item name="android:background">@color/colorTopBar2Background</item>
+    </style>
+
+    <!-- 탑바에서 텍스트로 사용됨. (첫번째 값) -->
+    <style name="topbar2Text">
+        <item name="android:textColor">@color/colorTopBar2Text</item>
+        <item name="android:textSize">19dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_centerInParent">true</item>
+    </style>
+
+    <!-- 뒤로가기 흰색  -->
+    <style name="topbarBackImageWhite">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:src">@drawable/p0_img_close_black_x_button</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+</resources>

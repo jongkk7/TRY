@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="258dp"
+    android:layout_height="150dp"
+    android:layout_gravity="center"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:orientation="vertical"
+        android:paddingLeft="17dp">
+
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="14dp"
+            android:text="제목"
+            android:textColor="@color/colorBlue"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/textViewMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:layout_marginBottom="8dp"
+            android:text="message"
+            android:textColor="@color/colorBlack"
+            android:textSize="13dp" />
+    </LinearLayout>
+
+    <!--    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorDividerBg" />-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/buttonNegative"
+            android:layout_width="80dp"
+            android:layout_height="44dp"
+            android:background="#00000000"
+            android:maxWidth="0dp"
+            android:maxHeight="0dp"
+            android:text="취소"
+            android:textColor="@color/colorBlue"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/buttonPositive"
+            android:layout_width="80dp"
+            android:layout_height="44dp"
+            android:background="#00000000"
+            android:maxWidth="0dp"
+            android:maxHeight="0dp"
+            android:text="Link"
+            android:textColor="@color/colorBlue"
+            android:textSize="12dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">L9_Social</string>
+
+    <!--페북 로그인-->
+    <string name="facebook_app_id">376700122930123</string>
+
+    <!--카톡 로그인-->
+    <string name="kakao_app_key">df26cf33bbf64b1825ca8cfa6cc4bd07</string>
+
+    <!--네이버 로그인-->
+    <string name="naver_client_id">9dqHMUAkf87cJBPksfMv</string>
+    <string name="naver_client_secret">jxsIn0RP9u</string>
+
+    <!-- 구글 -->
+    <string name="google_client_id">195796636786-2srmgap60lgaf0ha1bq21j3k1c6a4glf.apps.googleusercontent.com</string>
+
+
+</resources>
