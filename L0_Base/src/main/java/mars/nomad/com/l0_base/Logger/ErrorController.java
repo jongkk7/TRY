@@ -4,6 +4,8 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+import mars.nomad.com.l0_base.BuildConfig;
+
 
 /**
  * Created by SJH on 2017-02-28.
@@ -23,7 +25,7 @@ public class ErrorController {
      */
     public static void showMessage(String msg) {
 
-        if (DEBUG) {
+        if (BuildConfig.DEBUG) {
 
             Log.e(TAG, msg);
         }
@@ -37,6 +39,7 @@ public class ErrorController {
      */
     public static void showError(Exception e) {
         Log.e(TAG, "Exception.", e);
+
     }
 
     /**

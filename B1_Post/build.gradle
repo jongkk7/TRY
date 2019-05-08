@@ -20,7 +20,16 @@ android {
     buildToolsVersion project.ext.buildToolsVersion
 }
 
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(path: ':C2_CustomView')
+
+    implementation project(path: ':C3_BaseAF')
+
     implementation project(path: ':L0_Base')
+    implementation project(path: ':L2_ImageLoader')
+    implementation project(path: ':L12_ApplicationUtil')
+
 }

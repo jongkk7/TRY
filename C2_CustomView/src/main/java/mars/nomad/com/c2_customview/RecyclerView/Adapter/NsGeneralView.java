@@ -31,6 +31,22 @@ public abstract class NsGeneralView<T> extends FrameLayout {
 
     public abstract View initView(ViewGroup parent);
 
-    public abstract void onBindData(int position, List<T> data, T item, NsGeneralClickListener<T> mClickListener);
+    public abstract void setEvent(final List<T> data, final T item, NsGeneralClickListener<T> mClickListener);
+
+    public abstract void onBindData(final List<T> data, final T item);
+
+
+    // 일반적으로 사용하진 않는데 리사이클러뷰 안에 리사이클러뷰를 셋팅해야할때 필요함.
+    public void setSubAdapter(final List<T> data, final T item, NsGeneralClickListener<T> mClickListener) {
+
+    }
+
+
+    public void onBindViewHolder(List<T> data, T item, NsGeneralClickListener<T> mClickListener) {
+        onBindData(data, item);
+        setEvent(data, item, mClickListener);
+        setSubAdapter(data, item, mClickListener);
+    }
+
 
 }

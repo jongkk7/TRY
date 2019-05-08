@@ -38,6 +38,9 @@ import mars.nomad.com.c2_customview.Value.ViewConstants;
 import mars.nomad.com.l5_event.BaseSubscriber;
 import mars.nomad.com.l0_base.Logger.ErrorController;
 
+import static org.greenrobot.eventbus.ThreadMode.MAIN;
+
+
 /**
  * Created by SJH on 2017-02-28.
  * 모든 액티비티가 AppCompatActivity 대신 상속받을 대상이다.
@@ -173,7 +176,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      *
      * @param event 아무 의미 없는 이벤트. 어디에서도 쓰이지 않을 계획이다.
      */
-    @Subscribe(threadMode = ThreadMode.MAIN)
+    @Subscribe(threadMode = MAIN)
     public void BasicSubscriber(BaseSubscriber event) {
 
     }

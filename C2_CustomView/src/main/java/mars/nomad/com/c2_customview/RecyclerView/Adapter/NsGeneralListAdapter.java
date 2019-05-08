@@ -1,8 +1,10 @@
 package mars.nomad.com.c2_customview.RecyclerView.Adapter;
 
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
+
 import android.view.ViewGroup;
 
 import java.lang.reflect.Constructor;
@@ -55,7 +57,7 @@ public class NsGeneralListAdapter<T> extends NsBaseListAdapter<T, NsGeneralViewH
     @Override
     public void onBindViewHolder(@NonNull NsGeneralViewHolder<T> holder, int position) {
 
-        holder.onBindData(holder.getAdapterPosition(), getData(), getRealItem(position), mGeneralClickListener);
+        holder.onBindData(getData(), getRealItem(position), mGeneralClickListener);
 
     }
 

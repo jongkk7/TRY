@@ -22,8 +22,12 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
     implementation project(path: ':C2_CustomView')
+
     implementation project(path: ':L0_Base')
     implementation project(path: ':L4_Language')
     implementation project(path: ':L12_ApplicationUtil')
+
+
 }

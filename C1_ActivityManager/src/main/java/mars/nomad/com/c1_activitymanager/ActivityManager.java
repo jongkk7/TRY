@@ -223,4 +223,7 @@ public class ActivityManager {
     }
 
 
+    public static boolean isRegiDataExist() {
+        return mClassList.size() != 0;
+    }
 }

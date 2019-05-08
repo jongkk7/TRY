@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 공용으로 사용하는 탑, 마진 값 -->
+    <dimen name="postMarginTop">10dp</dimen>
+    <dimen name="postMarginBottom">10dp</dimen>
+
+    <!-- 텍스트 사이즈 이후에는 사이즈를 정해서 들어오는 형태지만 없을경우 사용-->
+    <dimen name="postCommonTextSize">6dp</dimen>
+
+    <!-- 텍스트 사이즈를 단계적으로 나눔  -->
+    <dimen name="postTextSize1">14dp</dimen>
+    <dimen name="postTextSize2">15dp</dimen>
+    <dimen name="postTextSize3">16dp</dimen>
+    <dimen name="postTextSize4">17dp</dimen>
+    <dimen name="postTextSize5">18dp</dimen>
+    <dimen name="postTextSize6">19dp</dimen>
+
+
+</resources>

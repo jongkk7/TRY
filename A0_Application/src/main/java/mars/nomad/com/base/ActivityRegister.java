@@ -1,6 +1,7 @@
 package mars.nomad.com.base;
 
 
+import mars.nomad.com.c1_activitymanager.ActivityManager;
 import mars.nomad.com.l0_base.Logger.ErrorController;
 
 /**
@@ -17,5 +18,9 @@ public class ActivityRegister {
         }catch(Exception e){
             ErrorController.showError(e);
         }
+    }
+
+    public static boolean isRegiDataExist() {
+        return ActivityManager.isRegiDataExist();
     }
 }

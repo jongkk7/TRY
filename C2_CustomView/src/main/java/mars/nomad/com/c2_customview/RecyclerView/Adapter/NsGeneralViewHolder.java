@@ -15,12 +15,10 @@ public class NsGeneralViewHolder<T> extends RecyclerView.ViewHolder {
     public NsGeneralViewHolder(@NonNull NsGeneralView<T> itemView) {
         super(itemView);
         this.itemView = itemView;
-
     }
 
-    public void onBindData(int position, List<T> data, T item, NsGeneralClickListener<T> mClickListener) {
-        itemView.onBindData(position, data, item, mClickListener);
-
+    public void onBindData(List<T> data, T item, NsGeneralClickListener<T> mClickListener) {
+        itemView.onBindViewHolder(data, item, mClickListener);
     }
 
 }

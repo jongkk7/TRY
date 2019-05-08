@@ -1,2 +1,2 @@
-include ':A0_Application', ':L8_Room', ':B3_CommonGallery', ':B2_CommonDialog', ':L9_Social', ':L10_LitePal', ':L2_ImageLoader', ':L3_Http', ':L6_Analysis', ':L11_HardWareUtil', ':L12_ApplicationUtil',
+include ':A0_Application', ':L8_Room', ':B3_CommonGallery', ':B2_CommonDialog', ':L9_Social', ':L10_LitePal', ':L2_ImageLoader', ':L3_Http', ':L6_Analysis', ':L11_HardWareUtil', ':L12_ApplicationUtil', ':B1_Post',
         ':L4_Language', ':B4_CommonWebView', ':L0_Base', ':C1_ActivityManager', ':L5_Event', ':C2_CustomView', ':C3_BaseAF', ':A0_Common', ':B5_FileUpload'

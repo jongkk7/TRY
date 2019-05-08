@@ -65,6 +65,33 @@ public class ImageLoader {
         }
     }
 
+    public static void loadImageWithDefault(Context context, ImageView view, String imgUrl, String filePath, String access_token) {
+
+        try {
+
+
+            if (filePath == null) {
+                return;
+            }
+
+            String url = imgUrl + "download/" + filePath;
+
+            ErrorController.showMessage("[loadImageWithDefault] : " + url + " - - - ");
+
+            // GlideUrl glideUrl = new GlideUrl(url, new LazyHeaders.Builder().addHeader("Authorization", "bearer " + MyInfo.getAccess_token(context)).build());
+
+            Glide.with(context).clear(view);
+
+            RequestOptions options = new RequestOptions().centerCrop().dontAnimate().diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).priority(Priority.HIGH);
+
+            Glide.with(context).load(url).apply(options).into(view);
+
+        } catch (Exception e) {
+            //ErrorController.showError(e);
+        }
+    }
+
+
     public static void loadImageWithDefault(Context context, ImageView view, String imgUrl, String filePath, int placeholderResId) {
 
         try {
