@@ -15,7 +15,6 @@ public class ActivityStart extends BaseApplicationActivity {
 
     @Override
     protected void initView() {
-
     }
 
     @Override

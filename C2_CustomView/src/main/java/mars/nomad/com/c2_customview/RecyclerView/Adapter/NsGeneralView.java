@@ -1,6 +1,7 @@
 package mars.nomad.com.c2_customview.RecyclerView.Adapter;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -19,17 +20,15 @@ public abstract class NsGeneralView<T> extends FrameLayout {
     }
 
     private void initSetting() {
-        View childView = createView(this);
+        View childView = LayoutInflater.from(this.getContext()).inflate(initViewId(), this, false);
         //recyclerview에 등록시 generalview 가 wrap / wrap으로 적용되기 때문에 원하는 childview의 layoutparam으로 맞춰준다
         setLayoutParams(childView.getLayoutParams());
         addView(childView);
     }
 
-    public View createView(ViewGroup parent) {
-        return initView(parent);
-    }
+    public abstract int initViewId();
 
-    public abstract View initView(ViewGroup parent);
+    public abstract void initView();
 
     public abstract void setEvent(final List<T> data, final T item, NsGeneralClickListener<T> mClickListener);
 

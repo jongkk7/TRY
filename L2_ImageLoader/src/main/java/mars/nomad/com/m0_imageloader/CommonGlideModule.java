@@ -11,6 +11,7 @@ import com.bumptech.glide.load.engine.cache.MemorySizeCalculator;
 import com.bumptech.glide.module.AppGlideModule;
 import com.bumptech.glide.request.RequestOptions;
 
+import androidx.annotation.NonNull;
 import mars.nomad.com.l0_base.Logger.ErrorController;
 
 
@@ -22,7 +23,7 @@ import mars.nomad.com.l0_base.Logger.ErrorController;
 public class CommonGlideModule extends AppGlideModule {
 
     @Override
-    public void applyOptions(Context context, GlideBuilder builder) {
+    public void applyOptions(@NonNull Context context, @NonNull GlideBuilder builder) {
 
         MemorySizeCalculator calculator = new MemorySizeCalculator.Builder(context).build();
         int defaultMemoryCacheSize = calculator.getMemoryCacheSize();

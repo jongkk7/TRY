@@ -1,15 +1,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="mars.nomad.com.B1_post">
 
-    <activity
-        android:name=".SubActivity.ActivityOneVideoViewer"
-        android:screenOrientation="landscape"
-        android:windowSoftInputMode="stateAlwaysHidden"/>
+    <application>
 
-    <activity
-        android:name=".SubActivity.ActivityOneImageViewer"
-        android:screenOrientation="portrait"
-        android:windowSoftInputMode="stateAlwaysHidden"/>
+        <activity
+            android:name=".SubActivity.ActivityOneVideoViewer"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
 
+        <activity
+            android:name=".SubActivity.ActivityOneImageViewer"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
+
+    </application>
 
 </manifest>

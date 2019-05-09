@@ -1,9 +1,6 @@
 package mars.nomad.com.B1_post.PostDetail;
 
 import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import java.util.List;
 
@@ -26,6 +23,7 @@ import mars.nomad.com.l0_base.Logger.ErrorController;
  */
 public class AdapterPostDetail extends NsGeneralView<PostDataModel> {
 
+
     private CustomPostTextView customPostTextView;
     private CustomPostImageView customPostImageView;
     private CustomPostVideoView customPostVideoView;
@@ -35,15 +33,16 @@ public class AdapterPostDetail extends NsGeneralView<PostDataModel> {
     }
 
     @Override
-    public View initView(ViewGroup parent) {
+    public int initViewId() {
+        return R.layout.adapter_post_detail;
+    }
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_post, parent, false);
+    @Override
+    public void initView() {
 
-        this.customPostVideoView = (CustomPostVideoView) view.findViewById(R.id.customPostVideoView);
-        this.customPostImageView = (CustomPostImageView) view.findViewById(R.id.customPostImageView);
-        this.customPostTextView = (CustomPostTextView) view.findViewById(R.id.customPostTextView);
-
-        return view;
+        customPostTextView = (CustomPostTextView) findViewById(R.id.customPostTextView);
+        customPostImageView = (CustomPostImageView) findViewById(R.id.customPostImageView);
+        customPostVideoView = (CustomPostVideoView) findViewById(R.id.customPostVideoView);
     }
 
     @Override
@@ -86,4 +85,5 @@ public class AdapterPostDetail extends NsGeneralView<PostDataModel> {
             ErrorController.showError(e);
         }
     }
+
 }

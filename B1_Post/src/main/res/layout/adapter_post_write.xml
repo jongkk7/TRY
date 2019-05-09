@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <mars.nomad.com.B1_post.CustomView.CustomPostEditView
+        android:id="@+id/customPostTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"/>
+
+    <mars.nomad.com.B1_post.CustomView.CustomPostImageView
+        android:id="@+id/customPostImageView"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="@dimen/postMarginTop"
+        android:layout_marginBottom="@dimen/postMarginBottom"
+        android:layout_height="wrap_content"
+        android:visibility="visible"/>
+
+    <mars.nomad.com.B1_post.CustomView.CustomPostVideoView
+        android:id="@+id/customPostVideoView"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="@dimen/postMarginTop"
+        android:layout_marginBottom="@dimen/postMarginBottom"
+        android:layout_height="wrap_content"
+        android:visibility="visible"/>
+
+</LinearLayout>

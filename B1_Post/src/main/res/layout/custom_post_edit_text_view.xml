@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+
+    <EditText
+        android:id="@+id/editTextContents1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="12dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/postTextSize1"
+        tools:text="텍스트"/>
+
+    <EditText
+        android:id="@+id/editTextContents2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="12dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/postTextSize2"
+        tools:text="텍스트"/>
+
+    <EditText
+        android:id="@+id/editTextContents3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="12dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/postTextSize3"
+        tools:text="텍스트"/>
+
+    <TextView
+        android:id="@+id/editTextContents4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="12dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/postTextSize4"
+        tools:text="텍스트"/>
+
+    <EditText
+        android:id="@+id/editTextContents5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="12dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/postTextSize5"
+        tools:text="텍스트"/>
+
+    <EditText
+        android:id="@+id/editTextContents6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="12dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/postTextSize6"
+        tools:text="텍스트"/>
+
+
+</LinearLayout>

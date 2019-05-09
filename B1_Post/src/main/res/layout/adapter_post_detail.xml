@@ -6,7 +6,7 @@
               android:paddingLeft="10dp"
               android:paddingRight="10dp">
 
-    <mars.nomad.com.m11_post.CustomView.CustomPostTextView
+    <mars.nomad.com.B1_post.CustomView.CustomPostTextView
         android:id="@+id/customPostTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,13 +14,13 @@
         android:layout_marginBottom="@dimen/postMarginBottom"
         android:visibility="visible"/>
 
-    <mars.nomad.com.m11_post.CustomView.CustomPostImageView
+    <mars.nomad.com.B1_post.CustomView.CustomPostImageView
         android:id="@+id/customPostImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="visible"/>
 
-    <mars.nomad.com.m11_post.CustomView.CustomPostVideoView
+    <mars.nomad.com.B1_post.CustomView.CustomPostVideoView
         android:id="@+id/customPostVideoView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
