@@ -6,7 +6,7 @@ import java.util.List;
 
 import androidx.recyclerview.widget.RecyclerView;
 import mars.nomad.com.c2_customview.RecyclerView.Adapter.NsBaseRecyclerViewAdapter;
-import mars.nomad.com.l0_base.Callback.NsPredicate;
+import mars.nomad.com.l0_base.Callback.NsPredicateObject;
 import mars.nomad.com.l0_base.Logger.ErrorController;
 
 /**
@@ -22,7 +22,7 @@ public class RecyclerFilterUtil {
      * @param predicate
      * @param <T>
      */
-    public static <T> void removeItem(RecyclerView.Adapter adapter, List<T> list, NsPredicate<T> predicate) {
+    public static <T> void removeItem(RecyclerView.Adapter adapter, List<T> list, NsPredicateObject<T> predicate) {
 
         try {
 
@@ -58,7 +58,7 @@ public class RecyclerFilterUtil {
         }
     }
 
-    public static <T> void getAlignedPosition(RecyclerView.Adapter adapter, List<T> list, T item, NsPredicate<T> predicate) {
+    public static <T> void getAlignedPosition(RecyclerView.Adapter adapter, List<T> list, T item, NsPredicateObject<T> predicate) {
 
         try {
 
@@ -108,7 +108,7 @@ public class RecyclerFilterUtil {
      * @param condition
      * @param <T>
      */
-    public static <T> void updateItem(RecyclerView.Adapter adapter, List<T> list, NsPredicate<T> condition, NsPredicate<T> action) {
+    public static <T> void updateItem(RecyclerView.Adapter adapter, List<T> list, NsPredicateObject<T> condition, NsPredicateObject<T> action) {
 
         try {
 
@@ -150,7 +150,7 @@ public class RecyclerFilterUtil {
      * @param mAdapter
      * @param list
      */
-    public static <T> void updateItem2(RecyclerView.Adapter mAdapter, List<T> list, T item, NsPredicate<T> predicate) {
+    public static <T> void updateItem2(RecyclerView.Adapter mAdapter, List<T> list, T item, NsPredicateObject<T> predicate) {
         try {
 
             int position = -1;
@@ -199,7 +199,7 @@ public class RecyclerFilterUtil {
      * @param mActivity
      * @param condition
      */
-    public static <T> void updateItem(final RecyclerView.Adapter adapter, final List<T> list, final T item, Activity mActivity, NsPredicate<T> condition) {
+    public static <T> void updateItem(final RecyclerView.Adapter adapter, final List<T> list, final T item, Activity mActivity, NsPredicateObject<T> condition) {
 
         try {
 

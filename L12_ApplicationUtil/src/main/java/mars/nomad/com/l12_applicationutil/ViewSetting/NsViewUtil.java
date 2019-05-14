@@ -1,13 +1,13 @@
 package mars.nomad.com.l12_applicationutil.ViewSetting;
 
 
-
 import android.content.Context;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import mars.nomad.com.l0_base.Callback.NsPredicateAction;
 import mars.nomad.com.l0_base.Logger.ErrorController;
 import mars.nomad.com.l12_applicationutil.String.StringChecker;
 
@@ -16,19 +16,20 @@ import mars.nomad.com.l12_applicationutil.String.StringChecker;
  * Created by 김창혁, NomadSoft.Inc on 2018-01-05. <br/>
  * 뷰의 데이터를 통해 뷰의 상태를 셋팅하는 유틸
  */
-public class ViewSettingUtil {
+public class NsViewUtil {
 
 
     /**
      * text가 ''이나 null이 아닐 때 view에 세팅해준다.
+     *
      * @param view
      * @param text
      */
-    public static boolean setTextFilterNull(EditText view, String text){
+    public static boolean setTextFilterNull(EditText view, String text) {
 
         try {
 
-            if(StringChecker.isStringNotNull(text)){
+            if (StringChecker.isStringNotNull(text)) {
 
                 view.setText(text);
                 return true;
@@ -43,6 +44,7 @@ public class ViewSettingUtil {
     /**
      * text의 값이 있을 경우 그 text를 셋팅하고, editText를 disable 시키는 유틸 (주로 회원가입에서 사용)
      * 만약 text가 '"이나 null일 경우 별도로 아무것도 안한다.
+     *
      * @param editText
      * @param text
      */
@@ -62,18 +64,19 @@ public class ViewSettingUtil {
 
     /**
      * text가 null이 아니면 textView를 보이게 하고 세팅하며, null이거나 비었으면 visibility를 GONE으로 변경한다.
+     *
      * @param textView
      * @param text
      */
-    public static void setTextIfNotNullOrGone(TextView textView, String text){
+    public static void setTextIfNotNullOrGone(TextView textView, String text) {
 
         try {
 
-            if(StringChecker.isStringNotNull(text)){
+            if (StringChecker.isStringNotNull(text)) {
 
                 textView.setVisibility(View.VISIBLE);
                 textView.setText(text);
-            }else {
+            } else {
 
                 textView.setVisibility(View.GONE);
             }
@@ -82,6 +85,28 @@ public class ViewSettingUtil {
             ErrorController.showError(e);
         }
     }
+
+
+    /**
+     * 특정 조건에 따라 view의 visibility를 조정
+     * @param view
+     * @param predicate
+     */
+    public static void setVisibility(View view, NsPredicateAction predicate) {
+        try {
+
+            if (predicate.apply()) {
+                view.setVisibility(View.VISIBLE);
+            } else {
+                view.setVisibility(View.GONE);
+            }
+
+
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+    }
+
 
 
     public static int getDpToPixel(Context context, int DP) {

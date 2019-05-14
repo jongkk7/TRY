@@ -2,16 +2,20 @@ package mars.nomad.com.B1_post.CustomView;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 
 import mars.nomad.com.B1_post.DataModel.PostTextDataModel;
 import mars.nomad.com.B1_post.R;
+import mars.nomad.com.l0_base.Abstract.AbstractTextWatcher;
 import mars.nomad.com.l0_base.Logger.ErrorController;
 
 
@@ -21,10 +25,12 @@ import mars.nomad.com.l0_base.Logger.ErrorController;
 public class CustomPostEditView extends CustomPostBaseView {
 
 
+    private EditText currentEditText;
+
     private EditText editTextContents1;
     private EditText editTextContents2;
     private EditText editTextContents3;
-    private TextView editTextContents4;
+    private EditText editTextContents4;
     private EditText editTextContents5;
     private EditText editTextContents6;
 
@@ -41,13 +47,14 @@ public class CustomPostEditView extends CustomPostBaseView {
         try {
             View view = LayoutInflater.from(getContext()).inflate(R.layout.custom_post_edit_text_view, this, false);
 
-            editTextContents1 = (EditText) findViewById(R.id.editTextContents1);
-            editTextContents2 = (EditText) findViewById(R.id.editTextContents2);
-            editTextContents3 = (EditText) findViewById(R.id.editTextContents3);
-            editTextContents4 = (TextView) findViewById(R.id.editTextContents4);
-            editTextContents5 = (EditText) findViewById(R.id.editTextContents5);
-            editTextContents6 = (EditText) findViewById(R.id.editTextContents6);
-            
+            editTextContents1 = (EditText) view.findViewById(R.id.editTextContents1);
+            editTextContents2 = (EditText) view.findViewById(R.id.editTextContents2);
+            editTextContents3 = (EditText) view.findViewById(R.id.editTextContents3);
+            editTextContents4 = (EditText) view.findViewById(R.id.editTextContents4);
+            editTextContents5 = (EditText) view.findViewById(R.id.editTextContents5);
+            editTextContents6 = (EditText) view.findViewById(R.id.editTextContents6);
+
+
             addView(view);
         } catch (Exception e) {
             ErrorController.showError(e);
@@ -66,16 +73,18 @@ public class CustomPostEditView extends CustomPostBaseView {
     public void setContents(String baseUrl, String contents, final String accessToken) {
         try {
 
+            editTextContents1.setVisibility(GONE);
+            editTextContents2.setVisibility(GONE);
+            editTextContents3.setVisibility(GONE);
+            editTextContents4.setVisibility(GONE);
+            editTextContents5.setVisibility(GONE);
+            editTextContents6.setVisibility(GONE);
+
+
             try {
 
                 PostTextDataModel text = new Gson().fromJson(contents, PostTextDataModel.class);
 
-                editTextContents1.setVisibility(GONE);
-                editTextContents2.setVisibility(GONE);
-                editTextContents3.setVisibility(GONE);
-                editTextContents4.setVisibility(GONE);
-                editTextContents5.setVisibility(GONE);
-                editTextContents6.setVisibility(GONE);
 
 
                 // 텍스트 사이즈
@@ -109,33 +118,53 @@ public class CustomPostEditView extends CustomPostBaseView {
                 // 모든 글이 평문이므로 그냥 셋팅
                 editTextContents1.setVisibility(VISIBLE);
                 editTextContents1.setText(contents);
+                currentEditText = editTextContents1;
             }
+
 
         } catch (Exception e) {
             ErrorController.showError(e);
         }
     }
 
-    private void setTextData(PostTextDataModel text, TextView textView) {
+    private void setTextData(PostTextDataModel text, EditText editText) {
         try {
 
-            textView.setVisibility(VISIBLE);
+            editText.setVisibility(VISIBLE);
 
             // Bold 유무 && Italic 유무
 
             // Bold + Italic
             if (text.getIsBold() && text.getIsItalic()) {
-                textView.setTypeface(null, Typeface.BOLD_ITALIC);
+                editText.setTypeface(null, Typeface.BOLD_ITALIC);
             } else if (text.getIsBold()) { // Bold Only
-                textView.setTypeface(null, Typeface.BOLD);
+                editText.setTypeface(null, Typeface.BOLD);
             } else if (text.getIsItalic()) { // Italic Only
-                textView.setTypeface(null, Typeface.ITALIC);
+                editText.setTypeface(null, Typeface.ITALIC);
             }
 
-            textView.setText(text.getContents());
+            editText.setText(text.getContents());
+
+            currentEditText = editText;
 
         } catch (Exception e) {
             ErrorController.showError(e);
+        }
+    }
+
+    public void addTextChange(final AbstractTextWatcher textWatcher) {
+        if (currentEditText != null) {
+            currentEditText.addTextChangedListener(textWatcher);
+        } else {
+            // 혹시나 currentEditText  가 null 이면 0.2초후 셋팅
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (currentEditText != null) {
+                        currentEditText.addTextChangedListener(textWatcher);
+                    }
+                }
+            }, 500);
         }
     }
 }

@@ -1,6 +1,7 @@
 package mars.nomad.com.B1_post.PostDetail;
 
 import android.content.Context;
+import android.view.View;
 
 import java.util.List;
 
@@ -38,11 +39,11 @@ public class AdapterPostDetail extends NsGeneralView<PostDataModel> {
     }
 
     @Override
-    public void initView() {
+    public void initView(View view) {
 
-        customPostTextView = (CustomPostTextView) findViewById(R.id.customPostTextView);
-        customPostImageView = (CustomPostImageView) findViewById(R.id.customPostImageView);
-        customPostVideoView = (CustomPostVideoView) findViewById(R.id.customPostVideoView);
+        customPostTextView = (CustomPostTextView) view.findViewById(R.id.customPostTextView);
+        customPostImageView = (CustomPostImageView) view.findViewById(R.id.customPostImageView);
+        customPostVideoView = (CustomPostVideoView) view.findViewById(R.id.customPostVideoView);
     }
 
     @Override

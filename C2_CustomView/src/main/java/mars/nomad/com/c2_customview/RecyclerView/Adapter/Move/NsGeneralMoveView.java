@@ -1,13 +1,13 @@
-package mars.nomad.com.c2_customview.RecyclerView.Adapter;
+package mars.nomad.com.c2_customview.RecyclerView.Adapter.Move;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import java.util.List;
 
+import mars.nomad.com.c2_customview.RecyclerView.Adapter.NsGeneralClickListener;
 import mars.nomad.com.l0_base.Callback.NsPredicateAction;
 import mars.nomad.com.l0_base.Logger.ErrorController;
 import mars.nomad.com.l12_applicationutil.ViewSetting.NsViewUtil;
@@ -15,10 +15,10 @@ import mars.nomad.com.l12_applicationutil.ViewSetting.NsViewUtil;
 /**
  * Created by 김창혁, NomadSoft.Inc on 2019-01-22.
  */
-public abstract class NsGeneralView<T> extends FrameLayout {
+public abstract class NsGeneralMoveView<T> extends FrameLayout {
 
 
-    public NsGeneralView(Context context) {
+    public NsGeneralMoveView(Context context) {
         super(context);
         initSetting();
     }
@@ -35,20 +35,20 @@ public abstract class NsGeneralView<T> extends FrameLayout {
 
     public abstract void initView(View view);
 
-    public abstract void setEvent(final List<T> data, final T item, final NsGeneralClickListener<T> mClickListener);
+    public abstract void setEvent(final List<T> data, NsGeneralMoveViewHolder<T> holder, final T item, final NsGeneralMoveClickListener<T> mClickListener);
 
     public abstract void onBindData(final List<T> data, final T item);
 
 
     // 일반적으로 사용하진 않는데 리사이클러뷰 안에 리사이클러뷰를 셋팅해야할때 필요함.
-    public void setSubAdapter(final List<T> data, final T item, NsGeneralClickListener<T> mClickListener) {
+    public void setSubAdapter(final List<T> data, final T item, NsGeneralMoveClickListener<T> mClickListener) {
 
     }
 
 
-    public void onBindViewHolder(List<T> data, final T item, NsGeneralClickListener<T> mClickListener) {
+    public void onBindViewHolder(List<T> data, NsGeneralMoveViewHolder<T> holder, final T item, NsGeneralMoveClickListener<T> mClickListener) {
         onBindData(data, item);
-        setEvent(data, item, mClickListener);
+        setEvent(data, holder, item, mClickListener);
         setSubAdapter(data, item, mClickListener);
     }
 

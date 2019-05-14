@@ -20,7 +20,7 @@ public abstract class NsDataBase extends RoomDatabase {
     /**
      * DB 이름
      */
-    public static final String DATABASE_NAME = "LINNO_DB_2019";
+    public static final String DATABASE_NAME = "NS_ANDROID_DB";
 
     /**
      * DB의 싱글톤 인스턴스를 반환한다.

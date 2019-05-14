@@ -1,4 +1,4 @@
-package mars.nomad.com.base.Application;
+package mars.nomad.com.a0_application.Application;
 
 
 import android.app.Activity;
@@ -15,8 +15,8 @@ import com.jakewharton.processphoenix.ProcessPhoenix;
 import mars.nomad.com.a0_common.DataBase.DataBaseFlag;
 import mars.nomad.com.a0_common.DataBase.LitePal.NsLitePal;
 import mars.nomad.com.a0_common.DataBase.Room.LoginUser.LoginUserRepository;
-import mars.nomad.com.base.ActivityRegister;
-import mars.nomad.com.base.BuildConfig;
+import mars.nomad.com.a0_application.ActivityRegister;
+import mars.nomad.com.a0_application.BuildConfig;
 import mars.nomad.com.l0_base.Logger.ErrorController;
 
 
@@ -58,7 +58,7 @@ public class BaseApplication extends MultiDexApplication {
 
         try {
 
-            LoginUserRepository.getInstance().initiateDao(this);
+//            LoginUserRepository.getInstance().initiateDao(this);
 
         } catch (Exception e) {
             ErrorController.showError(e);

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import mars.nomad.com.l0_base.Callback.CommonCallback;
-import mars.nomad.com.l0_base.Callback.NsPredicate;
+import mars.nomad.com.l0_base.Callback.NsPredicateObject;
 import mars.nomad.com.l0_base.Callback.RecyclerViewClickListener;
 
 import java.util.ArrayList;
@@ -85,7 +85,7 @@ public abstract class NsBaseRecyclerViewAdapter<VH extends RecyclerView.ViewHold
         }
     }
 
-    public void removeItem(T item, NsPredicate<T> predicate) {
+    public void removeItem(T item, NsPredicateObject<T> predicate) {
 
         try {
 
@@ -112,7 +112,7 @@ public abstract class NsBaseRecyclerViewAdapter<VH extends RecyclerView.ViewHold
      * @param predicate
      * @param <T>
      */
-    public static <T> void removeItemPredicate(RecyclerView.Adapter adapter, List<T> list, NsPredicate<T> predicate) {
+    public static <T> void removeItemPredicate(RecyclerView.Adapter adapter, List<T> list, NsPredicateObject<T> predicate) {
 
         try {
 
@@ -176,7 +176,7 @@ public abstract class NsBaseRecyclerViewAdapter<VH extends RecyclerView.ViewHold
      *
      * @param item
      */
-    public void addWithoutDuplicate(T item, NsPredicate<T> predicate) {
+    public void addWithoutDuplicate(T item, NsPredicateObject<T> predicate) {
 
         try {
 
@@ -193,7 +193,7 @@ public abstract class NsBaseRecyclerViewAdapter<VH extends RecyclerView.ViewHold
         }
     }
 
-    public static <T> boolean isItemExist(List<T> list, NsPredicate<T> predicate) {
+    public static <T> boolean isItemExist(List<T> list, NsPredicateObject<T> predicate) {
 
         try {
 

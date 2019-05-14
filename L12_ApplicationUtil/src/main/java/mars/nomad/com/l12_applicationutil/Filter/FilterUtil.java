@@ -1,9 +1,6 @@
 package mars.nomad.com.l12_applicationutil.Filter;
 
-import android.app.Activity;
-import androidx.recyclerview.widget.RecyclerView;
-
-import mars.nomad.com.l0_base.Callback.NsPredicate;
+import mars.nomad.com.l0_base.Callback.NsPredicateObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +14,7 @@ import mars.nomad.com.l0_base.Logger.ErrorController;
 
 public class FilterUtil {
 
-    public static <T> Boolean removeItem(List<T> list, NsPredicate<T> predicate) {
+    public static <T> Boolean removeItem(List<T> list, NsPredicateObject<T> predicate) {
 
         boolean result = false;
 
@@ -50,7 +47,7 @@ public class FilterUtil {
         return true;
     }
 
-    public static <T> Boolean isItemSelected(List<T> list, NsPredicate<T> predicate) {
+    public static <T> Boolean isItemSelected(List<T> list, NsPredicateObject<T> predicate) {
 
         try {
 
@@ -86,7 +83,7 @@ public class FilterUtil {
      * @param <T>
      * @return 0보다 크다 : 조건식을 만족한 객체의 리스트 안의 인덱스, -1 : 조건식을 만족하는 값이 없다.
      */
-    public static <T> int getPosition(final List<T> list, NsPredicate<T> condition) {
+    public static <T> int getPosition(final List<T> list, NsPredicateObject<T> condition) {
 
         int result = -1;
 
@@ -108,7 +105,7 @@ public class FilterUtil {
     }
 
 
-    public static <T> boolean isItemExist(List<T> list, NsPredicate<T> predicate) {
+    public static <T> boolean isItemExist(List<T> list, NsPredicateObject<T> predicate) {
 
         try {
 
@@ -129,7 +126,7 @@ public class FilterUtil {
         return false;
     }
 
-    public static <T> T isItemExistReturnObj(List<T> list, NsPredicate<T> predicate) {
+    public static <T> T isItemExistReturnObj(List<T> list, NsPredicateObject<T> predicate) {
 
         try {
 
@@ -150,7 +147,7 @@ public class FilterUtil {
         return null;
     }
 
-    public static <T> int getCount(List<T> list, NsPredicate<T> predicate) {
+    public static <T> int getCount(List<T> list, NsPredicateObject<T> predicate) {
         try {
 
             int cnt = 0;

@@ -1,8 +1,10 @@
-package mars.nomad.com.base;
+package mars.nomad.com.a0_application;
 
 import android.os.Bundle;
 
+import mars.nomad.com.c1_activitymanager.ActivityManager;
 import mars.nomad.com.c3_baseaf.BaseApplicationActivity;
+import mars.nomad.com.l0_base.Logger.ErrorController;
 
 
 public class ActivityStart extends BaseApplicationActivity {
@@ -11,6 +13,7 @@ public class ActivityStart extends BaseApplicationActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+        goToNextActivity();
     }
 
     @Override
@@ -29,6 +32,10 @@ public class ActivityStart extends BaseApplicationActivity {
 
     @Override
     protected void goToNextActivity() {
-
+        try {
+            finish();
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
     }
 }

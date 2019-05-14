@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
 
     <mars.nomad.com.B1_post.CustomView.CustomPostEditView
-        android:id="@+id/customPostTextView"
+        android:id="@+id/customPostEditView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="visible"/>
@@ -13,17 +15,47 @@
     <mars.nomad.com.B1_post.CustomView.CustomPostImageView
         android:id="@+id/customPostImageView"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/postMarginTop"
         android:layout_marginBottom="@dimen/postMarginBottom"
-        android:layout_height="wrap_content"
         android:visibility="visible"/>
 
     <mars.nomad.com.B1_post.CustomView.CustomPostVideoView
         android:id="@+id/customPostVideoView"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/postMarginTop"
         android:layout_marginBottom="@dimen/postMarginBottom"
-        android:layout_height="wrap_content"
         android:visibility="visible"/>
 
-</LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutControl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <ImageView
+            android:id="@+id/imageViewDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_post_delete_android"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:id="@+id/imageViewEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_post_move_contents_android"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

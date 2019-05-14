@@ -1,4 +1,4 @@
-package mars.nomad.com.base;
+package mars.nomad.com.a0_application;
 
 
 import mars.nomad.com.c1_activitymanager.ActivityManager;
@@ -12,8 +12,6 @@ public class ActivityRegister {
     public static void register(){
 
         try{
-
-
 
         }catch(Exception e){
             ErrorController.showError(e);

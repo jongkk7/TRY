@@ -8,56 +8,68 @@
 
     <EditText
         android:id="@+id/editTextContents1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
         android:lineSpacingExtra="12dp"
         android:textColor="@color/colorBlack"
         android:textSize="@dimen/postTextSize1"
+        android:visibility="gone"
         tools:text="텍스트"/>
 
     <EditText
         android:id="@+id/editTextContents2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
         android:lineSpacingExtra="12dp"
         android:textColor="@color/colorBlack"
         android:textSize="@dimen/postTextSize2"
+        android:visibility="gone"
         tools:text="텍스트"/>
 
     <EditText
         android:id="@+id/editTextContents3"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
         android:lineSpacingExtra="12dp"
         android:textColor="@color/colorBlack"
         android:textSize="@dimen/postTextSize3"
+        android:visibility="gone"
         tools:text="텍스트"/>
 
-    <TextView
+    <EditText
         android:id="@+id/editTextContents4"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
         android:lineSpacingExtra="12dp"
         android:textColor="@color/colorBlack"
         android:textSize="@dimen/postTextSize4"
+        android:visibility="gone"
         tools:text="텍스트"/>
 
     <EditText
         android:id="@+id/editTextContents5"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
         android:lineSpacingExtra="12dp"
         android:textColor="@color/colorBlack"
         android:textSize="@dimen/postTextSize5"
+        android:visibility="gone"
         tools:text="텍스트"/>
 
     <EditText
         android:id="@+id/editTextContents6"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
         android:lineSpacingExtra="12dp"
         android:textColor="@color/colorBlack"
         android:textSize="@dimen/postTextSize6"
+        android:visibility="gone"
         tools:text="텍스트"/>
 
 

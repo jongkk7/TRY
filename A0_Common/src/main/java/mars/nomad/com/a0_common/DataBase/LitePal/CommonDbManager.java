@@ -5,7 +5,7 @@ import org.litepal.crud.DataSupport;
 import java.util.ArrayList;
 import java.util.List;
 
-import mars.nomad.com.l0_base.Callback.NsPredicate;
+import mars.nomad.com.l0_base.Callback.NsPredicateObject;
 import mars.nomad.com.l0_base.Logger.ErrorController;
 
 
@@ -89,7 +89,7 @@ public class CommonDbManager {
         return null;
     }
 
-    public static <T> T getFirstItem(Class<?> classInfo, NsPredicate<T> condition) {
+    public static <T> T getFirstItem(Class<?> classInfo, NsPredicateObject<T> condition) {
 
         try {
 
@@ -168,7 +168,7 @@ public class CommonDbManager {
      * @param <T>
      * @return
      */
-    public static <T> List<T> getList(Class<T> classInfo, NsPredicate<T> condition) {
+    public static <T> List<T> getList(Class<T> classInfo, NsPredicateObject<T> condition) {
 
         List<T> result = new ArrayList<>();
 
