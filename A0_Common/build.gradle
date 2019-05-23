@@ -26,7 +26,7 @@ dependencies {
     //퍼미션
     api 'gun0912.ted:tedpermission:2.1.0'
     //MultiDex
-    api 'androidx.multidex:multidex:2.0.0'
+    api 'androidx.multidex:multidex:2.0.1'
 
     api 'com.jakewharton:process-phoenix:2.0.0'
 
@@ -42,7 +42,12 @@ dependencies {
     api 'com.google.firebase:firebase-messaging:17.6.0'
 
 
+
+    annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.1.0-alpha04'
+    annotationProcessor 'androidx.room:room-compiler:2.1.0-alpha04'
+
     api project(path: ':L0_Base')
+    api project(path: ':L3_Http')
     api project(path: ':L4_Language')
 
     api project(path: ':B2_CommonDialog')
@@ -54,6 +59,7 @@ dependencies {
     api project(path: ':C3_BaseAF')
 
     api project(path: ':L8_Room')
+    api project(path: ':L12_ApplicationUtil')
 
     implementation project(path: ':L10_LitePal')
 

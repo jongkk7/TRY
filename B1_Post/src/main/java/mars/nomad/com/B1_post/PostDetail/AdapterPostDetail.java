@@ -10,8 +10,8 @@ import mars.nomad.com.B1_post.CustomView.CustomPostTextView;
 import mars.nomad.com.B1_post.CustomView.CustomPostVideoView;
 import mars.nomad.com.B1_post.DataModel.PostDataModel;
 import mars.nomad.com.B1_post.R;
-import mars.nomad.com.c2_customview.RecyclerView.Adapter.NsGeneralClickListener;
-import mars.nomad.com.c2_customview.RecyclerView.Adapter.NsGeneralView;
+import mars.nomad.com.c2_customview.Adapter.NsGeneralClickListener;
+import mars.nomad.com.c2_customview.Adapter.NsGeneralView;
 import mars.nomad.com.l0_base.Logger.ErrorController;
 
 /**

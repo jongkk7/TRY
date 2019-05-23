@@ -1,8 +1,8 @@
 package mars.nomad.com.B1_post.PostWrite;
 
 import mars.nomad.com.B1_post.DataModel.PostDataModel;
-import mars.nomad.com.c2_customview.RecyclerView.Adapter.Move.NsGeneralMoveClickListener;
-import mars.nomad.com.c2_customview.RecyclerView.Adapter.Move.NsGeneralMoveViewHolder;
+import mars.nomad.com.c2_customview.Adapter.Move.NsGeneralMoveClickListener;
+import mars.nomad.com.c2_customview.Adapter.Move.NsGeneralMoveViewHolder;
 
 /**
  * Created by 김창혁, NomadSoft.Inc on 2019-05-13.

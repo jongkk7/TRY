@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="mars.nomad.com.b3_commongallery">
+          package="mars.nomad.com.b3_commongallery">
 
     <application>
+        <activity android:name=".ActivityCommonGallery">
+        </activity>
         <activity
-            android:name="mars.nomad.com.b3_commongallery.ActivityCommonGallery"
+            android:name=".ActivityCommonGalleryOld"
             android:screenOrientation="portrait"/>
     </application>
 

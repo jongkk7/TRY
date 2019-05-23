@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_picture_album"
-    style="@style/background"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              xmlns:tools="http://schemas.android.com/tools"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:id="@+id/activity_picture_album"
+              style="@style/background"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
     <!-- 상단바 -->
     <RelativeLayout
         style="@style/topbar1Bg"
@@ -82,6 +83,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewAlbum"
             android:layout_width="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="3"
             android:layout_height="match_parent"
             android:background="@color/colorWhite" />
 
@@ -89,6 +92,7 @@
             android:id="@+id/recyclerViewTotalAlbum"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:background="@color/colorWhite"
             android:visibility="gone" />
     </FrameLayout>

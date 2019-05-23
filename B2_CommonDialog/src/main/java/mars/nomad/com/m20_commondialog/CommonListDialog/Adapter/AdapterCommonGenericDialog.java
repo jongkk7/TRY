@@ -11,7 +11,7 @@ import mars.nomad.com.l0_base.Callback.RecyclerViewClickListener;
 
 import java.util.List;
 
-import mars.nomad.com.c2_customview.RecyclerView.Adapter.NsBaseRecyclerViewAdapter;
+import mars.nomad.com.c2_customview.Adapter.NsBaseRecyclerViewAdapter;
 import mars.nomad.com.l0_base.Logger.ErrorController;
 import mars.nomad.com.m20_commondialog.R;
 

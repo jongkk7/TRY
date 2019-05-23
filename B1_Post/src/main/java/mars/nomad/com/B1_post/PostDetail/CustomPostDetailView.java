@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import mars.nomad.com.B1_post.DataModel.PostDataModel;
 import mars.nomad.com.B1_post.R;
-import mars.nomad.com.c2_customview.RecyclerView.Adapter.NsGeneralListAdapter;
+import mars.nomad.com.c2_customview.Adapter.NsGeneralListAdapter;
 import mars.nomad.com.l0_base.Logger.ErrorController;
 
 /**

@@ -158,7 +158,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onStop();
     }
 
-    protected AppCompatActivity getOwnerActivity() {
+    protected BaseActivity getOwnerActivity() {
         return this;
     }
 

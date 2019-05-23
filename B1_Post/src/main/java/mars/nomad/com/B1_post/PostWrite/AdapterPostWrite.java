@@ -14,17 +14,13 @@ import mars.nomad.com.B1_post.CustomView.CustomPostEditView;
 import mars.nomad.com.B1_post.CustomView.CustomPostImageView;
 import mars.nomad.com.B1_post.CustomView.CustomPostVideoView;
 import mars.nomad.com.B1_post.DataModel.PostDataModel;
-import mars.nomad.com.B1_post.DataModel.PostTextDataModel;
 import mars.nomad.com.B1_post.R;
-import mars.nomad.com.c2_customview.RecyclerView.Adapter.Move.NsGeneralMoveClickListener;
-import mars.nomad.com.c2_customview.RecyclerView.Adapter.Move.NsGeneralMoveView;
-import mars.nomad.com.c2_customview.RecyclerView.Adapter.Move.NsGeneralMoveViewHolder;
-import mars.nomad.com.c2_customview.RecyclerView.Adapter.NsGeneralClickListener;
-import mars.nomad.com.c2_customview.RecyclerView.Adapter.NsGeneralView;
+import mars.nomad.com.c2_customview.Adapter.Move.NsGeneralMoveClickListener;
+import mars.nomad.com.c2_customview.Adapter.Move.NsGeneralMoveView;
+import mars.nomad.com.c2_customview.Adapter.Move.NsGeneralMoveViewHolder;
 import mars.nomad.com.l0_base.Abstract.AbstractTextWatcher;
 import mars.nomad.com.l0_base.Callback.NsPredicateAction;
 import mars.nomad.com.l0_base.Logger.ErrorController;
-import mars.nomad.com.l12_applicationutil.ViewSetting.NsViewUtil;
 
 /**
  * Created by 김창혁, NomadSoft.Inc on 2019-05-08.

@@ -5,7 +5,7 @@ import android.app.Activity;
 import java.util.List;
 
 import androidx.recyclerview.widget.RecyclerView;
-import mars.nomad.com.c2_customview.RecyclerView.Adapter.NsBaseRecyclerViewAdapter;
+import mars.nomad.com.c2_customview.Adapter.NsBaseRecyclerViewAdapter;
 import mars.nomad.com.l0_base.Callback.NsPredicateObject;
 import mars.nomad.com.l0_base.Logger.ErrorController;
 

@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import mars.nomad.com.B1_post.DataModel.PostDataModel;
 import mars.nomad.com.B1_post.DataModel.PostTextDataModel;
-import mars.nomad.com.c2_customview.RecyclerView.Adapter.Move.NsGeneralListMoveAdapter;
-import mars.nomad.com.c2_customview.RecyclerView.Adapter.Move.NsGeneralMoveViewHolder;
+import mars.nomad.com.c2_customview.Adapter.Move.NsGeneralListMoveAdapter;
+import mars.nomad.com.c2_customview.Adapter.Move.NsGeneralMoveViewHolder;
 import mars.nomad.com.c2_customview.RecyclerView.ClickListener.SimpleItemTouchHelperCallback;
 import mars.nomad.com.l0_base.Logger.ErrorController;
 

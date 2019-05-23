@@ -3,6 +3,13 @@ apply from: '../constants.gradle'
 
 android {
     compileSdkVersion project.ext.compileSdkVersion
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+
     defaultConfig {
         minSdkVersion project.ext.minSdkVersion
         targetSdkVersion project.ext.targetSdkVersion
@@ -35,7 +42,7 @@ dependencies {
     api project(path: ':A0_Common')
     implementation project(path: ':B1_Post')
 
-    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
-    annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.1.0-alpha04'
-    annotationProcessor 'androidx.room:room-compiler:2.1.0-alpha07'
+    implementation project(path: ':L14_Camera')
+
+    implementation 'androidx.appcompat:appcompat:1.0.2'
 }

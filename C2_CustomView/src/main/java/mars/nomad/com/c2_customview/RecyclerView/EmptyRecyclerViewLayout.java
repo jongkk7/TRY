@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import mars.nomad.com.l0_base.Callback.CommonCallback;
 
-import mars.nomad.com.c2_customview.RecyclerView.Adapter.NsBaseRecyclerViewAdapter;
+import mars.nomad.com.c2_customview.Adapter.NsBaseRecyclerViewAdapter;
 import mars.nomad.com.c2_customview.R;
 import mars.nomad.com.l0_base.Logger.ErrorController;
 
