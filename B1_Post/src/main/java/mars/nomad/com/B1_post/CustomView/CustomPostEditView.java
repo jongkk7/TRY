@@ -3,19 +3,20 @@ package mars.nomad.com.B1_post.CustomView;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Handler;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.EditText;
-import android.widget.ListAdapter;
-import android.widget.TextView;
 
 import com.google.gson.Gson;
 
 import mars.nomad.com.B1_post.DataModel.PostTextDataModel;
 import mars.nomad.com.B1_post.R;
+import mars.nomad.com.B1_post.Util.PostConstants;
 import mars.nomad.com.l0_base.Abstract.AbstractTextWatcher;
+import mars.nomad.com.l0_base.Callback.CommonCallback;
 import mars.nomad.com.l0_base.Logger.ErrorController;
 
 
@@ -70,7 +71,7 @@ public class CustomPostEditView extends CustomPostBaseView {
      * @param contents
      */
     @Override
-    public void setContents(String baseUrl, String contents, final String accessToken) {
+    public void setContents(String contents, final String accessToken) {
         try {
 
             editTextContents1.setVisibility(GONE);
@@ -83,42 +84,47 @@ public class CustomPostEditView extends CustomPostBaseView {
 
             try {
 
-                PostTextDataModel text = new Gson().fromJson(contents, PostTextDataModel.class);
+                if (PostConstants.isOld) {
+
+                    // 모든 글이 평문이므로 그냥 셋팅
+                    editTextContents1.setVisibility(VISIBLE);
+                    editTextContents1.setText(contents);
+                    currentEditText = editTextContents1;
+
+                } else {
+                    PostTextDataModel text = new Gson().fromJson(contents, PostTextDataModel.class);
 
 
+                    // 텍스트 사이즈
+                    switch (text.getFontSize()) {
+                        case 1: // 가장 작음
+                            setTextData(text, editTextContents1);
+                            break;
+                        case 2:
+                            setTextData(text, editTextContents2);
+                            break;
+                        case 3:
+                            setTextData(text, editTextContents3);
+                            break;
+                        case 4:
+                            setTextData(text, editTextContents4);
+                            break;
+                        case 5:
+                            setTextData(text, editTextContents5);
+                            break;
+                        case 6: // 가장 큼
+                            setTextData(text, editTextContents6);
+                            break;
+                        default: // 그외의 값일 경우 기본으로 셋팅
+                            setTextData(text, editTextContents1);
+                            break;
+                    }
 
-                // 텍스트 사이즈
-                switch (text.getFontSize()) {
-                    case 1: // 가장 작음
-                        setTextData(text, editTextContents1);
-                        break;
-                    case 2:
-                        setTextData(text, editTextContents2);
-                        break;
-                    case 3:
-                        setTextData(text, editTextContents3);
-                        break;
-                    case 4:
-                        setTextData(text, editTextContents4);
-                        break;
-                    case 5:
-                        setTextData(text, editTextContents5);
-                        break;
-                    case 6: // 가장 큼
-                        setTextData(text, editTextContents6);
-                        break;
-                    default: // 그외의 값일 경우 기본으로 셋팅
-                        setTextData(text, editTextContents1);
-                        break;
                 }
-
 
             } catch (Exception e) {   // 에러가 잡힐경우 구버전
 
-                // 모든 글이 평문이므로 그냥 셋팅
-                editTextContents1.setVisibility(VISIBLE);
-                editTextContents1.setText(contents);
-                currentEditText = editTextContents1;
+                ErrorController.showError(e);
             }
 
 
@@ -152,19 +158,22 @@ public class CustomPostEditView extends CustomPostBaseView {
         }
     }
 
-    public void addTextChange(final AbstractTextWatcher textWatcher) {
-        if (currentEditText != null) {
-            currentEditText.addTextChangedListener(textWatcher);
-        } else {
-            // 혹시나 currentEditText  가 null 이면 0.2초후 셋팅
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    if (currentEditText != null) {
-                        currentEditText.addTextChangedListener(textWatcher);
-                    }
-                }
-            }, 500);
+
+    public void removeTextWatcher(TextWatcher textWatcherData) {
+        try {
+            currentEditText.removeTextChangedListener(textWatcherData);
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+    }
+
+    public void setTextWatcher(TextWatcher textWatcherData) {
+        try {
+
+            currentEditText.addTextChangedListener(textWatcherData);
+
+        } catch (Exception e) {
+            ErrorController.showError(e);
         }
     }
 }

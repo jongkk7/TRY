@@ -3,12 +3,13 @@
               android:id="@+id/linearLayoutCell"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:background="@drawable/img_post_default"
               android:orientation="vertical">
 
     <ImageView
         android:id="@+id/imageViewContents"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/img_post_default"
+
         android:scaleType="centerCrop"/>
 </LinearLayout>

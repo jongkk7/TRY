@@ -16,6 +16,7 @@ public class ActivityRegister {
         try{
 
             ActivityManager.addClass("ActivityTest", ActivityTest.class);
+            ActivityManager.addClass("ActivityCommonGallery", ActivityCommonGallery.class);
 
         }catch(Exception e){
             ErrorController.showError(e);

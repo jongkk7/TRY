@@ -24,5 +24,5 @@ public abstract class CustomPostBaseView extends RelativeLayout {
 
     protected abstract void initVIew();
 
-    public abstract void setContents(String baseUrl, String contents, String accessToken);
+    public abstract void setContents( String contents, String accessToken);
 }

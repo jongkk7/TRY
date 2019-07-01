@@ -9,7 +9,6 @@ import android.widget.TextView;
 import java.util.List;
 
 import mars.nomad.com.b3_commongallery.Callback.CommonGalleryTotalClickListener;
-import mars.nomad.com.b3_commongallery.DataModel.AlbumDataModel;
 import mars.nomad.com.b3_commongallery.DataModel.CommonGalleryTotalDataModel;
 import mars.nomad.com.b3_commongallery.R;
 import mars.nomad.com.c2_customview.Adapter.NsGeneralClickListener;
@@ -17,7 +16,6 @@ import mars.nomad.com.c2_customview.Adapter.NsGeneralView;
 import mars.nomad.com.l0_base.Callback.CommonCallback;
 import mars.nomad.com.l0_base.Callback.SingleClickListener;
 import mars.nomad.com.l0_base.Logger.ErrorController;
-import mars.nomad.com.l12_applicationutil.String.StringProcesser;
 import mars.nomad.com.m0_imageloader.ImageLoader;
 
 /**
@@ -42,10 +40,10 @@ public class AdapterCommonGalleryTotal extends NsGeneralView<CommonGalleryTotalD
     @Override
     public void initView(View view) {
 
-        imageViewPicture = (ImageView) findViewById(R.id.imageViewPicture);
-        textViewTitle = (TextView) findViewById(R.id.textViewTitle);
-        textViewCount = (TextView) findViewById(R.id.textViewCount);
-        linearLayoutCell = (LinearLayout) findViewById(R.id.linearLayoutCell);
+        imageViewPicture = (ImageView) view.findViewById(R.id.imageViewPicture);
+        textViewTitle = (TextView) view.findViewById(R.id.textViewTitle);
+        textViewCount = (TextView) view.findViewById(R.id.textViewCount);
+        linearLayoutCell = (LinearLayout) view.findViewById(R.id.linearLayoutCell);
     }
 
     @Override
@@ -76,7 +74,12 @@ public class AdapterCommonGalleryTotal extends NsGeneralView<CommonGalleryTotalD
             ImageLoader.loadLocalThumbImage(imageViewPicture, getContext(), item.getFullPath());
 
             // 전체수
-            textViewCount.setText(item.getChildCnt() + "");
+            if (item.getChildCnt() == -1) {
+                textViewCount.setVisibility(GONE);
+            }else{
+                textViewCount.setVisibility(VISIBLE);
+                textViewCount.setText(item.getChildCnt() + "");
+            }
 
         } catch (Exception e) {
             ErrorController.showError(e);

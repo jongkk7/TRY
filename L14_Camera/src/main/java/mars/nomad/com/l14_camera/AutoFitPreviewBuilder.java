@@ -1,19 +1,31 @@
 package mars.nomad.com.l14_camera;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Matrix;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.hardware.display.DisplayManager;
+import android.os.Handler;
 import android.util.Size;
 import android.view.Display;
+import android.view.OrientationEventListener;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 
 import java.util.Objects;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.Preview;
 import androidx.camera.core.PreviewConfig;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleEventObserver;
+import androidx.lifecycle.LifecycleOwner;
+import mars.nomad.com.l0_base.Callback.CommonCallback;
 import mars.nomad.com.l0_base.Logger.ErrorController;
 
 /**
@@ -21,6 +33,8 @@ import mars.nomad.com.l0_base.Logger.ErrorController;
  */
 public class AutoFitPreviewBuilder {
 
+    private Activity activity;
+    private boolean isMatchSize;
     private PreviewConfig mConfig;
     private TextureView mTextureView;
     Preview useCase;
@@ -31,6 +45,9 @@ public class AutoFitPreviewBuilder {
     Size viewFinderDimens;
     int viewFinderDisplay;
     DisplayManager displayManager;
+    private int mRotation;
+
+    boolean isLock = false;
 
     DisplayManager.DisplayListener displayListener = new DisplayManager.DisplayListener() {
         @Override
@@ -56,9 +73,11 @@ public class AutoFitPreviewBuilder {
         }
     };
 
-    public AutoFitPreviewBuilder(PreviewConfig config, TextureView viewFinderRef) {
-        try {
 
+    public AutoFitPreviewBuilder(Activity activity, boolean isMatchSize, PreviewConfig config, TextureView viewFinderRef) {
+        try {
+            this.activity = activity;
+            this.isMatchSize = isMatchSize;
             this.mTextureView = viewFinderRef;
             this.mConfig = config;
 
@@ -68,10 +87,19 @@ public class AutoFitPreviewBuilder {
         }
     }
 
+    int rotation = 0;
+
+
     private void init() {
         try {
-            viewFinderDisplay = mTextureView.getDisplay().getDisplayId();
+            if (isMatchSize) {
+                viewFinderDisplay = activity.getWindowManager().getDefaultDisplay().getDisplayId();
+            }
             viewFinderRotation = getDisplaySurfaceRotation(mTextureView.getDisplay());
+
+            if (isMatchSize) {
+                viewFinderRotation = getDisplaySurfaceRotation(activity.getWindowManager().getDefaultDisplay());
+            }
             useCase = new Preview(mConfig);
             useCase.setOnPreviewOutputUpdateListener(new Preview.OnPreviewOutputUpdateListener() {
                 @Override
@@ -85,6 +113,10 @@ public class AutoFitPreviewBuilder {
                     mTextureView.setSurfaceTexture(output.getSurfaceTexture());
                     bufferRotation = output.getRotationDegrees();
                     int rotation = getDisplaySurfaceRotation(mTextureView.getDisplay());
+
+                    if (isMatchSize) {
+                        rotation = getDisplaySurfaceRotation(activity.getWindowManager().getDefaultDisplay());
+                    }
                     updateTransform(mTextureView, rotation, output.getTextureSize(), viewFinderDimens);
                 }
             });
@@ -95,6 +127,11 @@ public class AutoFitPreviewBuilder {
                     mTextureView = (TextureView) view;
                     Size newViewFinderDimens = new Size(right - left, bottom - top);
                     int rotation = getDisplaySurfaceRotation(mTextureView.getDisplay());
+
+                    if (isMatchSize) {
+                        rotation = getDisplaySurfaceRotation(activity.getWindowManager().getDefaultDisplay());
+                    }
+                    ErrorController.showMessage("[onLayoutChange] **");
                     updateTransform(mTextureView, rotation, bufferDimens, newViewFinderDimens);
                 }
             });
@@ -115,6 +152,66 @@ public class AutoFitPreviewBuilder {
                     displayManager.unregisterDisplayListener(displayListener);
                 }
             });
+
+            final OrientationEventListener orientationEventListener = new OrientationEventListener(mTextureView.getContext(), SensorManager.SENSOR_DELAY_UI) {
+                @Override
+                public void onOrientationChanged(int orientation) {
+                    // 0˚ (portrait)
+                    // 90˚
+                    if (orientation >= 82 && orientation < 98) {
+                        rotation = 270;
+                    }
+
+                    // 270˚ (landscape)
+                    else if (orientation >= 262 && orientation < 278) {
+                        rotation = 90;
+                    }
+
+                    if (mRotation != rotation) {
+
+                        mRotation = rotation;
+
+
+                        if (rotation == 270 || rotation == 90) {
+
+                            final int finalRotation = rotation;
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    ErrorController.showMessage("[onOrientationChanged] **");
+
+
+                                    updateTransform(mTextureView, finalRotation, bufferDimens, viewFinderDimens);
+                                }
+                            }, 100);
+                        }
+                    }
+
+                }
+            };
+
+
+            ((AppCompatActivity) activity).getLifecycle().addObserver(new LifecycleEventObserver() {
+                @Override
+                public void onStateChanged(@NonNull LifecycleOwner source, @NonNull Lifecycle.Event event) {
+
+                    try {
+                        if (event == Lifecycle.Event.ON_RESUME) {
+                            if (orientationEventListener.canDetectOrientation()) {
+                                orientationEventListener.enable();
+                            }
+                        } else if (event == Lifecycle.Event.ON_PAUSE) {
+                            orientationEventListener.disable();
+                        }
+                    } catch (Exception e) {
+                        ErrorController.showError(e);
+                    }
+
+                }
+            });
+
+
         } catch (Exception e) {
             ErrorController.showError(e);
         }
@@ -124,6 +221,12 @@ public class AutoFitPreviewBuilder {
         try {
             if (mTextureView == null) {
                 return;
+            }
+            if (isLock) {
+                isLock = false;
+                return;
+            } else {
+                isLock = true;
             }
 
             if (rotation == viewFinderRotation &&
@@ -157,8 +260,6 @@ public class AutoFitPreviewBuilder {
             float centerX = viewFinderDimens.getWidth() / 2f;
             float centerY = viewFinderDimens.getHeight() / 2f;
 
-            ErrorController.showMessage("[centerX] : " + centerX);
-            ErrorController.showMessage("[centerY] : " + centerY);
             ErrorController.showMessage("[viewFinderRotation] : " + viewFinderRotation);
 
             // Correct preview output to account for display rotation
@@ -190,6 +291,7 @@ public class AutoFitPreviewBuilder {
 
             // Finally, apply transformations to our TextureView
             mTextureView.setTransform(matrix);
+            isLock = false;
 
         } catch (Exception e) {
             ErrorController.showError(e);

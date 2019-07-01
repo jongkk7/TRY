@@ -1,11 +1,12 @@
 package mars.nomad.com.b3_commongallery.DataModel;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Created by 김창혁, NomadSoft.Inc on 2019-05-21.
  */
-public class CommonGalleryDataModel {
+public class CommonGalleryDataModel implements Serializable {
     protected String fullPath;
 
     protected boolean isSelected = false;

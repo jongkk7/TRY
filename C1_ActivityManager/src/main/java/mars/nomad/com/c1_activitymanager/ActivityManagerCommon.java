@@ -75,22 +75,21 @@ public class ActivityManagerCommon extends ActivityManager {
 
     /////////////////////////////////////////////////
 
-
+    public static int CommonGalleryRequest = 15001;
     /**
      * 갤러리 화면으로 이동
      * @param activity
      * @param action SEND, PICK -> 상단의 글씨 버튼이 각각 '전송', '선택'으로 설정됨.
      * @param maxSelectionCount 1 이상의 정수 - 선택 가능한 개수
-     * @param requestCode
      */
-    public static void goActivityCommonGallery(Activity activity, String action, int maxSelectionCount, int requestCode) {
+    public static void goActivityCommonGallery(Activity activity, String action, int maxSelectionCount) {
 
         try {
 
             Intent intent = new Intent(activity, getClassByName("ActivityCommonGallery"));
-            intent.putExtra("ACTION", action);
+            intent.setAction( action);
             intent.putExtra("MAX_CNT", maxSelectionCount);
-            activity.startActivityForResult(intent, requestCode);
+            activity.startActivityForResult(intent, CommonGalleryRequest);
             activity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
         } catch (Exception e) {
@@ -98,27 +97,8 @@ public class ActivityManagerCommon extends ActivityManager {
         }
     }
 
-//    public static void goActivityCommonGallery(Activity activity, Fragment fragment, String action, int maxSelectionCount, int requestCode) {
-//
-//        try{
-//
-//
-//            Intent intent = new Intent(activity, getClassByName("ActivityCommonGallery"));
-//            intent.putExtra(CommonConstants.P0_BUNDLE_ALBUM_ACTION, action);
-//            intent.putExtra(CommonConstants.P0_BUNDLE_ALBUM_MAX_COUNT, maxSelectionCount);
-//
-//            if(fragment == null) {
-//                activity.startActivityForResult(intent, requestCode);
-//            }else{
-//
-//                fragment.startActivityForResult(intent, requestCode);
-//            }
-//            activity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-//
-//        }catch(Exception e){
-//            ErrorController.showError(e);
-//        }
-//    }
+
+
 
     public static void goActivityEditPicture(Activity activity, String action, String fullPath, int requestCode) {
 

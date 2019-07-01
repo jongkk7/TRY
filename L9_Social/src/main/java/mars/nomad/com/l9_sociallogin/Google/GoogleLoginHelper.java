@@ -2,6 +2,7 @@ package mars.nomad.com.l9_sociallogin.Google;
 
 import android.app.Activity;
 import android.content.Intent;
+
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -36,7 +37,7 @@ public class GoogleLoginHelper {
     public void requestGoogleLogin(Activity activity, GoogleSocialCallback callback) {
         try {
 
-            if (!SocialFlag.googleInit) {
+            if (gso == null) {
                 SocialFlag.googleInit = true;
                 mAuth = FirebaseAuth.getInstance();
 
@@ -115,9 +116,6 @@ public class GoogleLoginHelper {
                                 dataModel.setUserName(user.getDisplayName());
                             }
                             dataModel.setJoinType(6);
-
-
-
 
 
                         } else {

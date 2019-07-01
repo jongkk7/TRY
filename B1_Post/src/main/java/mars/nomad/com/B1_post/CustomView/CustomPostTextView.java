@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 
 import mars.nomad.com.B1_post.DataModel.PostTextDataModel;
 import mars.nomad.com.B1_post.R;
+import mars.nomad.com.B1_post.Util.PostConstants;
 import mars.nomad.com.l0_base.Logger.ErrorController;
 
 
@@ -62,52 +63,55 @@ public class CustomPostTextView extends CustomPostBaseView {
      * @param contents
      */
     @Override
-    public void setContents(String baseUrl, String contents, final String accessToken) {
+    public void setContents( String contents, final String accessToken) {
         try {
 
             try {
 
-                PostTextDataModel text = new Gson().fromJson(contents, PostTextDataModel.class);
+                if (PostConstants.isOld) {
+                    // 모든 글이 평문이므로 그냥 셋팅
+                    textViewContents1.setVisibility(VISIBLE);
+                    textViewContents1.setText(contents);
+                } else {
+                    PostTextDataModel text = new Gson().fromJson(contents, PostTextDataModel.class);
 
-                textViewContents1.setVisibility(GONE);
-                textViewContents2.setVisibility(GONE);
-                textViewContents3.setVisibility(GONE);
-                textViewContents4.setVisibility(GONE);
-                textViewContents5.setVisibility(GONE);
-                textViewContents6.setVisibility(GONE);
+                    textViewContents1.setVisibility(GONE);
+                    textViewContents2.setVisibility(GONE);
+                    textViewContents3.setVisibility(GONE);
+                    textViewContents4.setVisibility(GONE);
+                    textViewContents5.setVisibility(GONE);
+                    textViewContents6.setVisibility(GONE);
 
 
-                // 텍스트 사이즈
-                switch (text.getFontSize()) {
-                    case 1: // 가장 작음
-                        setTextData(text, textViewContents1);
-                        break;
-                    case 2:
-                        setTextData(text, textViewContents2);
-                        break;
-                    case 3:
-                        setTextData(text, textViewContents3);
-                        break;
-                    case 4:
-                        setTextData(text, textViewContents4);
-                        break;
-                    case 5:
-                        setTextData(text, textViewContents5);
-                        break;
-                    case 6: // 가장 큼
-                        setTextData(text, textViewContents6);
-                        break;
-                    default: // 그외의 값일 경우 기본으로 셋팅
-                        setTextData(text, textViewContents1);
-                        break;
+                    // 텍스트 사이즈
+                    switch (text.getFontSize()) {
+                        case 1: // 가장 작음
+                            setTextData(text, textViewContents1);
+                            break;
+                        case 2:
+                            setTextData(text, textViewContents2);
+                            break;
+                        case 3:
+                            setTextData(text, textViewContents3);
+                            break;
+                        case 4:
+                            setTextData(text, textViewContents4);
+                            break;
+                        case 5:
+                            setTextData(text, textViewContents5);
+                            break;
+                        case 6: // 가장 큼
+                            setTextData(text, textViewContents6);
+                            break;
+                        default: // 그외의 값일 경우 기본으로 셋팅
+                            setTextData(text, textViewContents1);
+                            break;
+                    }
+
                 }
-
-
             } catch (Exception e) {   // 에러가 잡힐경우 구버전
 
-                // 모든 글이 평문이므로 그냥 셋팅
-                textViewContents1.setVisibility(VISIBLE);
-                textViewContents1.setText(contents);
+                ErrorController.showError(e);
             }
 
         } catch (Exception e) {

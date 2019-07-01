@@ -5,9 +5,6 @@
     <application>
         <activity android:name=".ActivityCommonGallery">
         </activity>
-        <activity
-            android:name=".ActivityCommonGalleryOld"
-            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

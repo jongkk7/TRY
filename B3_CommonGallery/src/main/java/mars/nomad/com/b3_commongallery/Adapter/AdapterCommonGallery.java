@@ -38,9 +38,9 @@ public class AdapterCommonGallery extends NsGeneralView<CommonGalleryDataModel> 
     public void initView(View view) {
 
         try {
-            imageViewPicture = (ImageView) findViewById(R.id.imageViewPicture);
-            imageViewCheckBox = (ImageView) findViewById(R.id.imageViewCheckBox);
-            relativeLayoutCell = (RelativeLayout) findViewById(R.id.relativeLayoutCell);
+            imageViewPicture = (ImageView) view.findViewById(R.id.imageViewPicture);
+            imageViewCheckBox = (ImageView) view.findViewById(R.id.imageViewCheckBox);
+            relativeLayoutCell = (RelativeLayout) view.findViewById(R.id.relativeLayoutCell);
 
         } catch (Exception e) {
             ErrorController.showError(e);

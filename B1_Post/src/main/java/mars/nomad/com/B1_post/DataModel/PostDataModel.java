@@ -1,5 +1,7 @@
 package mars.nomad.com.B1_post.DataModel;
 
+import android.text.TextWatcher;
+
 import com.google.gson.annotations.Expose;
 
 import java.io.Serializable;
@@ -10,8 +12,7 @@ import java.util.Objects;
  */
 public class PostDataModel implements Serializable {
 
-    @Expose(serialize = false, deserialize = false)
-    private int order_num = 0;
+    private int sort_num = 0;
 
     private String type;
 
@@ -22,7 +23,10 @@ public class PostDataModel implements Serializable {
     private String accessToken;
 
     @Expose(serialize = false, deserialize = false)
-    private int editOption = 1;
+    private boolean editOption = false;
+
+    @Expose(serialize = false, deserialize = false)
+    private TextWatcher textWatcherData;
 
     private String contents;
 
@@ -34,10 +38,10 @@ public class PostDataModel implements Serializable {
         this.contents = other.contents;
     }
 
-    public PostDataModel(String type, String contents, int order_num) {
+    public PostDataModel(String type, String contents, int sort_num) {
         this.type = type;
         this.contents = contents;
-        this.order_num = order_num;
+        this.sort_num = sort_num;
     }
 
     public String getType() {
@@ -74,20 +78,28 @@ public class PostDataModel implements Serializable {
     }
 
 
-    public int getEditOption() {
+    public boolean getEditOption() {
         return editOption;
     }
 
-    public void setEditOption(int editOption) {
+    public void setEditOption(boolean editOption) {
         this.editOption = editOption;
     }
 
-    public int getOrder_num() {
-        return order_num;
+    public int getSort_num() {
+        return sort_num;
     }
 
-    public void setOrder_num(int order_num) {
-        this.order_num = order_num;
+    public void setSort_num(int sort_num) {
+        this.sort_num = sort_num;
+    }
+
+    public TextWatcher getTextWatcherData() {
+        return textWatcherData;
+    }
+
+    public void setTextWatcherData(TextWatcher textWatcherData) {
+        this.textWatcherData = textWatcherData;
     }
 
     @Override
@@ -95,7 +107,7 @@ public class PostDataModel implements Serializable {
         if (this == o) return true;
         if (!(o instanceof PostDataModel)) return false;
         PostDataModel that = (PostDataModel) o;
-        return order_num == that.order_num &&
+        return sort_num == that.sort_num &&
                 editOption == that.editOption &&
                 Objects.equals(type, that.type) &&
                 Objects.equals(url, that.url) &&
@@ -105,7 +117,7 @@ public class PostDataModel implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(order_num, type, url, accessToken, editOption, contents);
+        return Objects.hash(sort_num, type, url, accessToken, editOption, contents);
     }
 
     @Override

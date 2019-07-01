@@ -14,7 +14,6 @@ import com.jakewharton.processphoenix.ProcessPhoenix;
 
 import mars.nomad.com.a0_common.DataBase.DataBaseFlag;
 import mars.nomad.com.a0_common.DataBase.LitePal.NsLitePal;
-import mars.nomad.com.a0_common.DataBase.Room.LoginUser.LoginUserRepository;
 import mars.nomad.com.a0_application.ActivityRegister;
 import mars.nomad.com.a0_application.BuildConfig;
 import mars.nomad.com.l0_base.Logger.ErrorController;

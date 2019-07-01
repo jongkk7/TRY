@@ -1,5 +1,7 @@
 package mars.nomad.com.B1_post.DataModel;
 
+import com.google.gson.annotations.Expose;
+
 import java.io.Serializable;
 
 /**
@@ -19,6 +21,27 @@ public class PostImageDataModel implements Serializable {
 
     private int height;
 
+    @Expose(serialize = false, deserialize = false)
+    private boolean isLocal = false;
+
+    public PostImageDataModel(String thumbPath, int thumb_width, int thumb_height, String filePath, int width, int height, boolean isLocal) {
+        this.thumbPath = thumbPath;
+        this.thumb_width = thumb_width;
+        this.thumb_height = thumb_height;
+        this.filePath = filePath;
+        this.width = width;
+        this.height = height;
+        this.isLocal = isLocal;
+    }
+
+
+    public boolean isLocal() {
+        return isLocal;
+    }
+
+    public void setLocal(boolean local) {
+        isLocal = local;
+    }
 
     public String getThumbPath() {
         return thumbPath;

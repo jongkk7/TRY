@@ -15,6 +15,7 @@ import mars.nomad.com.B1_post.DataModel.PostImageDataModel;
 import mars.nomad.com.B1_post.R;
 import mars.nomad.com.B1_post.SubActivity.ActivityOneImageViewer;
 import mars.nomad.com.l0_base.Logger.ErrorController;
+import mars.nomad.com.m0_http.RetrofitSender2;
 import mars.nomad.com.m0_imageloader.ImageLoader;
 
 /**
@@ -47,7 +48,7 @@ public class CustomPostImageView extends CustomPostBaseView {
      *
      * @param contents
      */
-    public void setContents(final String BaseUrl, String contents, final String accessToken) {
+    public void setContents(String contents, final String accessToken) {
         try {
 
             final PostImageDataModel image = new Gson().fromJson(contents, PostImageDataModel.class);
@@ -55,7 +56,7 @@ public class CustomPostImageView extends CustomPostBaseView {
             // 썸네일 셋팅
 
 
-            imageViewContents.postDelayed(new Runnable() {
+            imageViewContents.post(new Runnable() {
                 @Override
                 public void run() {
                     ViewGroup.LayoutParams params = imageViewContents.getLayoutParams();
@@ -66,9 +67,13 @@ public class CustomPostImageView extends CustomPostBaseView {
 
                     imageViewContents.setLayoutParams(params);
 
-                    ImageLoader.loadImageWithDefault(getContext(), imageViewContents, BaseUrl, image.getThumbPath(), accessToken);
+                    if (image.isLocal()) {
+                        ImageLoader.loadLocalThumbImage(imageViewContents, getContext(), image.getFilePath());
+                    } else {
+                        ImageLoader.loadImageWithDefault(getContext(), imageViewContents, RetrofitSender2.URL_IMG_BASE, image.getThumbPath(), accessToken);
+                    }
                 }
-            }, 100);
+            });
 
             // 클릭 이벤트
             imageViewContents.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +83,6 @@ public class CustomPostImageView extends CustomPostBaseView {
                     Intent intent = new Intent(getContext(), ActivityOneImageViewer.class);
 
                     intent.putExtra(ActivityOneImageViewer.PHOTO_DATA, image);
-                    intent.putExtra(ActivityOneImageViewer.PHOTO_URL, BaseUrl);
 
                     getContext().startActivity(intent);
 

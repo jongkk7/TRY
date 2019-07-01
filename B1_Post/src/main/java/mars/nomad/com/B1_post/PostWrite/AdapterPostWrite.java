@@ -2,6 +2,7 @@ package mars.nomad.com.B1_post.PostWrite;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -19,6 +20,7 @@ import mars.nomad.com.c2_customview.Adapter.Move.NsGeneralMoveClickListener;
 import mars.nomad.com.c2_customview.Adapter.Move.NsGeneralMoveView;
 import mars.nomad.com.c2_customview.Adapter.Move.NsGeneralMoveViewHolder;
 import mars.nomad.com.l0_base.Abstract.AbstractTextWatcher;
+import mars.nomad.com.l0_base.Callback.CommonCallback;
 import mars.nomad.com.l0_base.Callback.NsPredicateAction;
 import mars.nomad.com.l0_base.Logger.ErrorController;
 
@@ -56,7 +58,7 @@ public class AdapterPostWrite extends NsGeneralMoveView<PostDataModel> {
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
-    public void setEvent(List<PostDataModel> data, final NsGeneralMoveViewHolder<PostDataModel> holder, final PostDataModel item, NsGeneralMoveClickListener<PostDataModel> mClickListener) {
+    public void setEvent(final List<PostDataModel> data, final NsGeneralMoveViewHolder<PostDataModel> holder, final PostDataModel item, NsGeneralMoveClickListener<PostDataModel> mClickListener) {
         final PostWriteClickListener clickListener = (PostWriteClickListener) mClickListener;
 
         try {
@@ -79,13 +81,27 @@ public class AdapterPostWrite extends NsGeneralMoveView<PostDataModel> {
                 }
             });
 
+            if (item.getType().equalsIgnoreCase("text") || item.getType().equalsIgnoreCase("txt")) {
 
-            customPostEditView.addTextChange(new AbstractTextWatcher() {
+                for (PostDataModel datum : data) {
+
+                    if (datum.getTextWatcherData() != null && !datum.equals(item)) {
+                        customPostEditView.removeTextWatcher(datum.getTextWatcherData());
+                    }
+
+                }
+            }
+
+            item.setTextWatcherData(new AbstractTextWatcher() {
                 @Override
-                public void onTextChanged(CharSequence text, int start, int before, int count) {
-                    clickListener.onTextChange(item, text.toString());
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    clickListener.onTextChange(item, s.toString());
                 }
             });
+
+            customPostEditView.setTextWatcher(item.getTextWatcherData());
+
+
         } catch (Exception e) {
             ErrorController.showError(e);
         }
@@ -105,16 +121,19 @@ public class AdapterPostWrite extends NsGeneralMoveView<PostDataModel> {
             switch (item.getType()) {
 
                 case "text":
+                case "txt":
                     customPostEditView.setVisibility(VISIBLE);
-                    customPostEditView.setContents(item.getUrl(), item.getContents(), item.getAccessToken());
+                    customPostEditView.setContents( item.getContents(), item.getAccessToken());
                     break;
                 case "image":
+                case "img":
                     customPostImageView.setVisibility(VISIBLE);
-                    customPostImageView.setContents(item.getUrl(), item.getContents(), item.getAccessToken());
+                    customPostImageView.setContents( item.getContents(), item.getAccessToken());
                     break;
                 case "video":
+                case "movie":
                     customPostVideoView.setVisibility(VISIBLE);
-                    customPostVideoView.setContents(item.getUrl(), item.getContents(), item.getAccessToken());
+                    customPostVideoView.setContents( item.getContents(), item.getAccessToken());
                     break;
             }
 
@@ -122,7 +141,7 @@ public class AdapterPostWrite extends NsGeneralMoveView<PostDataModel> {
             setVisibility(linearLayoutControl, new NsPredicateAction() {
                 @Override
                 public boolean apply() {
-                    return item.getEditOption() == 1;
+                    return item.getEditOption();
                 }
             });
 

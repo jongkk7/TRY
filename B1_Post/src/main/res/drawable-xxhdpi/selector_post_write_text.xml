@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/ic_tx_menus_01_android" android:state_pressed="false"/>
+    <item android:drawable="@drawable/btn_list1_9_4_dw_android" android:state_pressed="true"/>
+
+</selector>

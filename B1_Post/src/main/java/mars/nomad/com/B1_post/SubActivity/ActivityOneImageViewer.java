@@ -12,6 +12,7 @@ import mars.nomad.com.B1_post.DataModel.PostImageDataModel;
 import mars.nomad.com.B1_post.R;
 import mars.nomad.com.c3_baseaf.BaseActivity;
 import mars.nomad.com.l0_base.Logger.ErrorController;
+import mars.nomad.com.m0_http.RetrofitSender2;
 import mars.nomad.com.m0_imageloader.ImageLoader;
 import uk.co.senab.photoview.PhotoView;
 
@@ -20,12 +21,10 @@ public class ActivityOneImageViewer extends BaseActivity {
     private Context mContext;
     private uk.co.senab.photoview.PhotoView PhotoViewImage;
 
-    public static String PHOTO_URL = "post.photourl";
     public static String PHOTO_DATA = "post.photodata";
     public static String ACCESS_TOKEN = "post.accessToken";
 
     private PostImageDataModel image;
-    private String url;
     private String accessToken;
 
     @Override
@@ -71,11 +70,11 @@ public class ActivityOneImageViewer extends BaseActivity {
     private void getData() {
         try {
 
-            url = getIntent().getStringExtra(PHOTO_URL);
+
             image = (PostImageDataModel) getIntent().getSerializableExtra(PHOTO_DATA);
             accessToken = getIntent().getStringExtra(ACCESS_TOKEN);
 
-            if (url == null || url.equalsIgnoreCase("") || image == null) {
+            if (image == null) {
                 ErrorController.showToast(getActivity(), "올바른 데이터를 받지 못했습니다.");
                 finish();
             }
@@ -89,7 +88,7 @@ public class ActivityOneImageViewer extends BaseActivity {
 
     private void setImage() {
         try {
-            PhotoViewImage.postDelayed(new Runnable() {
+            PhotoViewImage.post(new Runnable() {
                 @Override
                 public void run() {
 
@@ -101,9 +100,9 @@ public class ActivityOneImageViewer extends BaseActivity {
 
                     PhotoViewImage.setLayoutParams(params);
 
-                    ImageLoader.loadImageWithDefault(getActivity(), PhotoViewImage, url, image.getThumbPath(),accessToken);
+                    ImageLoader.loadImageWithDefault(getActivity(), PhotoViewImage, RetrofitSender2.URL_IMG_BASE, image.getThumbPath(), accessToken);
                 }
-            }, 100);
+            });
 
 //
 //            ImageLoader.loadImageWithDefault(getActivity(), PhotoViewImage, url, image.getThumbPath(), MyInfoDb.getMe().getAccess_token());

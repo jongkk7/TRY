@@ -6,7 +6,6 @@ import android.media.MediaScannerConnection;
 import android.util.DisplayMetrics;
 import android.util.Rational;
 import android.util.Size;
-import android.view.Surface;
 import android.view.TextureView;
 import android.webkit.MimeTypeMap;
 
@@ -20,6 +19,7 @@ import androidx.camera.core.ImageCaptureConfig;
 import androidx.camera.core.Preview;
 import androidx.camera.core.PreviewConfig;
 import androidx.lifecycle.LifecycleOwner;
+import mars.nomad.com.l0_base.Callback.CommonCallback;
 import mars.nomad.com.l0_base.Logger.ErrorController;
 
 /**
@@ -33,14 +33,18 @@ public class CameraXModule {
     private CameraX.LensFacing lensFacing = CameraX.LensFacing.BACK;
     private int imageRotation;
 
-    public void initCamera(final Activity activity, final LifecycleOwner owner, final TextureView textureView) {
+    public void initCamera(final Activity activity, final LifecycleOwner owner, final boolean isMatchSize, final TextureView textureView) {
         try {
 
             CameraX.unbindAll();
 
             DisplayMetrics realMetrics = new DisplayMetrics();
             // Initialize a DisplayMetrics object that receives the TextureView's real display size
-            textureView.getDisplay().getRealMetrics(realMetrics);
+            if (isMatchSize) {
+                activity.getWindowManager().getDefaultDisplay().getRealMetrics(realMetrics);
+            } else {
+                textureView.getDisplay().getRealMetrics(realMetrics);
+            }
 
             Size screenSize = new Size(realMetrics.widthPixels, realMetrics.heightPixels);
             Rational screenAspectRatio = new Rational(realMetrics.widthPixels, realMetrics.heightPixels);
@@ -56,8 +60,9 @@ public class CameraXModule {
                     .build();
 
 
-            preview = new AutoFitPreviewBuilder(config, textureView).Builder();
+            preview = new AutoFitPreviewBuilder(activity, isMatchSize, config, textureView).Builder();
 
+            ErrorController.showMessage("[imageRotation] : " + imageRotation);
             imageRotation = textureView.getDisplay().getRotation();
 
             ImageCaptureConfig imageCaptureConfig =
@@ -79,7 +84,7 @@ public class CameraXModule {
     }
 
 
-    public void takePicture(final Context context, File baseFolder, String fileName,  final String extension, final boolean isGallery, final CameraCaptureCallback captureCallback) {
+    public void takePicture(final Context context, File baseFolder, String fileName, final String extension, final boolean isGallery, final CameraCaptureCallback captureCallback) {
         try {
 
 
@@ -90,7 +95,7 @@ public class CameraXModule {
                     photoFile.delete();
                 }
                 ImageCapture.Metadata metadata = new ImageCapture.Metadata();
-                metadata.isReversedHorizontal = lensFacing == CameraX.LensFacing.FRONT ||  imageRotation == Surface.ROTATION_90;
+                metadata.isReversedHorizontal = lensFacing == CameraX.LensFacing.FRONT;
                 // Setup image capture listener which is triggered after photo has been taken
                 imageCapture.takePicture(photoFile, new ImageCapture.OnImageSavedListener() {
                     @Override

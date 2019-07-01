@@ -15,6 +15,9 @@ public class PostTextDataModel implements Serializable {
 
     private int fontSize = 0;
 
+    public PostTextDataModel() {
+    }
+
     public String getContents() {
         return contents;
     }

@@ -50,6 +50,8 @@ public class FrameLayoutCamera extends FrameLayout {
 
             mVmodel = new CameraXModule();
 
+            ErrorController.showMessage("initView");
+
             textureViewCamera = (TextureView) view.findViewById(R.id.textureViewCamera);
             relativeLayoutCaptureAnim = (RelativeLayout) view.findViewById(R.id.relativeLayoutCaptureAnim);
 
@@ -71,14 +73,14 @@ public class FrameLayoutCamera extends FrameLayout {
         }
     }
 
-    public void initCamera(final Activity activity, final LifecycleOwner owner, final CameraCallback callback) {
+    public void initCamera(final Activity activity, final LifecycleOwner owner, final boolean isMatchSize, final CameraCallback callback) {
         try {
 
             if (mVmodel != null && textureViewCamera != null) {
                 textureViewCamera.post(new Runnable() {
                     @Override
                     public void run() {
-                        mVmodel.initCamera(activity, owner, textureViewCamera);
+                        mVmodel.initCamera(activity, owner, isMatchSize, textureViewCamera);
                         callback.onCameraReady();
                     }
                 });
@@ -86,7 +88,7 @@ public class FrameLayoutCamera extends FrameLayout {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        initCamera(activity, owner, callback);
+                        initCamera(activity, owner, isMatchSize, callback);
                     }
                 }, 500);
             }

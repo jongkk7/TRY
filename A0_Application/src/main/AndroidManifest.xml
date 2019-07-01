@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="mars.nomad.com.a0_application">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true"/>
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
     <application
         android:name=".Application.BaseApplication"
         android:allowBackup="true"
@@ -11,7 +17,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeInterface"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Test.ActivityTest">
+        <activity
+            android:name=".Test.ActivityTest"
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            android:configChanges="orientation|screenSize|keyboardHidden">
         </activity>
         <activity android:name=".ActivityStart">
             <intent-filter>

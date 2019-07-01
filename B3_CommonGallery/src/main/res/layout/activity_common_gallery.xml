@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
               xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
               android:id="@+id/activity_picture_album"
               style="@style/background"
               android:layout_width="match_parent"
@@ -16,7 +16,7 @@
             android:id="@+id/imageButtonBack"
             style="@style/topbarBackImageWhite"
             android:background="@null"
-            android:src="@drawable/p0_img_close_black_x_button" />
+            android:src="@drawable/arr_back_black_default_android"/>
 
         <LinearLayout
             android:id="@+id/linearLayoutTouch"
@@ -29,16 +29,11 @@
             <TextView
                 android:id="@+id/textViewTitle"
                 style="@style/topbar1Text"
-                android:text="카메라 롤"
+                android:text="갤러리"
                 android:textColor="@color/colorBlack"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
 
-            <ImageView
-                android:id="@+id/imageViewTouch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:background="@drawable/img_reverse_triangle_black" />
+
         </LinearLayout>
 
 
@@ -59,42 +54,49 @@
                 android:gravity="center"
                 android:text="0"
                 android:textColor="@color/colorWhite"
-                android:visibility="gone" />
+                android:visibility="gone"/>
 
             <TextView
-                android:layout_marginLeft="4dp"
                 android:id="@+id/textViewSend"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorBlack"
-                android:textSize="14dp"
+                android:layout_marginLeft="4dp"
                 android:layout_marginRight="8dp"
                 android:text="전송"
-                android:textStyle="bold" />
+                android:textColor="@color/colorBlack"
+                android:textSize="14dp"
+                android:textStyle="bold"/>
 
         </LinearLayout>
     </RelativeLayout><!-- 상단바 끝 -->
-    ]
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorDividerD0D0D0"/>
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewAlbum"
             android:layout_width="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="3"
             android:layout_height="match_parent"
-            android:background="@color/colorWhite" />
+            android:background="@color/colorWhite"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="3"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewTotalAlbum"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:background="@color/colorWhite"
-            android:visibility="gone" />
+            android:visibility="visible"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
     </FrameLayout>
 
 </LinearLayout>

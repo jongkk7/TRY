@@ -69,16 +69,17 @@ public class AdapterPostDetail extends NsGeneralView<PostDataModel> {
             switch (item.getType()) {
 
                 case "text":
+                case "txt":
                     customPostTextView.setVisibility(VISIBLE);
-                    customPostTextView.setContents(item.getUrl(), item.getContents(), item.getAccessToken());
+                    customPostTextView.setContents( item.getContents(), item.getAccessToken());
                     break;
                 case "image":
                     customPostImageView.setVisibility(VISIBLE);
-                    customPostImageView.setContents(item.getUrl(), item.getContents(), item.getAccessToken());
+                    customPostImageView.setContents(item.getContents(), item.getAccessToken());
                     break;
                 case "video":
                     customPostVideoView.setVisibility(VISIBLE);
-                    customPostVideoView.setContents(item.getUrl(), item.getContents(), item.getAccessToken());
+                    customPostVideoView.setContents( item.getContents(), item.getAccessToken());
                     break;
             }
 

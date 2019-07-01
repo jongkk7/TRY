@@ -1,12 +1,20 @@
 package mars.nomad.com.B1_post.PostWrite;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.TypedArray;
+import android.net.Uri;
+import android.os.Environment;
 import android.os.Handler;
+import android.os.StrictMode;
+import android.provider.MediaStore;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,19 +27,30 @@ import androidx.recyclerview.widget.SimpleItemAnimator;
 import mars.nomad.com.B1_post.DataModel.PostDataModel;
 import mars.nomad.com.B1_post.PostWrite.MVVM.LayoutPostWriteViewModel;
 import mars.nomad.com.B1_post.R;
+import mars.nomad.com.c1_activitymanager.ActivityManagerCommon;
 import mars.nomad.com.c2_customview.Adapter.Move.NsGeneralListMoveAdapter;
 import mars.nomad.com.c2_customview.Adapter.Move.NsGeneralMoveViewHolder;
 import mars.nomad.com.c3_baseaf.BaseActivity;
 import mars.nomad.com.c3_baseaf.BaseNsCustomView;
+import mars.nomad.com.l0_base.Callback.CommonCallback;
+import mars.nomad.com.l0_base.Callback.SingleClickListener;
 import mars.nomad.com.l0_base.Logger.ErrorController;
 
 /**
  * Created by 김창혁, NomadSoft.Inc on 2019-05-13.
  */
 public class LayoutPostWrite extends BaseNsCustomView {
+
+
     private RecyclerView recyclerViewPostWrite;
     private LayoutPostWriteViewModel mVmodel;
     private NsGeneralListMoveAdapter<PostDataModel> mAdapter;
+    private ImageView imageViewText;
+    private ImageView imageViewCamera;
+    private ImageView imageViewGallery;
+    private ImageView imageViewSetting;
+
+    private BaseActivity activity;
 
     public LayoutPostWrite(Context context) {
         super(context);
@@ -62,6 +81,11 @@ public class LayoutPostWrite extends BaseNsCustomView {
 
             recyclerViewPostWrite = (RecyclerView) view.findViewById(R.id.recyclerViewPostWrite);
 
+            imageViewText = (ImageView) view.findViewById(R.id.imageViewText);
+            imageViewCamera = (ImageView) view.findViewById(R.id.imageViewCamera);
+            imageViewGallery = (ImageView) view.findViewById(R.id.imageViewGallery);
+            imageViewSetting = (ImageView) view.findViewById(R.id.imageViewSetting);
+
             SimpleItemAnimator itemAnimator = (SimpleItemAnimator) recyclerViewPostWrite.getItemAnimator();
             itemAnimator.setSupportsChangeAnimations(false);
 
@@ -70,11 +94,47 @@ public class LayoutPostWrite extends BaseNsCustomView {
         } catch (Exception e) {
             ErrorController.showError(e);
         }
+
     }
 
     @Override
     protected void setEvent() {
-        // do nothing
+        try {
+
+            imageViewText.setOnClickListener(new SingleClickListener(new CommonCallback.SingleActionCallback() {
+                @Override
+                public void onAction() {
+                    mVmodel.addEditTextCell();
+                }
+            }));
+
+            imageViewCamera.setOnClickListener(new SingleClickListener(new CommonCallback.SingleActionCallback() {
+                @Override
+                public void onAction() {
+                    mVmodel.takePicture(activity);
+                }
+            }));
+
+            imageViewGallery.setOnClickListener(new SingleClickListener(new CommonCallback.SingleActionCallback() {
+                @Override
+                public void onAction() {
+                    ActivityManagerCommon.goActivityCommonGallery(activity, "", 1);
+                }
+            }));
+
+
+            imageViewSetting.setOnClickListener(new SingleClickListener(new CommonCallback.SingleActionCallback() {
+                @Override
+                public void onAction() {
+                    imageViewSetting.setSelected(!imageViewSetting.isSelected());
+
+                    mVmodel.setSetting(imageViewSetting.isSelected());
+                }
+            }));
+
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
     }
 
     @Override
@@ -84,6 +144,8 @@ public class LayoutPostWrite extends BaseNsCustomView {
 
     public void setAdapter(BaseActivity activity, List<PostDataModel> dataList) {
         try {
+
+            this.activity = activity;
 
             mAdapter = new NsGeneralListMoveAdapter<PostDataModel>(getContext(), new AdapterPostWrite(getContext()), new ArrayList<PostDataModel>(), new PostWriteClickListener() {
                 @Override
@@ -104,6 +166,7 @@ public class LayoutPostWrite extends BaseNsCustomView {
                 @Override
                 public void onDelete(PostDataModel item) {
                     mVmodel.onDelete(item);
+                    ErrorController.showMessage("[getJsonData] : " + getJsonData());
                 }
 
                 @Override
@@ -150,6 +213,21 @@ public class LayoutPostWrite extends BaseNsCustomView {
                 }, 500);
             }
 
+
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+    }
+
+    public String getJsonData() {
+        return mVmodel.getJsonData();
+    }
+
+    public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
+
+        try {
+
+            mVmodel.onActivityResult(activity, requestCode, resultCode, data);
 
         } catch (Exception e) {
             ErrorController.showError(e);

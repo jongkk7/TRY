@@ -132,7 +132,7 @@ public class KaKaoTalkLoginHelper {
                                     dataModel.setAccessToken(Session.getCurrentSession().getTokenInfo().getAccessToken());
                                     dataModel.setUserId(response.getId() + "");
                                     dataModel.setJoinType(2);
-                                    dataModel.setEmail(response.getKakaoAccount().getEmail());
+//                                    dataModel.setEmail(response.getKakaoAccount().getEmail());
 
                                     if (isProfileImage) {
                                         dataModel.setProfileImg(response.getProfileImagePath());

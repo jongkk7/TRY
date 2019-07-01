@@ -21,6 +21,7 @@ import mars.nomad.com.l0_base.Logger.ErrorController;
 import mars.nomad.com.B1_post.DataModel.PostVideoDataModel;
 import mars.nomad.com.B1_post.R;
 import mars.nomad.com.l12_applicationutil.Video.VideoControlUtil;
+import mars.nomad.com.m0_http.RetrofitSender2;
 import mars.nomad.com.m0_imageloader.ImageLoader;
 
 /**
@@ -33,7 +34,6 @@ public class CustomPostVideoView extends CustomPostBaseView {
     private RelativeLayout relativeLayoutVideo;
 
     private final boolean isAutoPlay = false;
-    private MediaPlayer mediaPlayer;
     private ImageView imageViewThumb;
     private RelativeLayout relativeLayoutCell;
 
@@ -62,18 +62,17 @@ public class CustomPostVideoView extends CustomPostBaseView {
     /**
      * 비디오는 반드시 반드시 비디오어야함.
      *
-     * @param BaseUrl
      * @param contents
      */
     @Override
-    public void setContents(final String BaseUrl, final String contents, final String accessToken) {
+    public void setContents(final String contents, final String accessToken) {
         try {
 
             final PostVideoDataModel video = new Gson().fromJson(contents, PostVideoDataModel.class);
 
             // 썸네일 셋팅
 
-            ImageLoader.loadImageWithDefault(getContext(), imageViewThumb, BaseUrl, video.getThumbPath(), accessToken);
+            ImageLoader.loadImageWithDefault(getContext(), imageViewThumb,  RetrofitSender2.URL_IMG_BASE, video.getThumbPath(), accessToken);
 
 
             relativeLayoutVideo.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -104,7 +103,7 @@ public class CustomPostVideoView extends CustomPostBaseView {
                 @Override
                 public void onClick(View v) {
 
-                    startMedia(BaseUrl, video.getFilePath());
+                    startMedia(video.getFilePath());
 
                 }
             });
@@ -113,7 +112,7 @@ public class CustomPostVideoView extends CustomPostBaseView {
                 @Override
                 public void onClick(View v) {
                     // 클릭의 반대로 봐야함. 처음은 false 이므로 액션은 그다음 true 액션이 되어야함.
-                    startMedia(BaseUrl, video.getFilePath());
+                    startMedia(video.getFilePath());
 
                 }
             });
@@ -123,7 +122,7 @@ public class CustomPostVideoView extends CustomPostBaseView {
                 @Override
                 public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
                     if (isAutoPlay) {   // Auto플레이가 가능할경우 실행
-                        startMedia(BaseUrl, video.getFilePath());
+                        startMedia(video.getFilePath());
                     }
                 }
 
@@ -154,7 +153,6 @@ public class CustomPostVideoView extends CustomPostBaseView {
                     Intent intent = new Intent(getContext(), ActivityOneVideoViewer.class);
 
                     intent.putExtra(ActivityOneVideoViewer.VIDEO_DATA, video);
-                    intent.putExtra(ActivityOneVideoViewer.VIDEO_URL, BaseUrl);
 
                     getContext().startActivity(intent);
                 }
@@ -165,9 +163,9 @@ public class CustomPostVideoView extends CustomPostBaseView {
         }
     }
 
-    private void startMedia(String baseUrl, String filePath) {
+    private void startMedia( String filePath) {
         try {
-            VideoControlUtil.getInstance().startMediaPlayerNoAuto(baseUrl, filePath, (imageViewPlayButton.getVisibility() == VISIBLE), new Surface(surfaceView.getSurfaceTexture()), new VideoControlUtil.VideoControlCallback() {
+            VideoControlUtil.getInstance().startMediaPlayerNoAuto( RetrofitSender2.URL_IMG_BASE, filePath, (imageViewPlayButton.getVisibility() == VISIBLE), new Surface(surfaceView.getSurfaceTexture()), new VideoControlUtil.VideoControlCallback() {
                 @Override
                 public void onStart() {
                     imageViewPlayButton.setVisibility(GONE);

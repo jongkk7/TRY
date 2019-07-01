@@ -15,11 +15,11 @@ import mars.nomad.com.B1_post.R;
 import mars.nomad.com.c3_baseaf.BaseActivity;
 import mars.nomad.com.l0_base.Logger.ErrorController;
 import mars.nomad.com.l12_applicationutil.Video.VideoControlUtil;
+import mars.nomad.com.m0_http.RetrofitSender2;
 import mars.nomad.com.m0_imageloader.ImageLoader;
 
 public class ActivityOneVideoViewer extends BaseActivity {
 
-    public static String VIDEO_URL = "m11_post.videoUrl";
     public static String VIDEO_DATA = "m11_post.videoData";
     public static String ACCESS_TOKEN = "m11_post.accessToken";
 
@@ -28,7 +28,6 @@ public class ActivityOneVideoViewer extends BaseActivity {
     private ImageView imageViewPlayButton;
     private RelativeLayout relativeLayoutVideo;
     private PostVideoDataModel video;
-    private String url;
     private MediaPlayer mediaPlayer;
     private String accessToken;
 
@@ -71,7 +70,7 @@ public class ActivityOneVideoViewer extends BaseActivity {
             imageViewThumb.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startMedia(url, video.getFilePath());
+                    startMedia();
                 }
             });
 
@@ -80,7 +79,7 @@ public class ActivityOneVideoViewer extends BaseActivity {
                 @Override
                 public void onClick(View v) {
                     // 클릭의 반대로 봐야함. 처음은 false 이므로 액션은 그다음 true 액션이 되어야함.
-                    startMedia(url, video.getFilePath());
+                    startMedia();
                 }
             });
 
@@ -90,9 +89,9 @@ public class ActivityOneVideoViewer extends BaseActivity {
         }
     }
 
-    private void startMedia(String url, String filePath) {
+    private void startMedia( ) {
 
-        VideoControlUtil.getInstance().startMediaPlayerNoAuto(url, video.getFilePath(), (imageViewPlayButton.getVisibility() == View.VISIBLE), new Surface(surfaceView.getSurfaceTexture()), new VideoControlUtil.VideoControlCallback() {
+        VideoControlUtil.getInstance().startMediaPlayerNoAuto(RetrofitSender2.BASE_URL, video.getFilePath(), (imageViewPlayButton.getVisibility() == View.VISIBLE), new Surface(surfaceView.getSurfaceTexture()), new VideoControlUtil.VideoControlCallback() {
             @Override
             public void onStart() {
                 imageViewPlayButton.setVisibility(View.GONE);
@@ -129,11 +128,10 @@ public class ActivityOneVideoViewer extends BaseActivity {
     private void getData() {
         try {
 
-            url = getIntent().getStringExtra(VIDEO_URL);
             video = (PostVideoDataModel) getIntent().getSerializableExtra(VIDEO_DATA);
             accessToken = getIntent().getStringExtra(ACCESS_TOKEN);
 
-            if (url == null || url.equalsIgnoreCase("") || video == null) {
+            if ( video == null) {
                 ErrorController.showToast(getActivity(), "올바른 데이터를 받지 못했습니다.");
                 finish();
             }
@@ -178,14 +176,14 @@ public class ActivityOneVideoViewer extends BaseActivity {
 
 
             // 썸네일 셋팅
-            ImageLoader.loadImageWithDefault(getActivity(), imageViewThumb, url, video.getThumbPath(), accessToken);
+            ImageLoader.loadImageWithDefault(getActivity(), imageViewThumb, RetrofitSender2.URL_IMG_BASE, video.getThumbPath(), accessToken);
 
 
             surfaceView.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     // 전체화면 실행시 바로 실행
-                    startMedia(url, video.getFilePath());
+                    startMedia();
 
                 }
             }, 200);
