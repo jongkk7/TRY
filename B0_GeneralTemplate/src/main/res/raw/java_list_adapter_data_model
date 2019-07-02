@@ -1,0 +1,30 @@
+
+
+import java.io.Serializable;
+import java.util.Objects;
+
+public class {$Data}DataModel implements Serializable {
+
+    private int seq;
+
+    public int getSeq() {
+        return seq;
+    }
+
+    public void setSeq(int seq) {
+        this.seq = seq;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof {$Data}DataModel)) return false;
+        {$Data}DataModel {$Data} = ({$Data}DataModel) o;
+        return seq == {$Data}.seq;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(seq);
+    }
+}

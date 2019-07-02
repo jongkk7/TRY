@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--상단바-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorWhite">
+
+        <ImageButton
+            android:id="@+id/imageButtonBack"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/colorTransparent"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:src="@drawable/arr_back_black_default_android"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="{$Data}"
+            android:textColor="@color/colorBlack"
+            android:textSize="19dp"
+            android:textStyle="bold"/>
+
+    </RelativeLayout>
+
+
+    <com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout
+        android:id="@+id/swipyRefreshLayout{$Data}"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srl_direction="both">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView{$Data}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout>
+
+
+</LinearLayout>

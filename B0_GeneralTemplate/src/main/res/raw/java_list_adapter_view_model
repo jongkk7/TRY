@@ -1,0 +1,42 @@
+import java.util.ArrayList;
+import java.util.List;
+
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
+
+import mars.nomad.com.l0_base.Callback.CommonCallback;
+import mars.nomad.com.l0_base.Logger.ErrorController;
+
+/**
+ * Created by 김창혁, NomadSoft.Inc on 2019-07-01.
+ */
+public class {$Data}ViewModel extends ViewModel {
+
+    private MutableLiveData<List<{$Data}DataModel>> {$Data}ListLive = new MutableLiveData<>();
+    private List<{$Data}DataModel> {$Data}List = new ArrayList<>();
+    private int page = 1;
+
+    public MutableLiveData<List<{$Data}DataModel>> get{$Data}ListLive() {
+        return {$Data}ListLive;
+    }
+
+    public void loadList(boolean isFirst, CommonCallback.SingleObjectCallback<Boolean> callback) {
+
+        try {
+
+            if (isFirst) {
+                {$Data}List.clear();
+                page = 1;
+            }
+
+            {$Data}List.add(new {$Data}DataModel());
+
+            {$Data}ListLive.postValue({$Data}List);
+
+            callback.onSuccess(true);
+
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+    }
+}

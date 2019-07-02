@@ -1,0 +1,64 @@
+package mars.nomad.com.a0_common.TestModule;
+
+import android.os.Bundle;
+
+import androidx.lifecycle.ViewModelProviders;
+
+import mars.nomad.com.c3_baseaf.BaseActivity;
+import mars.nomad.com.l0_base.Logger.ErrorController;
+
+/**
+ * Created by SJH, NomadSoft.Inc, 2019-07-01
+ */
+public class Activity{$name} extends BaseActivity {
+
+    private {$name}ViewModel mViewModel;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initView();
+        setEvent();
+        setStatusBarWrapper();
+    }
+
+    @Override
+    protected void initView() {
+
+        try {
+
+            setContentView(R.layout.{$res_name});
+            this.mContext = this;
+            this.mViewModel = ViewModelProviders.of(this).get({$name}ViewModel.class);
+
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+    }
+
+    @Override
+    protected void setEvent() {
+
+        try {
+
+
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+    }
+
+    private void getData(){
+
+        try{
+
+            if(!mViewModel.getData(getIntent())){
+
+                showSimpleAlertDialog("TODO : Fault");
+                finish();
+            }
+
+        }catch(Exception e){
+            ErrorController.showError(e);
+        }
+    }
+}

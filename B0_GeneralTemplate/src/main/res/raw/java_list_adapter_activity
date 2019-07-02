@@ -1,0 +1,156 @@
+
+import android.os.Bundle;
+import android.widget.ImageButton;
+
+import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
+import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import mars.nomad.com.c2_customview.Adapter.NsGeneralListAdapter;
+import mars.nomad.com.c2_customview.RecyclerView.Util.PagingUtil;
+import mars.nomad.com.c3_baseaf.BaseActivity;
+import mars.nomad.com.l0_base.Callback.CommonCallback;
+import mars.nomad.com.l0_base.Callback.SingleClickListener;
+import mars.nomad.com.l0_base.Logger.ErrorController;
+
+public class Activity{$Data} extends BaseActivity {
+
+    private SwipyRefreshLayout swipyRefreshLayout{$Data};
+    private RecyclerView recyclerView{$Data};
+    private ImageButton imageButtonBack;
+    private {$Data}ViewModel mVmodel;
+    private NsGeneralListAdapter<{$Data}DataModel> mAdapter;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initView();
+        setEvent();
+        initAdapter();
+        loadList(true);
+    }
+
+
+    @Override
+    protected void initView() {
+
+        try {
+
+            this.mContext = this;
+            this.mVmodel = ViewModelProviders.of(this).get({$Data}ViewModel.class);
+
+            setContentView(R.layout.{$activity_xml_name});
+
+            swipyRefreshLayout{$Data} = (SwipyRefreshLayout) findViewById(R.id.swipyRefreshLayout{$Data});
+            recyclerView{$Data} = (RecyclerView) findViewById(R.id.recyclerView{$Data});
+            imageButtonBack = (ImageButton) findViewById(R.id.imageButtonBack);
+
+            recyclerView{$Data}.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+
+    }
+
+    @Override
+    protected void setEvent() {
+
+        try {
+
+            this.imageButtonBack.setOnClickListener(new SingleClickListener(new CommonCallback.SingleActionCallback() {
+                @Override
+                public void onAction() {
+                    onBackPressed();
+                }
+            }));
+
+            this.swipyRefreshLayout{$Data}.setOnRefreshListener(new SwipyRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh(SwipyRefreshLayoutDirection direction) {
+                    if (direction == SwipyRefreshLayoutDirection.TOP) {
+                        loadList(true);
+                    } else {
+                        loadList(false);
+                    }
+                }
+            });
+
+            PagingUtil.onRefreshSwipyRecycler(recyclerView{$Data}, swipyRefreshLayout{$Data}, new PagingUtil.onPaging() {
+                @Override
+                public void onPaging() {
+                    loadList(false);
+                }
+            });
+
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+    }
+
+
+    private void initAdapter() {
+
+        try {
+
+            mAdapter = new NsGeneralListAdapter<{$Data}DataModel>(getActivity(), new Adapter{$Data}(getActivity()), new ArrayList<{$Data}DataModel>(), new {$Data}ClickListener() {
+
+            }, new DiffUtil.ItemCallback<{$Data}DataModel>() {
+                @Override
+                public boolean areItemsTheSame(@NonNull {$Data}DataModel left, @NonNull {$Data}DataModel right) {
+                    return left.getSeq() == right.getSeq();
+                }
+
+                @Override
+                public boolean areContentsTheSame(@NonNull {$Data}DataModel left, @NonNull {$Data}DataModel right) {
+                    return left.equals(right);
+                }
+            });
+
+            recyclerView{$Data}.setAdapter(mAdapter);
+
+            mVmodel.get{$Data}ListLive().observe(this, new Observer<List<{$Data}DataModel>>() {
+                @Override
+                public void onChanged(List<{$Data}DataModel> {$Data}List) {
+                    mAdapter.submitList({$Data}List);
+                }
+            });
+
+
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+    }
+
+
+    private void loadList(boolean isFirst) {
+        try {
+
+            mVmodel.loadList(isFirst, new CommonCallback.SingleObjectCallback<Boolean>() {
+                @Override
+                public void onSuccess(Boolean result) {
+                    swipyRefreshLayout{$Data}.setRefreshing(false);
+                }
+
+                @Override
+                public void onFailed(String fault) {
+                    swipyRefreshLayout{$Data}.setRefreshing(false);
+                    ErrorController.showToast(getActivity(), fault);
+                }
+            });
+
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+    }
+
+}

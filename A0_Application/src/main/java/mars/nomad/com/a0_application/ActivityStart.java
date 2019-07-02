@@ -48,7 +48,7 @@ public class ActivityStart extends BaseApplicationActivity {
 
                         @Override
                         public void onPermissionGranted() {
-                             ActivityManager.goActivityWithoutExtra(getActivity(), null, null, false, "ActivityTest");
+                             ActivityManager.goActivityWithoutExtra(getActivity(), null, null, false, "ActivityGeneralTemplate");
 
 //                            ActivityManager.goActivityWithoutExtra(getActivity(), null, ActivityCommonGallery.PICTURE, false, "ActivityCommonGallery");
                             finish();

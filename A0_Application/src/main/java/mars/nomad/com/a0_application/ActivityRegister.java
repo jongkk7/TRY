@@ -2,6 +2,7 @@ package mars.nomad.com.a0_application;
 
 
 import mars.nomad.com.a0_application.Test.ActivityTest;
+import mars.nomad.com.b0_generaltemplate.ActivityGeneralTemplate;
 import mars.nomad.com.b3_commongallery.ActivityCommonGallery;
 import mars.nomad.com.c1_activitymanager.ActivityManager;
 import mars.nomad.com.l0_base.Logger.ErrorController;
@@ -18,6 +19,7 @@ public class ActivityRegister {
             ActivityManager.addClass("ActivityTest", ActivityTest.class);
             ActivityManager.addClass("ActivityCommonGallery", ActivityCommonGallery.class);
 
+            ActivityManager.addClass("ActivityGeneralTemplate", ActivityGeneralTemplate.class);
         }catch(Exception e){
             ErrorController.showError(e);
         }

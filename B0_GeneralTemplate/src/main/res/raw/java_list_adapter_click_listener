@@ -1,0 +1,7 @@
+
+import mars.nomad.com.c2_customview.Adapter.NsGeneralClickListener;
+
+public interface {$Data}ClickListener extends NsGeneralClickListener<{$Data}DataModel> {
+
+
+}

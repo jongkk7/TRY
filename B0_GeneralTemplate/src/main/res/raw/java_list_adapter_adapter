@@ -1,0 +1,49 @@
+
+import android.content.Context;
+import android.view.View;
+
+import java.util.List;
+
+import mars.nomad.com.c2_customview.Adapter.NsGeneralClickListener;
+import mars.nomad.com.c2_customview.Adapter.NsGeneralView;
+import mars.nomad.com.l0_base.Logger.ErrorController;
+
+
+public class Adapter{$Data} extends NsGeneralView<{$Data}DataModel> {
+
+    public Adapter{$Data}(Context context) {
+        super(context);
+    }
+
+    @Override
+    public int initViewId() {
+        return R.layout.{$res_name};
+    }
+
+    @Override
+    public void initView(View view) {
+
+    }
+
+    @Override
+    public void setEvent(List<{$Data}DataModel> {$Data}, {$Data}DataModel item, NsGeneralClickListener<{$Data}DataModel> mClickListener) {
+        try {
+
+            {$Data}ClickListener clickListener = ({$Data}ClickListener) mClickListener;
+
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+    }
+
+
+    @Override
+    public void onBindData(List<{$Data}DataModel> data, {$Data}DataModel item) {
+        try {
+
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+    }
+
+}

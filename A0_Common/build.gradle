@@ -23,8 +23,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    //퍼미션
-    api 'gun0912.ted:tedpermission:2.1.0'
+
     //MultiDex
     api 'androidx.multidex:multidex:2.0.1'
 
