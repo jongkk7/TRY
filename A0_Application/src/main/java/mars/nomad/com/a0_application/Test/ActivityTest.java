@@ -9,12 +9,10 @@ import android.widget.RelativeLayout;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.vision.CameraSource;
-import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.Tracker;
 import com.google.android.gms.vision.face.Face;
 import com.google.android.gms.vision.face.FaceDetector;
-import com.google.android.gms.vision.face.Landmark;
 
 import java.io.IOException;
 
@@ -48,7 +46,7 @@ public class ActivityTest extends BaseActivity {
         try {
             this.mContext = this;
 
-            setContentView(R.layout.activity_test);
+            setContentView(R.layout.activity_test_2);
             relativeLayoutRoot = (RelativeLayout) findViewById(R.id.relativeLayoutRoot);
             cameraSourcePreview = (NsCameraSourcePreview) findViewById(R.id.cameraSourcePreview);
             GraphicOverlay = (GraphicOverlay) findViewById(R.id.GraphicOverlay);

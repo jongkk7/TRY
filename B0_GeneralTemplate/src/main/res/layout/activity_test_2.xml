@@ -1,13 +1,14 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:background="@color/colorBg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorBg"
         android:orientation="vertical">
 
         <!--상단바-->
@@ -23,7 +24,7 @@
                 android:background="@color/colorTransparent"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                android:src="@drawable/arr_back_black_default_android"/>
+                android:src="@drawable/arr_back_black_default_android" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -32,23 +33,38 @@
                 android:text="{$Data}"
                 android:textColor="@color/colorBlack"
                 android:textSize="19dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
         </RelativeLayout>
 
-        <!--리스트-->
-        <com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout
-            android:id="@+id/swipyRefreshLayout{$Data}"
+
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:srl_direction="both">
+            android:layout_height="match_parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView{$Data}"
+            <TextView
+                android:id="@+id/textViewNoContents"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="표시할 내용이 없습니다."
+                android:textSize="14dp"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <!--리스트-->
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipeRefreshLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-        </com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout>
+                android:layout_height="match_parent">
 
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewTest"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        </FrameLayout>
     </LinearLayout>
 </FrameLayout>

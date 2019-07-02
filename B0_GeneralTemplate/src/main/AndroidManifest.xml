@@ -5,6 +5,7 @@
     <application>
         <activity android:name="mars.nomad.com.b0_generaltemplate.ActivityGeneralTemplate">
         </activity>
+        <activity android:name=".Test.ActivityActivityTest" />
     </application>
 
 </manifest>

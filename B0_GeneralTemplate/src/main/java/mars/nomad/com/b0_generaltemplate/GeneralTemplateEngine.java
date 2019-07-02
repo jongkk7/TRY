@@ -26,6 +26,8 @@ public class GeneralTemplateEngine {
 
             setRoom(templateList);
 
+            setEmptyCustomView(templateList);
+
         } catch (Exception e) {
             ErrorController.showError(e);
         }
@@ -47,6 +49,7 @@ public class GeneralTemplateEngine {
             voidActivityTemplate.setTemplateName("VoidActivity");
             voidActivityTemplate.setDescription("빈 액티비티, xml, mvvm");
             voidActivityTemplate.setTemplateFiles(new ArrayList<NsFile>() {{
+
                 add(new NsFile(R.raw.java_empty_activity, "/{$Data}", "Activity{$Data}.java"));
                 add(new NsFile(R.raw.java_empty_viewmodel, "/{$Data}/mvvm", "{$Data}ViewModel.java"));
                 add(new NsFile(R.raw.xml_empty_layout, "/layout", "{$res_name}.xml"));
@@ -72,6 +75,7 @@ public class GeneralTemplateEngine {
             listAdapterTemplate.setTemplateName("ListAdapterActivity");
             listAdapterTemplate.setDescription("리스트 어댑터 생성을 위한 탬플릿");
             listAdapterTemplate.setTemplateFiles(new ArrayList<NsFile>() {{
+
                 add(new NsFile(R.raw.java_list_adapter_activity, "/{$Data}", "Activity{$Data}.java"));
                 add(new NsFile(R.raw.xml_list_adapter, "/layout", "{$res_name}.xml"));
                 add(new NsFile(R.raw.xml_list_adapter_activity, "/layout", "{$activity_xml_name}.xml"));
@@ -130,7 +134,7 @@ public class GeneralTemplateEngine {
             NsTemplate listAdapterTemplate = new NsTemplate();
 
             listAdapterTemplate.setTemplateName("Room");
-            listAdapterTemplate.setDescription("룸용 탬플릿. txt파일도 하나 생성됨. 거기보면 NsDataBase랑 BaseApplication에 넣을 코드까지 다 들어있음.");
+            listAdapterTemplate.setDescription("룸용 탬플릿. txt파일도 하나 생성됨. 거기보면 NsDataBase랑 BaseApplication에 넣을 코드까지 들어있음.");
             listAdapterTemplate.setTemplateFiles(new ArrayList<NsFile>() {{
 
                 add(new NsFile(R.raw.java_room_object, "/{$Data}", "{$Data}.java"));
@@ -146,4 +150,29 @@ public class GeneralTemplateEngine {
         }
     }
 
+    /**
+     * 빈 커스텀뷰
+     * @param templateList
+     */
+    private static void setEmptyCustomView(List<NsTemplate> templateList) {
+
+        try {
+
+            NsTemplate template = new NsTemplate();
+
+            template.setTemplateName("CustomView");
+            template.setDescription("빈 커스텀뷰. attrs까지 선언되어 있음.(비어 있다.)");
+            template.setTemplateFiles(new ArrayList<NsFile>() {{
+
+                add(new NsFile(R.raw.java_custom_view, "", "Layout{$Data}.java"));
+                add(new NsFile(R.raw.xml_custom_view, "/layout", "{$res_name}.xml"));
+                add(new NsFile(R.raw.xml_attrs_custom_view, "", "attrs.xml"));
+            }});
+
+            templateList.add(template);
+
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+    }
 }

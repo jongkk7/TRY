@@ -32,5 +32,6 @@ dependencies {
 
     implementation project(path: ':L0_Base')
     implementation project(path: ':L12_ApplicationUtil')
+    implementation project(path: ':L11_HardWareUtil')
 
 }

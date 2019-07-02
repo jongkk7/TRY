@@ -1,0 +1,81 @@
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.support.annotation.Nullable;
+import android.text.InputFilter;
+import android.text.InputType;
+import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import mars.nomad.com.c3_baseaf.BaseNsCustomView;
+
+/**
+ * Created by SJH, NomadSoft.Inc, 2019-05-07
+ */
+public class Layout{$Data} extends BaseNsCustomView {
+
+    public Layout{$Data}(Context context) {
+        super(context);
+        initView();
+        setEvent();
+    }
+
+    public Layout{$Data}(Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+        initView();
+        setEvent();
+        getAttrs(attrs);
+    }
+
+
+    @Override
+    protected void initView() {
+
+        try {
+
+            LayoutInflater li = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View v = li.inflate(R.layout.{$res_name}, this, false);
+            addView(v);
+
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+    }
+
+    @Override
+    protected void setEvent() {
+
+        try {
+
+
+
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+    }
+
+
+    private void getAttrs(AttributeSet attrs) {
+
+        try {
+
+            TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.ns{$Data}Style);
+            setTypeArray(typedArray);
+
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+    }
+
+
+    @Override
+    protected void setTypeArray(TypedArray typedArray) {
+
+        try {
+
+            //TODO : parse styleable
+            //String mHint = typedArray.getString(R.styleable.joinInput_nsJoinHint);
+
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+    }
+}

@@ -32,8 +32,6 @@ public class ActivityStart extends BaseApplicationActivity {
     }
 
 
-
-
     @Override
     protected void setActivityManager() {
 
@@ -48,12 +46,10 @@ public class ActivityStart extends BaseApplicationActivity {
 
                         @Override
                         public void onPermissionGranted() {
-                             ActivityManager.goActivityWithoutExtra(getActivity(), null, null, false, "ActivityGeneralTemplate");
 
-//                            ActivityManager.goActivityWithoutExtra(getActivity(), null, ActivityCommonGallery.PICTURE, false, "ActivityCommonGallery");
+                            //ActivityManager.goActivityWithoutExtra(getActivity(), null, null, false, "ActivityGeneralTemplate");
+                            ActivityManager.goActivityWithoutExtra(getActivity(), null, null, false, "ActivityActivityTest");
                             finish();
-
-                            // finish();
                         }
 
                         @Override
