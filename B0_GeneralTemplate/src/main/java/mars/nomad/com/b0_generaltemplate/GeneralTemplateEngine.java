@@ -13,15 +13,14 @@ import mars.nomad.com.l0_base.Logger.ErrorController;
 public class GeneralTemplateEngine {
 
     public static List<NsTemplate> InitializeTemplateEngine() {
+
         List<NsTemplate> templateList = new ArrayList<>();
 
         try {
 
-
             setVoidActivity(templateList);
 
             setListAdapterActivity(templateList);
-
 
         } catch (Exception e) {
             ErrorController.showError(e);
@@ -35,8 +34,11 @@ public class GeneralTemplateEngine {
      * @param templateList
      */
     private static void setVoidActivity(List<NsTemplate> templateList) {
+
         try{
+
             NsTemplate voidActivityTemplate = new NsTemplate();
+
             voidActivityTemplate.setTemplateName("VoidActivity");
             voidActivityTemplate.setDescription("빈 액티비티, xml, mvvm");
             voidActivityTemplate.setTemplateFiles(new ArrayList<NsFile>() {{
@@ -56,8 +58,11 @@ public class GeneralTemplateEngine {
      * @param templateList
      */
     private static void setListAdapterActivity(List<NsTemplate> templateList) {
+
         try{
+
             NsTemplate listAdapterTemplate = new NsTemplate();
+
             listAdapterTemplate.setTemplateName("ListAdapterActivity");
             listAdapterTemplate.setDescription("리스트 어댑터 생성을 위한 탬플릿");
             listAdapterTemplate.setTemplateFiles(new ArrayList<NsFile>() {{
@@ -73,9 +78,9 @@ public class GeneralTemplateEngine {
             }});
 
             templateList.add(listAdapterTemplate);
+
         }catch (Exception e){
             ErrorController.showError(e);
         }
     }
-
 }
