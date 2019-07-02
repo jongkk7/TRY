@@ -1,0 +1,54 @@
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
+
+import mars.nomad.com.c2_customview.Adapter.NsBaseRecyclerViewAdapter;
+import mars.nomad.com.l0_base.Callback.RecyclerViewClickListener;
+import mars.nomad.com.l0_base.Logger.ErrorController;
+
+/**
+ * Created by SJH, NomadSoft.Inc, 2019-07-02
+ */
+public class Adapter{$Data} extends NsBaseRecyclerViewAdapter<Adapter{$Data}.Adapter{$Data}ViewHolder, {$Data}DataModel> {
+
+
+    public Adapter{$Data}(Context mContext, List<{$Data}DataModel> data) {
+        super(mContext, data);
+    }
+
+    public Adapter{$Data}(Context mContext, List<{$Data}DataModel> data, RecyclerViewClickListener<{$Data}DataModel> mClickListener) {
+        super(mContext, data, mClickListener);
+    }
+
+    @Override
+    public Adapter{$Data}ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.{$adapter_cell_id}, parent, false);
+        return new Adapter{$Data}ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(Adapter{$Data}ViewHolder holder, int position) {
+
+        {$Data}DataModel item = data.get(position);
+
+        try {
+
+
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+
+    }
+
+    public class Adapter{$Data}ViewHolder extends RecyclerView.ViewHolder {
+
+        public Adapter{$Data}ViewHolder(View view) {
+            super(view);
+        }
+    }
+}

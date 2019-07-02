@@ -1,0 +1,7 @@
+import java.io.Serializable;
+
+/**
+ * Created by SJH, NomadSoft.Inc, 2019-07-02
+ */
+public class {$Data}DataModel implements Serializable {
+}

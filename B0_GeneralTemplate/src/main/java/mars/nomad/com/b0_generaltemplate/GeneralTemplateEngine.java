@@ -28,6 +28,8 @@ public class GeneralTemplateEngine {
 
             setEmptyCustomView(templateList);
 
+            setLegacyAdapterActivity(templateList);
+
         } catch (Exception e) {
             ErrorController.showError(e);
         }
@@ -152,6 +154,7 @@ public class GeneralTemplateEngine {
 
     /**
      * 빈 커스텀뷰
+     *
      * @param templateList
      */
     private static void setEmptyCustomView(List<NsTemplate> templateList) {
@@ -167,6 +170,37 @@ public class GeneralTemplateEngine {
                 add(new NsFile(R.raw.java_custom_view, "", "Layout{$Data}.java"));
                 add(new NsFile(R.raw.xml_custom_view, "/layout", "{$res_name}.xml"));
                 add(new NsFile(R.raw.xml_attrs_custom_view, "", "attrs.xml"));
+            }});
+
+            templateList.add(template);
+
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+    }
+
+    /**
+     * 레거시 어댑터 + 액티비티 + mvvm 생성
+     *
+     * @param templateList
+     */
+    private static void setLegacyAdapterActivity(List<NsTemplate> templateList) {
+
+        try {
+
+            NsTemplate template = new NsTemplate();
+
+            template.setTemplateName("LegacyAdapterActivity");
+            template.setDescription("RecyclerView.Adapter 및 mvvm과 액티비티 포함 모든 것.");
+            template.setTemplateFiles(new ArrayList<NsFile>() {{
+
+                add(new NsFile(R.raw.java_adapter, "/{$Data}/Adapter", "Adapter{$Data}.java"));
+                add(new NsFile(R.raw.java_adapter_activity, "/{$Data}", "Activity{$Data}.java"));
+                add(new NsFile(R.raw.java_adapter_datamodel, "/{$Data}/DataModel", "{$Data}DataModel.java"));
+                add(new NsFile(R.raw.java_adapter_viewmodel, "/{$Data}/mvvm", "{$Data}ViewModel.java"));
+                add(new NsFile(R.raw.xml_adapter_activity, "/layout", "{$activity_res_id}.xml"));
+                add(new NsFile(R.raw.xml_adapter_cell, "/layout", "{$adapter_cell_id}.xml"));
+                add(new NsFile(R.raw.txt_adapter_activity, "", "ActivityRegister.txt"));
             }});
 
             templateList.add(template);
