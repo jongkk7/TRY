@@ -39,6 +39,7 @@ public class ActivityGeneralTemplate extends BaseActivity {
     private GeneralTemplateViewModel mViewModel;
 
     private NsGeneralListAdapter<NsTemplate> mAdapterTemplate;
+
     private RecyclerView recyclerViewTemplateList;
 
     @Override
@@ -51,7 +52,9 @@ public class ActivityGeneralTemplate extends BaseActivity {
     }
 
     private void checkAuth() {
+
         try {
+
             TedPermission.with(mContext)
                     .setPermissionListener(new PermissionListener() {
                         @Override
@@ -74,6 +77,7 @@ public class ActivityGeneralTemplate extends BaseActivity {
                     .setDeniedMessage("해당 권한을 허용하지 않으면 서비스 이용이 불가합니다. 하단의 설정 버튼을 누르신 후 권한을 활성화주세요.")
                     .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
                     .check();
+
         } catch (Exception e) {
             ErrorController.showError(e);
         }
@@ -82,20 +86,25 @@ public class ActivityGeneralTemplate extends BaseActivity {
     private void loadGeneralTemplate() {
 
         try {
+
             mViewModel.loadTemplateList();
+
         } catch (Exception e) {
             ErrorController.showError(e);
         }
     }
 
     private void createDirectory() {
+
         try {
+
             File file = new File(GeneralTemplateConstants.templatePath);
 
             if (!file.exists()) {
 
                 file.mkdir();
             }
+
         } catch (Exception e) {
             ErrorController.showError(e);
         }
@@ -199,6 +208,7 @@ public class ActivityGeneralTemplate extends BaseActivity {
                 public void onAction(Map<String, String> data) {
 
                     startLoading();
+
                     mViewModel.createTemplateFiles(getContext(), item, data, new CommonCallback.SingleObjectCallback() {
                         @Override
                         public void onSuccess(Object result) {
@@ -222,6 +232,4 @@ public class ActivityGeneralTemplate extends BaseActivity {
             ErrorController.showError(e);
         }
     }
-
-
 }

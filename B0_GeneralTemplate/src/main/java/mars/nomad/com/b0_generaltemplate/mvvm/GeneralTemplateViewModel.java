@@ -51,10 +51,9 @@ public class GeneralTemplateViewModel extends ViewModel {
 
         try {
 
-           templateList = GeneralTemplateEngine.InitializeTemplateEngine();
+            templateList = GeneralTemplateEngine.InitializeTemplateEngine();
 
             templateListLive.postValue(templateList);
-
 
         } catch (Exception e) {
             ErrorController.showError(e);
@@ -264,7 +263,7 @@ public class GeneralTemplateViewModel extends ViewModel {
     }
 
     /**
-     * 리플레이서중 첫번째 키의 value값을 가져온다.
+     * 리플레이서 중 첫번째 키의 value값을 가져온다.
      *
      * @param replacer
      * @return
