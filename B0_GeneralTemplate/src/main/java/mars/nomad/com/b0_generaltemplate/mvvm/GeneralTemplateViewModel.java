@@ -42,47 +42,6 @@ public class GeneralTemplateViewModel extends ViewModel {
 
         try {
 
-            initTemplateData();
-        } catch (Exception e) {
-            ErrorController.showError(e);
-        }
-    }
-
-    private void initTemplateData() {
-
-        try {
-
-
-        } catch (Exception e) {
-            ErrorController.showError(e);
-        }
-    }
-
-    public void createActivity(final Context context, final String name, final CommonCallback.SingleObjectCallback callback) {
-
-        try {
-
-            String resName = "activity_" + name.toLowerCase();
-
-            String activityString = readContentsFromFile(context, R.raw.java_empty_activity);
-
-            String xmlString = readContentsFromFile(context, R.raw.xml_empty_layout);
-
-            String mvvmString = readContentsFromFile(context, R.raw.java_empty_viewmodel);
-
-            Map<String, String> replacer = new HashMap<>();
-            replacer.put("{$name}", name);
-            replacer.put("{$res_name}", name);
-
-            activityString = replaceString(activityString, replacer);
-            mvvmString = replaceString(mvvmString, replacer);
-
-            saveAsFile(activityString, "Activity" + name + ".java", GeneralTemplateConstants.templatePath + "/" + name);
-            saveAsFile(xmlString, resName + ".xml", GeneralTemplateConstants.templatePath + "/" + name + "/res/layout");
-            saveAsFile(mvvmString, name + "ViewModel.java", GeneralTemplateConstants.templatePath + "/" + name + "/mvvm");
-
-            callback.onSuccess("");
-
         } catch (Exception e) {
             ErrorController.showError(e);
         }
