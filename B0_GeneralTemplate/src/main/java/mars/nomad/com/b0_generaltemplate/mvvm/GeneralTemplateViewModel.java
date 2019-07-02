@@ -247,7 +247,7 @@ public class GeneralTemplateViewModel extends ViewModel {
 
                 if (StringChecker.isStringNotNull(templateFile.getDirectory())) {
 
-                    directory += templateFile.getDirectory();
+                    directory += replaceString(templateFile.getDirectory(), replacer);
                 }
 
                 saveAsFile(rawString, fileName, GeneralTemplateConstants.templatePath + "/" + directory);

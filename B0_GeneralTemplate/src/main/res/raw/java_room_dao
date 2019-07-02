@@ -1,0 +1,12 @@
+import androidx.sqlite.db.SimpleSQLiteQuery;
+import androidx.room.Dao;
+
+import java.util.List;
+
+import mars.nomad.com.l8_room.NsDao;
+
+
+@Dao
+public abstract class {$Data}Dao extends NsDao<{$Data}> {
+
+}

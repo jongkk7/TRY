@@ -1,0 +1,45 @@
+import android.app.Application;
+import android.os.AsyncTask;
+
+import java.util.List;
+
+import mars.nomad.com.l0_base.Logger.ErrorController;
+import mars.nomad.com.l8_room.NsRepository;
+import mars.nomad.com.l8_room.RDBCallback;
+import mars.nomad.com.a0_common.DataBase.Room.NsDataBase;
+
+public class {$Data}Repository extends NsRepository<{$Data}> {
+
+    private static {$Data}Repository instance;
+
+    public static {$Data}Repository getInstance() {
+
+        try {
+
+            if (instance == null) {
+
+                instance = new {$Data}Repository();
+            }
+
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+        return instance;
+    }
+
+    private {$Data}Repository() {
+    }
+
+    @Override
+    public void initiateDao(Application application) {
+
+        try {
+
+            NsDataBase dataBase = NsDataBase.getInstance(application);
+            nsDao = dataBase.get{$Data}Dao();
+
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+    }
+}

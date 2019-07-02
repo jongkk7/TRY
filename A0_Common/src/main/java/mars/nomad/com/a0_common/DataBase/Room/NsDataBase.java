@@ -12,7 +12,7 @@ import mars.nomad.com.a0_common.DataBase.Room.LoginUser.LoginUserDao;
 /**
  * Created by SJH, NomadSoft.Inc, 2019-01-07
  */
-@Database(entities = {LoginUser.class}, version = 1, exportSchema = false)
+@Database(entities = {LoginUser.class}, version = 3, exportSchema = false)
 public abstract class NsDataBase extends RoomDatabase {
 
     private static NsDataBase instance;
@@ -46,6 +46,4 @@ public abstract class NsDataBase extends RoomDatabase {
      */
 
     public abstract LoginUserDao getLoginUserDao();
-
-
 }

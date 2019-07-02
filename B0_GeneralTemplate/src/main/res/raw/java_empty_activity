@@ -10,9 +10,9 @@ import mars.nomad.com.l0_base.Logger.ErrorController;
 /**
  * Created by SJH, NomadSoft.Inc, 2019-07-01
  */
-public class Activity{$name} extends BaseActivity {
+public class Activity{$Data} extends BaseActivity {
 
-    private {$name}ViewModel mViewModel;
+    private {$Data}ViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,7 @@ public class Activity{$name} extends BaseActivity {
 
             setContentView(R.layout.{$res_name});
             this.mContext = this;
-            this.mViewModel = ViewModelProviders.of(this).get({$name}ViewModel.class);
+            this.mViewModel = ViewModelProviders.of(this).get({$Data}ViewModel.class);
 
         } catch (Exception e) {
             ErrorController.showError(e);

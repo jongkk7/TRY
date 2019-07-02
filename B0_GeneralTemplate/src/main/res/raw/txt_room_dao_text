@@ -1,0 +1,7 @@
+//NsDataBase.java
+{$Data}.class
+
+public abstract {$Data}Dao get{$Data}Dao();
+
+//BaseApplication.java
+{$Data}Repository.getInstance().initiateDao(this);

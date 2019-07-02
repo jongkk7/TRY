@@ -1,0 +1,11 @@
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+import androidx.annotation.NonNull;
+
+@Entity(tableName = "{$Data}")
+public class {$Data} {
+
+    //todo Add @PrimaryKey
+    //@PrimaryKey
+    //@NonNull
+}

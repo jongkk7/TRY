@@ -1,4 +1,4 @@
-package raw;
+package mars.nomad.com.b0_generaltemplate.mvvm;
 
 import android.content.Intent;
 
@@ -9,7 +9,7 @@ import mars.nomad.com.l0_base.Logger.ErrorController;
 /**
  * Created by SJH, NomadSoft.Inc, 2019-07-01
  */
-public class {$Data}ViewModel extends ViewModel {
+public class TestViewModel extends ViewModel {
 
     public boolean getData(Intent intent){
 

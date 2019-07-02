@@ -58,7 +58,6 @@ public class BaseApplication extends MultiDexApplication {
         try {
 
 //            LoginUserRepository.getInstance().initiateDao(this);
-
         } catch (Exception e) {
             ErrorController.showError(e);
         }
@@ -109,13 +108,11 @@ public class BaseApplication extends MultiDexApplication {
             if (!BuildConfig.DEBUG) {
                 ProcessPhoenix.triggerRebirth(getGlobalApplicationContext());
             }
+
         } catch (Exception e) {
-
             ErrorController.showError(e);
-
         } finally {
             Runtime.getRuntime().exit(0);
-
         }
     }
 
