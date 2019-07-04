@@ -1,4 +1,4 @@
-ï»¿package {$package_name};
+package {$package_name};
 
 import android.content.Context;
 
@@ -17,15 +17,16 @@ public class Component{$Data} extends AMainViewItem {
         Topbar{$Data} topBar{$Data} = new Topbar{$Data}(context);
 
         if (getCallback() != null) {
-            // TopBar ì•¡ì…˜ì„ ì •ì˜
+            // TopBar ¾×¼ÇÀ» Á¤ÀÇ
 
             topBar{$Data}.setCallback(getCallback());
         }
 
         setTag("{$Data}");
         setFragment(fragment{$Data});
-        setTabButtonDrawable(R.drawable.selector_main_component_{$Data_lower});
+        setTabButtonDrawable(R.drawable.selector_default);
 
         setTopBar(topBar{$Data});
     }
 }
+

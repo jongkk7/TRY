@@ -1,4 +1,4 @@
-﻿package {$package_name};
+package {$package_name};
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -65,3 +65,4 @@ public class Fragment{$Data} extends BaseMainFragment {
 
     }
 }
+

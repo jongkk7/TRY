@@ -1,4 +1,4 @@
-﻿package {$package_name};
+package {$package_name};
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,3 +15,4 @@ public class {$Data}ViewModel extends ViewModel {
 
  
 }
+

@@ -1,4 +1,4 @@
-﻿package {$package_name};
+package {$package_name};
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -59,3 +59,4 @@ public class Topbar{$Data} extends ITopbarView {
 
     }
 }
+
