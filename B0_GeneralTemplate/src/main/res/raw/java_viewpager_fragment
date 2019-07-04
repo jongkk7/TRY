@@ -1,0 +1,88 @@
+package {$package_name};
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProviders;
+
+import mars.nomad.com.c3_baseaf.BaseFragment;
+import mars.nomad.com.l0_base.Callback.CommonCallback;
+import mars.nomad.com.l0_base.Logger.ErrorController;
+
+public class Base{$Data}Fragment extends BaseFragment {
+
+    protected {$Data}ViewModel mViewModel;
+
+    protected CommonCallback.BasicAdapterPagerCallback<{$DataModel}> mCallback;
+
+    public static Base{$Data}Fragment newInstance(CommonCallback.BasicAdapterPagerCallback<{$DataModel}> callback) {
+
+        Base{$Data}Fragment fragment = new Base{$Data}Fragment();
+
+        try {
+
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("callback", callback);
+
+            fragment.setArguments(bundle);
+
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        try {
+
+            mCallback = getArguments().getParcelable("callback");
+
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_viewpager_{$Data_low}, container, false);
+        initView(view);
+        setEvent();
+        return view;
+    }
+
+    @Override
+    protected void initView(View view) {
+
+        try {
+
+            this.mViewModel = ViewModelProviders.of(getActivity()).get({$Data}ViewModel.class);
+
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+    }
+
+    @Override
+    protected void setEvent() {
+
+        try {
+
+
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        return false;
+    }
+}

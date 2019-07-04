@@ -243,6 +243,7 @@ public class GeneralTemplateSingleModuleViewModel extends ViewModel {
 
                 String rawString = readContentsFromFile(context, templateFile.getResId());
                 rawString = replaceString(rawString, replacer);
+                rawString = rawString.replace("{$package_name}", "");
 
                 String fileName = replaceString(templateFile.getNamingRule(), replacer);
 

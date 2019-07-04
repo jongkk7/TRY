@@ -30,6 +30,8 @@ public class GeneralTemplateEngine {
 
             setLegacyAdapterActivity(templateList);
 
+            setBasicViewPager(templateList);
+
         } catch (Exception e) {
             ErrorController.showError(e);
         }
@@ -201,6 +203,37 @@ public class GeneralTemplateEngine {
                 add(new NsFile(R.raw.xml_adapter_activity, "/layout", "{$activity_res_id}.xml"));
                 add(new NsFile(R.raw.xml_adapter_cell, "/layout", "{$adapter_cell_id}.xml"));
                 add(new NsFile(R.raw.txt_adapter_activity, "", "ActivityRegister.txt"));
+            }});
+
+            templateList.add(template);
+
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+    }
+
+    /**
+     * 뷰페이저 기본형
+     *
+     * @param templateList
+     */
+    private static void setBasicViewPager(List<NsTemplate> templateList) {
+
+        try {
+
+            NsTemplate template = new NsTemplate();
+
+            template.setTemplateName("BasicViewPager");
+            template.setDescription("액티비티, 뷰페이저, mvvm, 베이스 프래그먼트");
+            template.setTemplateFiles(new ArrayList<NsFile>() {{
+
+                add(new NsFile(R.raw.java_activity_viewpager, "", "Activity{$Data}.java"));
+                add(new NsFile(R.raw.xml_activity_viewpager, "/layout", "activity_viewpager_{$Data_lower}.xml"));
+                add(new NsFile(R.raw.java_adapter_viewpager, "/Adapter", "Adapter{$Data}Pager.java"));
+                add(new NsFile(R.raw.java_viewpager_view_model, "/Mvvm", "{$Data}ViewModel.java"));
+                add(new NsFile(R.raw.java_viewpager_fragment, "/Fragment", "Base{$Data}Fragment.java"));
+                add(new NsFile(R.raw.xml_void_fragment, "/layout", "fragment_viewpager_{$Data_low}.xml"));
+
             }});
 
             templateList.add(template);
