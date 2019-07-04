@@ -7,10 +7,16 @@
         <activity
             android:name=".NsProject.ActivityNsProject"
             android:screenOrientation="portrait" />
-        <activity android:name=".NsModule.ActivityNsModule"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".NsPackage.ActivityNsPackage"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".NsModule.ActivityNsModule"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NsPackage.ActivityNsPackage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SingleModule.ActivityGeneralTemplateSingleModule"
+            android:screenOrientation="portrait" />
+
 
     </application>
 

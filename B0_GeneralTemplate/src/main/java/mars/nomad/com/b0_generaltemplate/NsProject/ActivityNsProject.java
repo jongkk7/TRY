@@ -29,6 +29,7 @@ import mars.nomad.com.b0_generaltemplate.NsProject.Adapter.ClickListener.NsProje
 import mars.nomad.com.b0_generaltemplate.NsProject.mvvm.NsProjectViewModel;
 import mars.nomad.com.b0_generaltemplate.R;
 import mars.nomad.com.b0_generaltemplate.Value.GeneralTemplateConstants;
+import mars.nomad.com.c1_activitymanager.ActivityManager;
 import mars.nomad.com.c2_customview.Adapter.NsGeneralListAdapter;
 import mars.nomad.com.c3_baseaf.BaseActivity;
 import mars.nomad.com.l0_base.Callback.CommonCallback;
@@ -44,6 +45,7 @@ public class ActivityNsProject extends BaseActivity {
     private NsGeneralListAdapter<NsProject> mAdapter;
     private FrameLayout frameLayoutAddProject;
     private TextView textViewNoContents;
+    private TextView textViewSingleModule;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +71,7 @@ public class ActivityNsProject extends BaseActivity {
             imageButtonBack = (ImageButton) findViewById(R.id.imageButtonBack);
             frameLayoutAddProject = (FrameLayout) findViewById(R.id.frameLayoutAddProject);
             textViewNoContents = (TextView) findViewById(R.id.textViewNoContents);
+            textViewSingleModule = (TextView) findViewById(R.id.textViewSingleModule);
 
             recyclerViewNsProject.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -94,7 +97,7 @@ public class ActivityNsProject extends BaseActivity {
                 @Override
                 public void onAction() {
 
-                    try{
+                    try {
 
                         new DialogTemplateInput(getContext(), mVmodel.getProjectCreateParam(), new CommonCallback.SingleObjectActionCallback<Map<String, String>>() {
                             @Override
@@ -114,9 +117,17 @@ public class ActivityNsProject extends BaseActivity {
                             }
                         }).show();
 
-                    }catch(Exception e){
+                    } catch (Exception e) {
                         ErrorController.showError(e);
                     }
+                }
+            }));
+
+            this.textViewSingleModule.setOnClickListener(new SingleClickListener(new CommonCallback.SingleActionCallback() {
+                @Override
+                public void onAction() {
+
+                    ActivityManager.goActivityWithoutExtra(getActivity(), null, null, false, "ActivityGeneralTemplateSingleModule");
                 }
             }));
 

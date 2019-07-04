@@ -5,6 +5,7 @@ import mars.nomad.com.b0_generaltemplate.NsAddPackage.ActivityAddPackage;
 import mars.nomad.com.b0_generaltemplate.NsModule.ActivityNsModule;
 import mars.nomad.com.b0_generaltemplate.NsPackage.ActivityNsPackage;
 import mars.nomad.com.b0_generaltemplate.NsProject.ActivityNsProject;
+import mars.nomad.com.b0_generaltemplate.SingleModule.ActivityGeneralTemplateSingleModule;
 import mars.nomad.com.b3_commongallery.ActivityCommonGallery;
 import mars.nomad.com.c1_activitymanager.ActivityManager;
 import mars.nomad.com.l0_base.Logger.ErrorController;
@@ -24,6 +25,7 @@ public class ActivityRegister {
             ActivityManager.addClass("ActivityNsProject", ActivityNsProject.class);
             ActivityManager.addClass("ActivityNsModule", ActivityNsModule.class);
             ActivityManager.addClass("ActivityNsPackage", ActivityNsPackage.class);
+            ActivityManager.addClass("ActivityGeneralTemplateSingleModule", ActivityGeneralTemplateSingleModule.class);
 
 
 
