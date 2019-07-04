@@ -5,7 +5,6 @@ import java.util.List;
 
 import mars.nomad.com.a0_common.DataBase.Room.NsTemplate.NsFile;
 import mars.nomad.com.a0_common.DataBase.Room.NsTemplate.NsTemplate;
-import mars.nomad.com.a0_common.DataBase.Room.NsTemplate.NsTemplateRepository;
 import mars.nomad.com.l0_base.Logger.ErrorController;
 
 /**
@@ -53,8 +52,8 @@ public class GeneralTemplateEngine {
             voidActivityTemplate.setDescription("빈 액티비티, xml, mvvm");
             voidActivityTemplate.setTemplateFiles(new ArrayList<NsFile>() {{
 
-                add(new NsFile(R.raw.java_empty_activity, "/{$Data}", "Activity{$Data}.java"));
-                add(new NsFile(R.raw.java_empty_viewmodel, "/{$Data}/mvvm", "{$Data}ViewModel.java"));
+                add(new NsFile(R.raw.java_empty_activity, "", "Activity{$Data}.java"));
+                add(new NsFile(R.raw.java_empty_viewmodel, "/mvvm", "{$Data}ViewModel.java"));
                 add(new NsFile(R.raw.xml_empty_layout, "/layout", "{$res_name}.xml"));
             }});
 
@@ -79,15 +78,15 @@ public class GeneralTemplateEngine {
             listAdapterTemplate.setDescription("리스트 어댑터 생성을 위한 탬플릿");
             listAdapterTemplate.setTemplateFiles(new ArrayList<NsFile>() {{
 
-                add(new NsFile(R.raw.java_list_adapter_activity, "/{$Data}", "Activity{$Data}.java"));
+                add(new NsFile(R.raw.java_list_adapter_activity, "", "Activity{$Data}.java"));
                 add(new NsFile(R.raw.xml_list_adapter, "/layout", "{$res_name}.xml"));
                 add(new NsFile(R.raw.xml_list_adapter_activity, "/layout", "{$activity_xml_name}.xml"));
 
-                add(new NsFile(R.raw.java_list_adapter_adapter, "/{$Data}/Adapter", "Adapter{$Data}.java"));
-                add(new NsFile(R.raw.java_list_adapter_click_listener, "/{$Data}/Adapter/ClickListener", "{$Data}ClickListener.java"));
-                add(new NsFile(R.raw.java_list_adapter_data_model, "/{$Data}/Adapter/DataModel", "{$Data}DataModel.java"));
+                add(new NsFile(R.raw.java_list_adapter_adapter, "/Adapter", "Adapter{$Data}.java"));
+                add(new NsFile(R.raw.java_list_adapter_click_listener, "/Adapter/ClickListener", "{$Data}ClickListener.java"));
+                add(new NsFile(R.raw.java_list_adapter_data_model, "/Adapter/DataModel", "{$Data}DataModel.java"));
 
-                add(new NsFile(R.raw.java_list_adapter_view_model, "/{$Data}/mvvm", "{$Data}ViewModel.java"));
+                add(new NsFile(R.raw.java_list_adapter_view_model, "/mvvm", "{$Data}ViewModel.java"));
             }});
 
             templateList.add(listAdapterTemplate);
@@ -113,9 +112,9 @@ public class GeneralTemplateEngine {
             template.setDescription("빈 프래그먼트, xml, mvvm");
             template.setTemplateFiles(new ArrayList<NsFile>() {{
 
-                add(new NsFile(R.raw.java_void_fragment, "/{$Data}", "Fragment{$Data}.java"));
-                add(new NsFile(R.raw.xml_void_fragment, "/{$Data}", "{$res_name}.xml"));
-                add(new NsFile(R.raw.java_empty_viewmodel, "/{$Data}/mvvm", "{$Data}ViewModel.java"));
+                add(new NsFile(R.raw.java_void_fragment, "", "Fragment{$Data}.java"));
+                add(new NsFile(R.raw.xml_void_fragment, "", "{$res_name}.xml"));
+                add(new NsFile(R.raw.java_empty_viewmodel, "/mvvm", "{$Data}ViewModel.java"));
             }});
 
             templateList.add(template);
@@ -140,9 +139,9 @@ public class GeneralTemplateEngine {
             listAdapterTemplate.setDescription("룸용 탬플릿. txt파일도 하나 생성됨. 거기보면 NsDataBase랑 BaseApplication에 넣을 코드까지 들어있음.");
             listAdapterTemplate.setTemplateFiles(new ArrayList<NsFile>() {{
 
-                add(new NsFile(R.raw.java_room_object, "/{$Data}", "{$Data}.java"));
-                add(new NsFile(R.raw.java_room_dao, "/{$Data}", "{$Data}Dao.java"));
-                add(new NsFile(R.raw.java_room_repository, "/{$Data}", "{$Data}Repository.java"));
+                add(new NsFile(R.raw.java_room_object, "", "{$Data}.java"));
+                add(new NsFile(R.raw.java_room_dao, "", "{$Data}Dao.java"));
+                add(new NsFile(R.raw.java_room_repository, "", "{$Data}Repository.java"));
                 add(new NsFile(R.raw.txt_room_dao_text, "", "roomInfo.txt"));
             }});
 
@@ -195,10 +194,10 @@ public class GeneralTemplateEngine {
             template.setDescription("RecyclerView.Adapter 및 mvvm과 액티비티 포함 모든 것.");
             template.setTemplateFiles(new ArrayList<NsFile>() {{
 
-                add(new NsFile(R.raw.java_adapter, "/{$Data}/Adapter", "Adapter{$Data}.java"));
-                add(new NsFile(R.raw.java_adapter_activity, "/{$Data}", "Activity{$Data}.java"));
-                add(new NsFile(R.raw.java_adapter_datamodel, "/{$Data}/DataModel", "{$Data}DataModel.java"));
-                add(new NsFile(R.raw.java_adapter_viewmodel, "/{$Data}/mvvm", "{$Data}ViewModel.java"));
+                add(new NsFile(R.raw.java_adapter, "/Adapter", "Adapter{$Data}.java"));
+                add(new NsFile(R.raw.java_adapter_activity, "", "Activity{$Data}.java"));
+                add(new NsFile(R.raw.java_adapter_datamodel, "/DataModel", "{$Data}DataModel.java"));
+                add(new NsFile(R.raw.java_adapter_viewmodel, "/mvvm", "{$Data}ViewModel.java"));
                 add(new NsFile(R.raw.xml_adapter_activity, "/layout", "{$activity_res_id}.xml"));
                 add(new NsFile(R.raw.xml_adapter_cell, "/layout", "{$adapter_cell_id}.xml"));
                 add(new NsFile(R.raw.txt_adapter_activity, "", "ActivityRegister.txt"));

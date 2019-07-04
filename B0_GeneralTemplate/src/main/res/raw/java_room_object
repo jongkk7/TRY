@@ -3,7 +3,7 @@ import androidx.room.PrimaryKey;
 import androidx.annotation.NonNull;
 
 @Entity(tableName = "{$Data}")
-public class {$Data} {
+public class {$Data} implements Serializable {
 
     //todo Add @PrimaryKey
     //@PrimaryKey

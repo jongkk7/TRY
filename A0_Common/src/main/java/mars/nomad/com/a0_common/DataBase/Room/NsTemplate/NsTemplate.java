@@ -10,16 +10,12 @@ import java.util.List;
 import java.util.Objects;
 
 
-@Entity(tableName = "NsTemplate")
 public class NsTemplate implements Serializable {
 
-    @PrimaryKey
-    @NonNull
     private String templateName;
 
     private String description;
 
-    @TypeConverters(NsTemplateDataConverter.class)
     private List<NsFile> templateFiles;
 
     public String getTemplateName() {

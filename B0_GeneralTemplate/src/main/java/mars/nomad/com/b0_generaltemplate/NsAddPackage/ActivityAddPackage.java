@@ -1,16 +1,10 @@
-package mars.nomad.com.b0_generaltemplate;
+package mars.nomad.com.b0_generaltemplate.NsAddPackage;
 
-import android.Manifest;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.TypedValue;
-
-import com.gun0912.tedpermission.PermissionListener;
-import com.gun0912.tedpermission.TedPermission;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
@@ -19,22 +13,27 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import mars.nomad.com.a0_common.DataBase.Room.NsTemplate.NsFile;
 import mars.nomad.com.a0_common.DataBase.Room.NsTemplate.NsTemplate;
-import mars.nomad.com.b0_generaltemplate.Dialog.DialogDialogInput;
-import mars.nomad.com.b0_generaltemplate.Adapter.AdapterNsTemplate;
-import mars.nomad.com.b0_generaltemplate.Adapter.ClickListener.NsTemplateClickListener;
-import mars.nomad.com.b0_generaltemplate.Value.GeneralTemplateConstants;
-import mars.nomad.com.b0_generaltemplate.mvvm.GeneralTemplateViewModel;
+import mars.nomad.com.b0_generaltemplate.NsAddPackage.Adapter.AdapterNsTemplate;
+import mars.nomad.com.b0_generaltemplate.NsAddPackage.Adapter.ClickListener.NsTemplateClickListener;
+import mars.nomad.com.b0_generaltemplate.NsAddPackage.Dialog.DialogTemplateInput;
+import mars.nomad.com.b0_generaltemplate.NsAddPackage.mvvm.GeneralTemplateViewModel;
+import mars.nomad.com.b0_generaltemplate.R;
 import mars.nomad.com.c2_customview.Adapter.NsGeneralListAdapter;
 import mars.nomad.com.c3_baseaf.BaseActivity;
 import mars.nomad.com.l0_base.Callback.CommonCallback;
+import mars.nomad.com.l0_base.Callback.SingleClickListener;
 import mars.nomad.com.l0_base.Logger.ErrorController;
 
 /**
  * Created by SJH, NomadSoft.Inc, 2019-07-01
  */
-public class ActivityGeneralTemplate extends BaseActivity {
+public class ActivityAddPackage extends BaseActivity {
 
 
     private GeneralTemplateViewModel mViewModel;
@@ -42,6 +41,8 @@ public class ActivityGeneralTemplate extends BaseActivity {
     private NsGeneralListAdapter<NsTemplate> mAdapterTemplate;
 
     private RecyclerView recyclerViewTemplateList;
+    private ImageButton imageButtonBack;
+    private TextView textViewTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,20 +50,9 @@ public class ActivityGeneralTemplate extends BaseActivity {
         initView();
         setEvent();
         setStatusBarWrapper();
+        getData();
         loadLiveData();
         loadGeneralTemplate();
-    }
-
-
-    private void loadGeneralTemplate() {
-
-        try {
-
-            mViewModel.loadTemplateList();
-
-        } catch (Exception e) {
-            ErrorController.showError(e);
-        }
     }
 
 
@@ -73,6 +63,8 @@ public class ActivityGeneralTemplate extends BaseActivity {
 
             setContentView(R.layout.activity_general_templete);
             recyclerViewTemplateList = (RecyclerView) findViewById(R.id.recyclerViewTemplateList);
+            imageButtonBack = (ImageButton) findViewById(R.id.imageButtonBack);
+            textViewTitle = (TextView) findViewById(R.id.textViewTitle);
 
             this.mContext = this;
             this.mViewModel = ViewModelProviders.of(this).get(GeneralTemplateViewModel.class);
@@ -88,6 +80,36 @@ public class ActivityGeneralTemplate extends BaseActivity {
 
         try {
 
+            this.imageButtonBack.setOnClickListener(new SingleClickListener(new CommonCallback.SingleActionCallback() {
+                @Override
+                public void onAction() {
+                    finish();
+                }
+            }));
+
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+    }
+
+    private void getData() {
+
+        try {
+
+            if (!mViewModel.getData(getIntent())) {
+
+                showSimpleAlertDialog("모듈 정보를 가져오지 못했습니다.", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+                        finish();
+                    }
+                });
+            }else{
+
+                textViewTitle.setText(mViewModel.getModule().getModuleName());
+            }
 
         } catch (Exception e) {
             ErrorController.showError(e);
@@ -155,11 +177,24 @@ public class ActivityGeneralTemplate extends BaseActivity {
         }
     }
 
+
+    private void loadGeneralTemplate() {
+
+        try {
+
+            mViewModel.loadTemplateList();
+
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+    }
+
+
     private void showTemplateInputDialog(final NsTemplate item) {
 
         try {
 
-            new DialogDialogInput(getContext(), mViewModel.getInputList(getContext(), item), new CommonCallback.SingleObjectActionCallback<Map<String, String>>() {
+            new DialogTemplateInput(getContext(), mViewModel.getInputList(getContext(), item), new CommonCallback.SingleObjectActionCallback<Map<String, String>>() {
                 @Override
                 public void onAction(Map<String, String> data) {
 

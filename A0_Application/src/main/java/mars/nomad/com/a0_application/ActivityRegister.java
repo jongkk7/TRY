@@ -1,8 +1,9 @@
 package mars.nomad.com.a0_application;
 
 
-import mars.nomad.com.b0_generaltemplate.ActivityGeneralTemplate;
+import mars.nomad.com.b0_generaltemplate.NsAddPackage.ActivityAddPackage;
 import mars.nomad.com.b0_generaltemplate.NsModule.ActivityNsModule;
+import mars.nomad.com.b0_generaltemplate.NsPackage.ActivityNsPackage;
 import mars.nomad.com.b0_generaltemplate.NsProject.ActivityNsProject;
 import mars.nomad.com.b3_commongallery.ActivityCommonGallery;
 import mars.nomad.com.c1_activitymanager.ActivityManager;
@@ -19,9 +20,10 @@ public class ActivityRegister {
 
             ActivityManager.addClass("ActivityCommonGallery", ActivityCommonGallery.class);
 
-            ActivityManager.addClass("ActivityGeneralTemplate", ActivityGeneralTemplate.class);
+            ActivityManager.addClass("ActivityAddPackage", ActivityAddPackage.class);
             ActivityManager.addClass("ActivityNsProject", ActivityNsProject.class);
             ActivityManager.addClass("ActivityNsModule", ActivityNsModule.class);
+            ActivityManager.addClass("ActivityNsPackage", ActivityNsPackage.class);
 
 
 

@@ -1,4 +1,4 @@
-package mars.nomad.com.b0_generaltemplate.Dialog;
+package mars.nomad.com.b0_generaltemplate.NsAddPackage.Dialog;
 
 import android.content.Context;
 import android.widget.Button;
@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 import java.util.Map;
 
-import mars.nomad.com.b0_generaltemplate.DataModel.InputDataModel;
+import mars.nomad.com.b0_generaltemplate.NsAddPackage.DataModel.InputDataModel;
 import mars.nomad.com.b0_generaltemplate.R;
-import mars.nomad.com.b0_generaltemplate.Adapter.AdapterDialogInput;
+import mars.nomad.com.b0_generaltemplate.NsAddPackage.Adapter.AdapterDialogInput;
 import mars.nomad.com.c2_customview.Dialog.BaseNsDialog;
 import mars.nomad.com.l0_base.Callback.CommonCallback;
 import mars.nomad.com.l0_base.Callback.SingleClickListener;
@@ -21,7 +21,7 @@ import mars.nomad.com.l0_base.Logger.ErrorController;
 /**
  * Created by SJH, NomadSoft.Inc, 2019-07-02
  */
-public class DialogDialogInput extends BaseNsDialog {
+public class DialogTemplateInput extends BaseNsDialog {
 
     private RecyclerView recyclerViewOptions;
 
@@ -33,7 +33,7 @@ public class DialogDialogInput extends BaseNsDialog {
     private Button buttonCancel;
     private Button buttonConfirm;
 
-    public DialogDialogInput(@NonNull Context context, List<InputDataModel> mInputList, CommonCallback.SingleObjectActionCallback<Map<String, String>> mCallback) {
+    public DialogTemplateInput(@NonNull Context context, List<InputDataModel> mInputList, CommonCallback.SingleObjectActionCallback<Map<String, String>> mCallback) {
         super(context);
         this.mInputList = mInputList;
         this.mCallback = mCallback;

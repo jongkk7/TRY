@@ -23,7 +23,7 @@ import java.util.Map;
 
 import mars.nomad.com.a0_common.DataBase.Room.NsProject.NsProject;
 import mars.nomad.com.b0_generaltemplate.ActivityManagerTemplate;
-import mars.nomad.com.b0_generaltemplate.Dialog.DialogDialogInput;
+import mars.nomad.com.b0_generaltemplate.NsAddPackage.Dialog.DialogTemplateInput;
 import mars.nomad.com.b0_generaltemplate.NsProject.Adapter.AdapterNsProject;
 import mars.nomad.com.b0_generaltemplate.NsProject.Adapter.ClickListener.NsProjectClickListener;
 import mars.nomad.com.b0_generaltemplate.NsProject.mvvm.NsProjectViewModel;
@@ -96,7 +96,7 @@ public class ActivityNsProject extends BaseActivity {
 
                     try{
 
-                        new DialogDialogInput(getContext(), mVmodel.getProjectCreateParam(), new CommonCallback.SingleObjectActionCallback<Map<String, String>>() {
+                        new DialogTemplateInput(getContext(), mVmodel.getProjectCreateParam(), new CommonCallback.SingleObjectActionCallback<Map<String, String>>() {
                             @Override
                             public void onAction(Map<String, String> data) {
 

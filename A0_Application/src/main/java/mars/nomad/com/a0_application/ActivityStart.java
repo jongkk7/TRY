@@ -48,6 +48,7 @@ public class ActivityStart extends BaseApplicationActivity {
                         public void onPermissionGranted() {
 
                             ActivityManager.goActivityWithoutExtra(getActivity(), null, null, false, "ActivityNsProject");
+                           // ActivityManager.goActivityWithoutExtra(getActivity(), null, null, false, "ActivityAddPackage");
                             finish();
                         }
 

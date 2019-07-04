@@ -1,26 +1,26 @@
-package mars.nomad.com.b0_generaltemplate.mvvm;
+package mars.nomad.com.b0_generaltemplate.NsAddPackage.mvvm;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.TypedValue;
 
-import androidx.annotation.RawRes;
+import androidx.arch.core.util.Function;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import mars.nomad.com.a0_common.DataBase.Room.NsModule.NsModule;
+import mars.nomad.com.a0_common.DataBase.Room.NsPackage.NsPackage;
+import mars.nomad.com.a0_common.DataBase.Room.NsPackage.NsPackageRepository;
 import mars.nomad.com.a0_common.DataBase.Room.NsTemplate.NsFile;
 import mars.nomad.com.a0_common.DataBase.Room.NsTemplate.NsTemplate;
-import mars.nomad.com.b0_generaltemplate.DataModel.InputDataModel;
+import mars.nomad.com.b0_generaltemplate.NsAddPackage.DataModel.InputDataModel;
 import mars.nomad.com.b0_generaltemplate.GeneralTemplateEngine;
-import mars.nomad.com.b0_generaltemplate.R;
 import mars.nomad.com.b0_generaltemplate.Util.TemplateUtil;
 import mars.nomad.com.b0_generaltemplate.Value.GeneralTemplateConstants;
 import mars.nomad.com.l0_base.Callback.CommonCallback;
@@ -39,6 +39,8 @@ public class GeneralTemplateViewModel extends ViewModel {
 
     private List<NsTemplate> templateList = new ArrayList<>();
 
+    private NsModule mModule;
+
     public GeneralTemplateViewModel() {
 
         try {
@@ -46,6 +48,22 @@ public class GeneralTemplateViewModel extends ViewModel {
         } catch (Exception e) {
             ErrorController.showError(e);
         }
+    }
+
+    public boolean getData(Intent intent) {
+
+        try {
+
+            mModule = (NsModule) intent.getSerializableExtra("module");
+
+            if (mModule != null && StringChecker.isStringNotNull(mModule.getModuleName())) {
+
+                return true;
+            }
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+        return false;
     }
 
     public void loadTemplateList() {
@@ -60,8 +78,6 @@ public class GeneralTemplateViewModel extends ViewModel {
             ErrorController.showError(e);
         }
     }
-
-
 
 
     /**
@@ -92,7 +108,6 @@ public class GeneralTemplateViewModel extends ViewModel {
         }
         return result;
     }
-
 
 
     public MutableLiveData<List<NsTemplate>> getTemplateListLive() {
@@ -167,6 +182,27 @@ public class GeneralTemplateViewModel extends ViewModel {
 
         try {
 
+            String packageName = "";
+
+            for (String s : replacer.keySet()) {
+
+                if (s.equalsIgnoreCase("{$Data}")) {
+
+                    packageName = replacer.get(s);
+                }
+            }
+
+            if (!StringChecker.isStringNotNull(packageName)) {
+
+                packageName = item.getTemplateName();
+            }
+
+            NsPackage nsPackage = new NsPackage();
+            nsPackage.setModuleName(mModule.getModuleName());
+            nsPackage.setProjectName(mModule.getProjectName());
+            nsPackage.setRegDate(System.currentTimeMillis());
+            nsPackage.setPackageName(packageName);
+
             for (NsFile templateFile : item.getTemplateFiles()) {
 
                 String rawString = TemplateUtil.readContentsFromFile(context, templateFile.getResId());
@@ -174,16 +210,45 @@ public class GeneralTemplateViewModel extends ViewModel {
 
                 String fileName = replaceString(templateFile.getNamingRule(), replacer);
 
-                String directory = item.getTemplateName() + getFirstReplacer(replacer);
+                String directory = "/" + nsPackage.getPackageName();
 
-                if (StringChecker.isStringNotNull(templateFile.getDirectory())) {
+                String savePath = "";
 
-                    directory += replaceString(templateFile.getDirectory(), replacer);
+                if (StringChecker.isStringNotNull(templateFile.getDirectory())) {//일반 파일
+
+                    TypedValue value = new TypedValue();
+                    context.getResources().getValue(templateFile.getResId(), value, true);
+
+                    String templateFileName = value.string.toString().replace("res/raw/", "");
+
+                    if (!templateFileName.startsWith("xml")) {
+
+                        directory += replaceString(templateFile.getDirectory(), replacer);
+
+                        savePath = GeneralTemplateConstants.templatePath + "/" +
+                                mModule.getProjectName() + "/" +
+                                mModule.getModuleName() + "/" +
+                                "src/main/java" + TemplateUtil.getDirectoryNameFromPackageName(mModule.getBasePackageName()) + directory;
+
+                    } else {
+
+                        //모듈 패스 생성
+                        String modulePath = GeneralTemplateConstants.templatePath + "/" + mModule.getProjectName() + "/" + mModule.getModuleName();
+
+                        savePath = modulePath + "/src/main/res/" + templateFile.getDirectory();
+                    }
+                } else {
+
+                    savePath = GeneralTemplateConstants.templatePath + "/" +
+                            mModule.getProjectName() + "/" +
+                            mModule.getModuleName() + "/" +
+                            "src/main/java" + TemplateUtil.getDirectoryNameFromPackageName(mModule.getBasePackageName());
                 }
 
-                TemplateUtil.saveAsFile(rawString, fileName, GeneralTemplateConstants.templatePath + "/" + directory);
-
+                TemplateUtil.saveAsFile(rawString, fileName, savePath);
             }
+
+            NsPackageRepository.getInstance().insert(nsPackage);
 
             callback.onSuccess("");
 
@@ -220,5 +285,9 @@ public class GeneralTemplateViewModel extends ViewModel {
             ErrorController.showError(e);
         }
         return result;
+    }
+
+    public NsModule getModule() {
+        return mModule;
     }
 }

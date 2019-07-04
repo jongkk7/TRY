@@ -3,12 +3,15 @@
     package="mars.nomad.com.b0_generaltemplate">
 
     <application>
-        <activity android:name="mars.nomad.com.b0_generaltemplate.ActivityGeneralTemplate"></activity>
+        <activity android:name="mars.nomad.com.b0_generaltemplate.NsAddPackage.ActivityAddPackage"></activity>
         <activity
             android:name=".NsProject.ActivityNsProject"
             android:screenOrientation="portrait" />
         <activity android:name=".NsModule.ActivityNsModule"
             android:screenOrientation="portrait"/>
+        <activity android:name=".NsPackage.ActivityNsPackage"
+            android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>

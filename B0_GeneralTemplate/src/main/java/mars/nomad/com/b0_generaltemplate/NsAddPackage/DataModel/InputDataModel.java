@@ -1,4 +1,4 @@
-package mars.nomad.com.b0_generaltemplate.DataModel;
+package mars.nomad.com.b0_generaltemplate.NsAddPackage.DataModel;
 
 import java.io.Serializable;
 

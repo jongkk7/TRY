@@ -1,4 +1,4 @@
-package mars.nomad.com.b0_generaltemplate.Adapter.ClickListener;
+package mars.nomad.com.b0_generaltemplate.NsAddPackage.Adapter.ClickListener;
 
 import mars.nomad.com.a0_common.DataBase.Room.NsTemplate.NsTemplate;
 import mars.nomad.com.c2_customview.Adapter.NsGeneralClickListener;

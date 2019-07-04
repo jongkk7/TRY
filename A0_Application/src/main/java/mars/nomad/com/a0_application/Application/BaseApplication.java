@@ -18,8 +18,8 @@ import mars.nomad.com.a0_application.ActivityRegister;
 import mars.nomad.com.a0_application.BuildConfig;
 import mars.nomad.com.a0_common.DataBase.Room.LoginUser.LoginUserRepository;
 import mars.nomad.com.a0_common.DataBase.Room.NsModule.NsModuleRepository;
+import mars.nomad.com.a0_common.DataBase.Room.NsPackage.NsPackageRepository;
 import mars.nomad.com.a0_common.DataBase.Room.NsProject.NsProjectRepository;
-import mars.nomad.com.a0_common.DataBase.Room.NsTemplate.NsTemplateRepository;
 import mars.nomad.com.l0_base.Logger.ErrorController;
 
 
@@ -62,10 +62,10 @@ public class BaseApplication extends MultiDexApplication {
         try {
 
             LoginUserRepository.getInstance().initiateDao(this);
-            NsTemplateRepository.getInstance().initiateDao(this);
 
             NsProjectRepository.getInstance().initiateDao(this);
             NsModuleRepository.getInstance().initiateDao(this);
+            NsPackageRepository.getInstance().initiateDao(this);
 
         } catch (Exception e) {
             ErrorController.showError(e);

@@ -7,6 +7,7 @@ import androidx.core.app.ActivityOptionsCompat;
 
 import java.io.Serializable;
 
+import mars.nomad.com.a0_common.DataBase.Room.NsModule.NsModule;
 import mars.nomad.com.a0_common.DataBase.Room.NsProject.NsProject;
 import mars.nomad.com.c1_activitymanager.ActivityManager;
 import mars.nomad.com.l0_base.Logger.ErrorController;
@@ -28,6 +29,36 @@ public class ActivityManagerTemplate extends ActivityManager {
             startActivity(activity, intent, options);
 
         } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+    }
+
+    public static void goActivityNsPackage(Activity activity, ActivityOptionsCompat options, String action, NsModule module){
+
+        try{
+
+            Intent intent = new Intent(activity, getClassByName("ActivityNsPackage"));
+            intent.setAction(action);
+            intent.putExtra("module", (Serializable) module);
+
+            startActivity(activity, intent, options);
+
+        }catch(Exception e){
+            ErrorController.showError(e);
+        }
+    }
+
+    public static void goActivityAddPackage(Activity activity, ActivityOptionsCompat options, String action, NsModule module){
+
+        try{
+
+            Intent intent = new Intent(activity, getClassByName("ActivityAddPackage"));
+            intent.setAction(action);
+            intent.putExtra("module", (Serializable) module);
+
+            startActivity(activity, intent, options);
+
+        }catch(Exception e){
             ErrorController.showError(e);
         }
     }

@@ -1,4 +1,4 @@
-package mars.nomad.com.b0_generaltemplate.Adapter;
+package mars.nomad.com.b0_generaltemplate.NsAddPackage.Adapter;
 
 import android.content.Context;
 import android.view.View;
@@ -9,7 +9,7 @@ import java.util.List;
 
 
 import mars.nomad.com.a0_common.DataBase.Room.NsTemplate.NsTemplate;
-import mars.nomad.com.b0_generaltemplate.Adapter.ClickListener.NsTemplateClickListener;
+import mars.nomad.com.b0_generaltemplate.NsAddPackage.Adapter.ClickListener.NsTemplateClickListener;
 import mars.nomad.com.b0_generaltemplate.R;
 import mars.nomad.com.c2_customview.Adapter.NsGeneralClickListener;
 import mars.nomad.com.c2_customview.Adapter.NsGeneralView;

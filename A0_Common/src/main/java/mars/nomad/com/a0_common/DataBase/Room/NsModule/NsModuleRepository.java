@@ -9,11 +9,8 @@ import androidx.lifecycle.MutableLiveData;
 import java.util.ArrayList;
 import java.util.List;
 
-import mars.nomad.com.a0_common.DataBase.Room.NsTemplate.NsTemplate;
-import mars.nomad.com.a0_common.DataBase.Room.NsTemplate.NsTemplateDao;
 import mars.nomad.com.l0_base.Logger.ErrorController;
 import mars.nomad.com.l8_room.NsRepository;
-import mars.nomad.com.l8_room.RDBCallback;
 import mars.nomad.com.a0_common.DataBase.Room.NsDataBase;
 
 public class NsModuleRepository extends NsRepository<NsModule> {

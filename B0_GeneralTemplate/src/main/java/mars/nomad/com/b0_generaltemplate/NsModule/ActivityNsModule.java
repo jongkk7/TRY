@@ -18,7 +18,8 @@ import java.util.List;
 import java.util.Map;
 
 import mars.nomad.com.a0_common.DataBase.Room.NsModule.NsModule;
-import mars.nomad.com.b0_generaltemplate.Dialog.DialogDialogInput;
+import mars.nomad.com.b0_generaltemplate.ActivityManagerTemplate;
+import mars.nomad.com.b0_generaltemplate.NsAddPackage.Dialog.DialogTemplateInput;
 import mars.nomad.com.b0_generaltemplate.NsModule.Adapter.AdapterNsModule;
 import mars.nomad.com.b0_generaltemplate.NsModule.Adapter.ClickListener.NsModuleClickListener;
 import mars.nomad.com.b0_generaltemplate.NsModule.mvvm.NsModuleViewModel;
@@ -104,7 +105,7 @@ public class ActivityNsModule extends BaseActivity {
                 @Override
                 public void onAction() {
 
-                    new DialogDialogInput(getContext(), mVmodel.getModuleInput(), new CommonCallback.SingleObjectActionCallback<Map<String, String>>() {
+                    new DialogTemplateInput(getContext(), mVmodel.getModuleInput(), new CommonCallback.SingleObjectActionCallback<Map<String, String>>() {
                         @Override
                         public void onAction(Map<String, String> data) {
 
@@ -163,6 +164,7 @@ public class ActivityNsModule extends BaseActivity {
                                 @Override
                                 public void onClickItem(NsModule item) {
 
+                                    ActivityManagerTemplate.goActivityNsPackage(getActivity(), null, null, item);
                                 }
 
                                 @Override

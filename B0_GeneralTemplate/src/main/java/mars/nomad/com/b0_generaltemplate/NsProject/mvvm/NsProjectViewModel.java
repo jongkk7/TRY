@@ -6,12 +6,11 @@ import java.util.List;
 import java.util.Map;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import mars.nomad.com.a0_common.DataBase.Room.NsProject.NsProject;
 import mars.nomad.com.a0_common.DataBase.Room.NsProject.NsProjectRepository;
-import mars.nomad.com.b0_generaltemplate.DataModel.InputDataModel;
+import mars.nomad.com.b0_generaltemplate.NsAddPackage.DataModel.InputDataModel;
 import mars.nomad.com.b0_generaltemplate.Value.GeneralTemplateConstants;
 import mars.nomad.com.l0_base.Callback.CommonCallback;
 import mars.nomad.com.l0_base.Callback.NsPredicateObject;

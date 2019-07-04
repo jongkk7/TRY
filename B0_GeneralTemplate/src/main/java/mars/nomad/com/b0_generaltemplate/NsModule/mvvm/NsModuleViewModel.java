@@ -7,7 +7,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Filter;
 
 import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;
@@ -17,7 +16,7 @@ import androidx.lifecycle.ViewModel;
 import mars.nomad.com.a0_common.DataBase.Room.NsModule.NsModule;
 import mars.nomad.com.a0_common.DataBase.Room.NsModule.NsModuleRepository;
 import mars.nomad.com.a0_common.DataBase.Room.NsProject.NsProject;
-import mars.nomad.com.b0_generaltemplate.DataModel.InputDataModel;
+import mars.nomad.com.b0_generaltemplate.NsAddPackage.DataModel.InputDataModel;
 import mars.nomad.com.b0_generaltemplate.R;
 import mars.nomad.com.b0_generaltemplate.Util.TemplateUtil;
 import mars.nomad.com.b0_generaltemplate.Value.GeneralTemplateConstants;
@@ -26,7 +25,6 @@ import mars.nomad.com.l0_base.Callback.NsPredicateObject;
 import mars.nomad.com.l0_base.Logger.ErrorController;
 import mars.nomad.com.l12_applicationutil.Filter.FilterUtil;
 import mars.nomad.com.l12_applicationutil.String.StringChecker;
-import mars.nomad.com.l8_room.RDBCallback;
 
 /**
  * Created by 김창혁, NomadSoft.Inc on 2019-07-01.
@@ -193,6 +191,21 @@ public class NsModuleViewModel extends ViewModel {
                 javaPackage.mkdirs();
             }
 
+            //리소스 디렉토리 생성
+            File layout = new File(modulePath + "/src/main/res/layout");
+
+            if (!layout.exists()) {
+
+                layout.mkdirs();
+            }
+
+            File drawable = new File(modulePath + "/src/main/res/drawable-xxhdpi");
+
+            if (!drawable.exists()) {
+
+                drawable.mkdirs();
+            }
+
             //매니페스트 생성
             String manifestString = TemplateUtil.readContentsFromFile(context, R.raw.xml_manifest);
             manifestString = manifestString.replace("{$base_package_name}", module.getBasePackageName());
@@ -205,13 +218,13 @@ public class NsModuleViewModel extends ViewModel {
 
     public void deleteItem(NsModule item) {
 
-        try{
+        try {
 
             TemplateUtil.deleteAllFiles(GeneralTemplateConstants.templatePath + "/" + item.getProjectName() + "/" + item.getModuleName());
 
             NsModuleRepository.getInstance().delete(item);
 
-        }catch(Exception e){
+        } catch (Exception e) {
             ErrorController.showError(e);
         }
     }

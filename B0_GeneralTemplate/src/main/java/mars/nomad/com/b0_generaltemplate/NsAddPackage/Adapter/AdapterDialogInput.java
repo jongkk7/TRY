@@ -1,4 +1,4 @@
-package mars.nomad.com.b0_generaltemplate.Adapter;
+package mars.nomad.com.b0_generaltemplate.NsAddPackage.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import mars.nomad.com.b0_generaltemplate.DataModel.InputDataModel;
+import mars.nomad.com.b0_generaltemplate.NsAddPackage.DataModel.InputDataModel;
 import mars.nomad.com.b0_generaltemplate.R;
 import mars.nomad.com.c2_customview.Adapter.NsBaseRecyclerViewAdapter;
 import mars.nomad.com.l0_base.Abstract.AbstractTextWatcher;
