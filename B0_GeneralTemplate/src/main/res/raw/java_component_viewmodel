@@ -1,0 +1,17 @@
+﻿package {$package_name};
+
+import java.util.ArrayList;
+import java.util.List;
+
+import androidx.lifecycle.ViewModel;
+
+import mars.nomad.com.l0_base.Callback.CommonCallback;
+import mars.nomad.com.l0_base.Logger.ErrorController;
+
+/**
+ * Created by Nomad, NomadSoft.Inc.
+ */
+public class {$Data}ViewModel extends ViewModel {
+
+ 
+}

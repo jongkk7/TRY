@@ -30,6 +30,8 @@ public class GeneralTemplateEngine {
 
             setLegacyAdapterActivity(templateList);
 
+            setMainComponent(templateList);
+
             setBasicViewPager(templateList);
 
         } catch (Exception e) {
@@ -203,6 +205,38 @@ public class GeneralTemplateEngine {
                 add(new NsFile(R.raw.xml_adapter_activity, "/layout", "{$activity_res_id}.xml"));
                 add(new NsFile(R.raw.xml_adapter_cell, "/layout", "{$adapter_cell_id}.xml"));
                 add(new NsFile(R.raw.txt_adapter_activity, "", "ActivityRegister.txt"));
+            }});
+
+            templateList.add(template);
+
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+    }
+
+
+    /**
+     * MainComponent
+     *
+     * @param templateList
+     */
+    private static void setMainComponent(List<NsTemplate> templateList) {
+
+        try {
+
+            NsTemplate template = new NsTemplate();
+
+            template.setTemplateName("MainComponent");
+            template.setDescription("ActivityMain에 붙는 Component");
+            template.setTemplateFiles(new ArrayList<NsFile>() {{
+
+                add(new NsFile(R.raw.java_component, "/Main", "Component{$Data}.java"));
+                add(new NsFile(R.raw.java_component_top_bar, "/Main/Topbar", "Topbar{$Data}.java"));
+                add(new NsFile(R.raw.java_component_viewmodel, "/Main/mvvm", "{$Data}ViewModel.java"));
+                add(new NsFile(R.raw.java_component_fragment, "/Main", "Fragment{$Data}.java"));
+                add(new NsFile(R.raw.xml_component_top_bar, "/layout", "topbar_{$Data_lower}.xml"));
+                add(new NsFile(R.raw.xml_component_fragment, "/layout", "fragment_{$Data_lower}.xml"));
+                add(new NsFile(R.raw.xml_component_selector_button, "/drawable", "selector_main_component_{$Data_lower}.xml"));
             }});
 
             templateList.add(template);

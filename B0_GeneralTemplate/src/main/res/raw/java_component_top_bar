@@ -1,0 +1,61 @@
+﻿package {$package_name};
+
+import android.content.Context;
+import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageButton;
+
+import mars.nomad.com.c3_baseaf.ITopbarView;
+import mars.nomad.com.l0_base.Logger.ErrorController;
+
+/**
+ * Created by Nomad, NomadSoft.Inc.
+ */
+public class Topbar{$Data} extends ITopbarView {
+
+
+    private ImageButton imageButtonHamburger;
+
+    public Topbar{$Data}(Context context) {
+        super(context);
+        initView();
+        setEvent();
+    }
+
+    public Topbar{$Data}(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        initView();
+        setEvent();
+    }
+
+    @Override
+    protected void initView() {
+        try {
+            LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+            View view = layoutInflater.inflate(R.layout.topbar_{$Data_lower}, this, false);
+            imageButtonHamburger = (ImageButton) view.findViewById(R.id.imageButtonHamburger);
+
+            addView(view);
+
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+    }
+
+    @Override
+    protected void setEvent() {
+        imageButtonHamburger.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getCallback().onLoadNavigation();
+            }
+        });
+    }
+
+    @Override
+    public void doTopbarAction(Object... params) {
+
+    }
+}

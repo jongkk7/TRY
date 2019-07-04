@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/colorWhite">
+
+
+    <ImageButton
+        android:id="@+id/imageButtonHamburger"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/colorTransparent"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:src="@drawable/android_top_menu_android"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="{$Data}"
+        android:textColor="@color/colorBlack"
+        android:textSize="15dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorBlack"/>
+</RelativeLayout>

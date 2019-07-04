@@ -4,23 +4,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.TypedValue;
 
-import androidx.arch.core.util.Function;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Transformations;
-import androidx.lifecycle.ViewModel;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 import mars.nomad.com.a0_common.DataBase.Room.NsModule.NsModule;
 import mars.nomad.com.a0_common.DataBase.Room.NsPackage.NsPackage;
 import mars.nomad.com.a0_common.DataBase.Room.NsPackage.NsPackageRepository;
 import mars.nomad.com.a0_common.DataBase.Room.NsTemplate.NsFile;
 import mars.nomad.com.a0_common.DataBase.Room.NsTemplate.NsTemplate;
-import mars.nomad.com.b0_generaltemplate.NsAddPackage.DataModel.InputDataModel;
 import mars.nomad.com.b0_generaltemplate.GeneralTemplateEngine;
+import mars.nomad.com.b0_generaltemplate.NsAddPackage.DataModel.InputDataModel;
 import mars.nomad.com.b0_generaltemplate.Util.TemplateUtil;
 import mars.nomad.com.b0_generaltemplate.Value.GeneralTemplateConstants;
 import mars.nomad.com.l0_base.Callback.CommonCallback;
@@ -158,6 +154,10 @@ public class GeneralTemplateViewModel extends ViewModel {
                             continue;
                         }
 
+                        if (word.contains("{$Data_lower}")) { // 건너뜀
+                            continue;
+                        }
+
                         if (!isExist) {
 
                             fieldNameList.add(fieldName);
@@ -197,6 +197,9 @@ public class GeneralTemplateViewModel extends ViewModel {
                     break;
                 }
             }
+
+            // 예외 1 : 레이아웃은 받은 Data를 res (lowercase + _로 변환)
+            replacer.put("{$Data_lower}", getResText(packageName));
 
             if (!StringChecker.isStringNotNull(packageName)) {
 
@@ -274,6 +277,30 @@ public class GeneralTemplateViewModel extends ViewModel {
             ErrorController.showError(e);
             callback.onFailed("익셉션 발생");
         }
+    }
+
+    private String getResText(String targetName) {
+        StringBuilder result = new StringBuilder();
+
+        try {
+
+            int index = 0;
+            for (char c : targetName.toCharArray()) {
+
+                if (Character.isUpperCase(c) && index == 0) {
+                    result.append(Character.toLowerCase(c));
+                } else if (Character.isUpperCase(c)) {
+                    result.append("_").append(Character.toLowerCase(c));
+                } else {
+                    result.append(c);
+                }
+                index++;
+            }
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+        return result.toString();
+
     }
 
     /**

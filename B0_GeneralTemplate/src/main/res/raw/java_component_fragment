@@ -1,0 +1,67 @@
+﻿package {$package_name};
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import mars.nomad.com.c3_baseaf.Main.BaseMainFragment;
+import mars.nomad.com.l0_base.Callback.CommonCallback;
+import mars.nomad.com.l0_base.Logger.ErrorController;
+
+/**
+ * Created by Nomad, NomadSoft.Inc
+ */
+public class Fragment{$Data} extends BaseMainFragment {
+
+
+    private {$Data}ViewModel mVmodel;
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_{$Data_lower}, container, false);
+
+        initView(view);
+        setEvent();
+        return view;
+    }
+
+
+    @Override
+    protected void initView(View view) {
+
+        try {
+
+            this.mVmodel = ViewModelProviders.of(this).get({$Data}ViewModel.class);
+
+
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+    }
+
+    @Override
+    protected void setEvent() {
+
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        return false;
+    }
+
+    @Override
+    public void refreshUI() {
+
+    }
+}

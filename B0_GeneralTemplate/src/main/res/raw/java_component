@@ -1,0 +1,31 @@
+﻿package {$package_name};
+
+import android.content.Context;
+
+
+import mars.nomad.com.c3_baseaf.Main.AMainViewItem;
+
+/**
+ * Created by Nomad, NomadSoft.Inc.
+ */
+public class Component{$Data} extends AMainViewItem {
+    @Override
+    public void setItem(Context context) {
+        Fragment{$Data} fragment{$Data} = new Fragment{$Data}();
+        fragment{$Data}.setMainViewItem(this);
+
+        Topbar{$Data} topBar{$Data} = new Topbar{$Data}(context);
+
+        if (getCallback() != null) {
+            // TopBar 액션을 정의
+
+            topBar{$Data}.setCallback(getCallback());
+        }
+
+        setTag("{$Data}");
+        setFragment(fragment{$Data});
+        setTabButtonDrawable(R.drawable.selector_default);
+
+        setTopBar(topBar{$Data});
+    }
+}
