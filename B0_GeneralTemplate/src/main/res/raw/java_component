@@ -24,7 +24,7 @@ public class Component{$Data} extends AMainViewItem {
 
         setTag("{$Data}");
         setFragment(fragment{$Data});
-        setTabButtonDrawable(R.drawable.selector_default);
+        setTabButtonDrawable(R.drawable.selector_main_component_{$Data_lower});
 
         setTopBar(topBar{$Data});
     }

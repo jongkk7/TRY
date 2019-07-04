@@ -142,4 +142,35 @@ public class TemplateUtil {
             ErrorController.showError(e);
         }
     }
+
+    /**
+     * 문자열을 받아서 resString으로 변환한다
+     * @param targetName
+     * @return
+     */
+    public static String getResText(String targetName) {
+        StringBuilder result = new StringBuilder();
+
+        try {
+
+            int index = 0;
+            for (char c : targetName.toCharArray()) {
+
+                if (Character.isUpperCase(c) && index == 0) {
+                    result.append(Character.toLowerCase(c));
+                } else if (Character.isUpperCase(c)) {
+                    result.append("_").append(Character.toLowerCase(c));
+                } else {
+                    result.append(c);
+                }
+                index++;
+            }
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+        return result.toString();
+
+    }
+
+
 }

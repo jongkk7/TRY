@@ -19,6 +19,7 @@ import mars.nomad.com.a0_common.DataBase.Room.NsTemplate.NsFile;
 import mars.nomad.com.a0_common.DataBase.Room.NsTemplate.NsTemplate;
 import mars.nomad.com.b0_generaltemplate.GeneralTemplateEngine;
 import mars.nomad.com.b0_generaltemplate.NsAddPackage.DataModel.InputDataModel;
+import mars.nomad.com.b0_generaltemplate.Util.TemplateUtil;
 import mars.nomad.com.b0_generaltemplate.Value.GeneralTemplateConstants;
 import mars.nomad.com.l0_base.Callback.CommonCallback;
 import mars.nomad.com.l0_base.Callback.NsPredicateObject;
@@ -198,6 +199,10 @@ public class GeneralTemplateSingleModuleViewModel extends ViewModel {
                             continue;
                         }
 
+                        if (word.contains("{$Data_lower}")) {
+                            continue;
+                        }
+
                         boolean isExist = FilterUtil.isItemExist(fieldNameList, new NsPredicateObject<String>() {
                             @Override
                             public boolean apply(String listItem) {
@@ -239,6 +244,19 @@ public class GeneralTemplateSingleModuleViewModel extends ViewModel {
 
         try {
 
+            String packageName = "";
+
+            for (String s : replacer.keySet()) {
+
+                if (s.equalsIgnoreCase("{$Data}")) {
+
+                    packageName = replacer.get(s);
+                    break;
+                }
+            }
+
+            // 예외 1 : 레이아웃은 받은 Data를 res (lowercase + _로 변환)
+            replacer.put("{$Data_lower}", TemplateUtil.getResText(packageName));
             for (NsFile templateFile : item.getTemplateFiles()) {
 
                 String rawString = readContentsFromFile(context, templateFile.getResId());

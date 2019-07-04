@@ -199,7 +199,7 @@ public class GeneralTemplateViewModel extends ViewModel {
             }
 
             // 예외 1 : 레이아웃은 받은 Data를 res (lowercase + _로 변환)
-            replacer.put("{$Data_lower}", getResText(packageName));
+            replacer.put("{$Data_lower}", TemplateUtil.getResText(packageName));
 
             if (!StringChecker.isStringNotNull(packageName)) {
 
@@ -279,29 +279,7 @@ public class GeneralTemplateViewModel extends ViewModel {
         }
     }
 
-    private String getResText(String targetName) {
-        StringBuilder result = new StringBuilder();
 
-        try {
-
-            int index = 0;
-            for (char c : targetName.toCharArray()) {
-
-                if (Character.isUpperCase(c) && index == 0) {
-                    result.append(Character.toLowerCase(c));
-                } else if (Character.isUpperCase(c)) {
-                    result.append("_").append(Character.toLowerCase(c));
-                } else {
-                    result.append(c);
-                }
-                index++;
-            }
-        } catch (Exception e) {
-            ErrorController.showError(e);
-        }
-        return result.toString();
-
-    }
 
     /**
      * 리플레이서 중 첫번째 키의 value값을 가져온다.
