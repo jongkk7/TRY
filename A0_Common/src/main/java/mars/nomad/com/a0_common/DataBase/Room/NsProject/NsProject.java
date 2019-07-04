@@ -10,8 +10,11 @@ import java.util.Objects;
 @Entity(tableName = "NsProject")
 public class NsProject implements Serializable {
 
-    @PrimaryKey
-    @NonNull
+
+    @PrimaryKey(autoGenerate = true)
+    private int seq;
+
+
     private String projectName;
 
     private long regDate;
@@ -33,25 +36,35 @@ public class NsProject implements Serializable {
         this.regDate = regDate;
     }
 
-    @Override
-    public String toString() {
-        return "NsProject{" +
-                "projectName='" + projectName + '\'' +
-                ", regDate=" + regDate +
-                '}';
+    public int getSeq() {
+        return seq;
+    }
+
+    public void setSeq(int seq) {
+        this.seq = seq;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        NsProject nsProject = (NsProject) o;
-        return regDate == nsProject.regDate &&
-                projectName.equals(nsProject.projectName);
+        NsProject project = (NsProject) o;
+        return seq == project.seq &&
+                regDate == project.regDate &&
+                Objects.equals(projectName, project.projectName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(projectName, regDate);
+        return Objects.hash(seq, projectName, regDate);
+    }
+
+    @Override
+    public String toString() {
+        return "NsProject{" +
+                "seq=" + seq +
+                ", projectName='" + projectName + '\'' +
+                ", regDate=" + regDate +
+                '}';
     }
 }

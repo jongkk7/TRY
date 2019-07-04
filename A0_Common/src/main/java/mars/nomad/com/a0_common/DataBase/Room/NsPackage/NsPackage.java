@@ -10,8 +10,10 @@ import java.util.Objects;
 @Entity(tableName = "NsPackage")
 public class NsPackage implements Serializable {
 
-    @PrimaryKey
-    @NonNull
+
+    @PrimaryKey(autoGenerate = true)
+    private int seq;
+
     private String packageName;
 
     private String moduleName;
@@ -63,13 +65,22 @@ public class NsPackage implements Serializable {
         this.regDate = regDate;
     }
 
+    public int getSeq() {
+        return seq;
+    }
+
+    public void setSeq(int seq) {
+        this.seq = seq;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         NsPackage nsPackage = (NsPackage) o;
-        return regDate == nsPackage.regDate &&
-                packageName.equals(nsPackage.packageName) &&
+        return seq == nsPackage.seq &&
+                regDate == nsPackage.regDate &&
+                Objects.equals(packageName, nsPackage.packageName) &&
                 Objects.equals(moduleName, nsPackage.moduleName) &&
                 Objects.equals(projectName, nsPackage.projectName) &&
                 Objects.equals(type, nsPackage.type);
@@ -77,13 +88,14 @@ public class NsPackage implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(packageName, moduleName, projectName, type, regDate);
+        return Objects.hash(seq, packageName, moduleName, projectName, type, regDate);
     }
 
     @Override
     public String toString() {
         return "NsPackage{" +
-                "packageName='" + packageName + '\'' +
+                "seq=" + seq +
+                ", packageName='" + packageName + '\'' +
                 ", moduleName='" + moduleName + '\'' +
                 ", projectName='" + projectName + '\'' +
                 ", type='" + type + '\'' +

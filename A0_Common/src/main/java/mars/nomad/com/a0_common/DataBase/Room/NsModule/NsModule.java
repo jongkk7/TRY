@@ -11,8 +11,9 @@ import java.util.Objects;
 public class NsModule implements Serializable {
 
 
-    @PrimaryKey
-    @NonNull
+    @PrimaryKey(autoGenerate = true)
+    private int seq;
+
     private String moduleName;
 
     private String projectName;
@@ -57,10 +58,19 @@ public class NsModule implements Serializable {
         this.projectName = projectName;
     }
 
+    public int getSeq() {
+        return seq;
+    }
+
+    public void setSeq(int seq) {
+        this.seq = seq;
+    }
+
     @Override
     public String toString() {
         return "NsModule{" +
-                "moduleName='" + moduleName + '\'' +
+                "seq=" + seq +
+                ", moduleName='" + moduleName + '\'' +
                 ", projectName='" + projectName + '\'' +
                 ", basePackageName='" + basePackageName + '\'' +
                 ", regDate=" + regDate +
@@ -71,15 +81,16 @@ public class NsModule implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        NsModule nsModule = (NsModule) o;
-        return regDate == nsModule.regDate &&
-                moduleName.equals(nsModule.moduleName) &&
-                Objects.equals(projectName, nsModule.projectName) &&
-                Objects.equals(basePackageName, nsModule.basePackageName);
+        NsModule module = (NsModule) o;
+        return seq == module.seq &&
+                regDate == module.regDate &&
+                Objects.equals(moduleName, module.moduleName) &&
+                Objects.equals(projectName, module.projectName) &&
+                Objects.equals(basePackageName, module.basePackageName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(moduleName, projectName, basePackageName, regDate);
+        return Objects.hash(seq, moduleName, projectName, basePackageName, regDate);
     }
 }
