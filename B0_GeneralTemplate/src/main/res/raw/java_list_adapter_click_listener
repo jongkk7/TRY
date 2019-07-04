@@ -1,3 +1,4 @@
+package {$package_name};
 
 import mars.nomad.com.c2_customview.Adapter.NsGeneralClickListener;
 

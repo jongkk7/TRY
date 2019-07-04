@@ -1,4 +1,4 @@
-package mars.nomad.com.a0_common.TestModule;
+package {$package_name};
 
 import android.os.Bundle;
 

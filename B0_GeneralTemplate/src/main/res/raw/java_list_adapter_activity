@@ -1,3 +1,4 @@
+package {$package_name};
 
 import android.os.Bundle;
 import android.widget.ImageButton;

@@ -1,4 +1,4 @@
-package raw;
+package {$package_name};
 
 import android.content.Intent;
 

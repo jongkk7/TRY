@@ -1,3 +1,5 @@
+package {$package_name};
+
 import androidx.sqlite.db.SimpleSQLiteQuery;
 import androidx.room.Dao;
 

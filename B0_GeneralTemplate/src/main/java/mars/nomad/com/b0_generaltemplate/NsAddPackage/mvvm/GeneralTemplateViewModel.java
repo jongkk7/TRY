@@ -153,6 +153,11 @@ public class GeneralTemplateViewModel extends ViewModel {
                             }
                         });
 
+                        if (word.contains("{$package_name}")) {//예약어는 건너뜀
+
+                            continue;
+                        }
+
                         if (!isExist) {
 
                             fieldNameList.add(fieldName);
@@ -189,6 +194,7 @@ public class GeneralTemplateViewModel extends ViewModel {
                 if (s.equalsIgnoreCase("{$Data}")) {
 
                     packageName = replacer.get(s);
+                    break;
                 }
             }
 
@@ -201,12 +207,24 @@ public class GeneralTemplateViewModel extends ViewModel {
             nsPackage.setModuleName(mModule.getModuleName());
             nsPackage.setProjectName(mModule.getProjectName());
             nsPackage.setRegDate(System.currentTimeMillis());
+            nsPackage.setType(item.getTemplateName());
             nsPackage.setPackageName(packageName);
 
             for (NsFile templateFile : item.getTemplateFiles()) {
 
+                //기본적으로 템플릿에 설정된 값들을 교체한다.
                 String rawString = TemplateUtil.readContentsFromFile(context, templateFile.getResId());
                 rawString = replaceString(rawString, replacer);
+
+                //예약어들을 적용한다.
+                String p = "";
+
+                if (StringChecker.isStringNotNull(templateFile.getDirectory())) {
+
+                    p = templateFile.getDirectory().replace("/", ".");
+                }
+
+                rawString = rawString.replace("{$package_name}", mModule.getBasePackageName() + "." + packageName + p);
 
                 String fileName = replaceString(templateFile.getNamingRule(), replacer);
 
@@ -242,7 +260,7 @@ public class GeneralTemplateViewModel extends ViewModel {
                     savePath = GeneralTemplateConstants.templatePath + "/" +
                             mModule.getProjectName() + "/" +
                             mModule.getModuleName() + "/" +
-                            "src/main/java" + TemplateUtil.getDirectoryNameFromPackageName(mModule.getBasePackageName());
+                            "src/main/java" + TemplateUtil.getDirectoryNameFromPackageName(mModule.getBasePackageName()) + directory;
                 }
 
                 TemplateUtil.saveAsFile(rawString, fileName, savePath);
