@@ -19,7 +19,7 @@ import mars.nomad.com.a0_common.DataBase.Room.NsTemplate.NsTemplateDao;
 /**
  * Created by SJH, NomadSoft.Inc, 2019-01-07
  */
-@Database(entities = {LoginUser.class, NsTemplate.class, NsProject.class, NsModule.class}, version = 7, exportSchema = false)
+@Database(entities = {LoginUser.class, NsTemplate.class, NsProject.class, NsModule.class}, version = 9, exportSchema = false)
 public abstract class NsDataBase extends RoomDatabase {
 
     private static NsDataBase instance;

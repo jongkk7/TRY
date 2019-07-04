@@ -4,10 +4,11 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.annotation.NonNull;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity(tableName = "NsProject")
-public class NsProject {
+public class NsProject implements Serializable {
 
     @PrimaryKey
     @NonNull

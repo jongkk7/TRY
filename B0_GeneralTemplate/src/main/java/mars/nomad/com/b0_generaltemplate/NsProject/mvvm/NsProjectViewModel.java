@@ -1,5 +1,6 @@
 package mars.nomad.com.b0_generaltemplate.NsProject.mvvm;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,7 @@ import androidx.lifecycle.ViewModel;
 import mars.nomad.com.a0_common.DataBase.Room.NsProject.NsProject;
 import mars.nomad.com.a0_common.DataBase.Room.NsProject.NsProjectRepository;
 import mars.nomad.com.b0_generaltemplate.DataModel.InputDataModel;
+import mars.nomad.com.b0_generaltemplate.Value.GeneralTemplateConstants;
 import mars.nomad.com.l0_base.Callback.CommonCallback;
 import mars.nomad.com.l0_base.Callback.NsPredicateObject;
 import mars.nomad.com.l0_base.Logger.ErrorController;
@@ -93,9 +95,16 @@ public class NsProjectViewModel extends ViewModel {
         }
     }
 
+    /**
+     * 실제 경로를 만들고 db상에 인서트한다.
+     *
+     * @param projectName
+     */
     private void insertProject(String projectName) {
 
         try {
+
+            File dir = new File(GeneralTemplateConstants.templatePath + "/" + projectName);
 
             NsProject project = new NsProject();
             project.setProjectName(projectName);

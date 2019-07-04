@@ -21,6 +21,7 @@ import mars.nomad.com.a0_common.DataBase.Room.NsTemplate.NsTemplate;
 import mars.nomad.com.b0_generaltemplate.DataModel.InputDataModel;
 import mars.nomad.com.b0_generaltemplate.GeneralTemplateEngine;
 import mars.nomad.com.b0_generaltemplate.R;
+import mars.nomad.com.b0_generaltemplate.Util.TemplateUtil;
 import mars.nomad.com.b0_generaltemplate.Value.GeneralTemplateConstants;
 import mars.nomad.com.l0_base.Callback.CommonCallback;
 import mars.nomad.com.l0_base.Callback.NsPredicateObject;
@@ -61,45 +62,7 @@ public class GeneralTemplateViewModel extends ViewModel {
     }
 
 
-    /**
-     * raw에 있는 id의 파일 내용을 싹 긁어온다.
-     *
-     * @param context
-     * @param id
-     * @return
-     */
-    private String readContentsFromFile(final Context context, @RawRes int id) {
 
-        String result = "";
-
-        try {
-
-            InputStream inputStream = context.getResources().openRawResource(id);
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-
-            byte[] buffer = new byte[1024];
-            int size;
-
-            try {
-
-                while ((size = inputStream.read(buffer)) != -1) {
-                    outputStream.write(buffer, 0, size);
-                }
-
-            } catch (IOException e) {
-                ErrorController.showError(e);
-            } finally {
-                outputStream.close();
-                inputStream.close();
-            }
-
-            result = outputStream.toString();
-
-        } catch (Exception e) {
-            ErrorController.showError(e);
-        }
-        return result;
-    }
 
     /**
      * map에 있는 내용들을 바꿔치기해서 반환한다.
@@ -130,39 +93,7 @@ public class GeneralTemplateViewModel extends ViewModel {
         return result;
     }
 
-    /**
-     * 파일로 저장
-     *
-     * @param originalString
-     * @param fileName
-     * @param dirName
-     */
-    private void saveAsFile(String originalString, String fileName, String dirName) {
 
-        try {
-
-            File dir = new File(dirName);
-
-            if (!dir.exists()) {
-
-                dir.mkdirs();
-            }
-
-            File file = new File(dirName, fileName);
-
-            if (!file.exists()) {
-
-                file.createNewFile();
-            }
-
-            FileWriter out = new FileWriter(file);
-            out.write(originalString);
-            out.close();
-
-        } catch (Exception e) {
-            ErrorController.showError(e);
-        }
-    }
 
     public MutableLiveData<List<NsTemplate>> getTemplateListLive() {
         return templateListLive;
@@ -184,7 +115,7 @@ public class GeneralTemplateViewModel extends ViewModel {
 
             for (NsFile templateFile : item.getTemplateFiles()) {
 
-                String rawString = readContentsFromFile(context, templateFile.getResId());
+                String rawString = TemplateUtil.readContentsFromFile(context, templateFile.getResId());
 
                 String[] words = rawString.split("\\s+");
 
@@ -238,7 +169,7 @@ public class GeneralTemplateViewModel extends ViewModel {
 
             for (NsFile templateFile : item.getTemplateFiles()) {
 
-                String rawString = readContentsFromFile(context, templateFile.getResId());
+                String rawString = TemplateUtil.readContentsFromFile(context, templateFile.getResId());
                 rawString = replaceString(rawString, replacer);
 
                 String fileName = replaceString(templateFile.getNamingRule(), replacer);
@@ -250,7 +181,7 @@ public class GeneralTemplateViewModel extends ViewModel {
                     directory += replaceString(templateFile.getDirectory(), replacer);
                 }
 
-                saveAsFile(rawString, fileName, GeneralTemplateConstants.templatePath + "/" + directory);
+                TemplateUtil.saveAsFile(rawString, fileName, GeneralTemplateConstants.templatePath + "/" + directory);
 
             }
 

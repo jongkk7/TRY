@@ -72,7 +72,6 @@ public class ActivityManagerCommon extends ActivityManager {
     }
 
 
-
     /////////////////////////////////////////////////
 
     public static int CommonGalleryRequest = 15001;

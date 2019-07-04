@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 import mars.nomad.com.a0_common.DataBase.Room.NsProject.NsProject;
+import mars.nomad.com.b0_generaltemplate.ActivityManagerTemplate;
 import mars.nomad.com.b0_generaltemplate.Dialog.DialogDialogInput;
 import mars.nomad.com.b0_generaltemplate.NsProject.Adapter.AdapterNsProject;
 import mars.nomad.com.b0_generaltemplate.NsProject.Adapter.ClickListener.NsProjectClickListener;
@@ -142,6 +143,7 @@ public class ActivityNsProject extends BaseActivity {
                                 @Override
                                 public void onItemClick(NsProject item) {
 
+                                    ActivityManagerTemplate.goActivityNsModule(getActivity(), null, null, item);
                                 }
                             }, new DiffUtil.ItemCallback<NsProject>() {
                                 @Override

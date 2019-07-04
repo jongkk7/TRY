@@ -15,6 +15,8 @@ public class NsModule implements Serializable {
     @NonNull
     private String moduleName;
 
+    private String projectName;
+
     /**
      * 사용자에게 입력받는게 아니다. 자동으로 생성된다.
      */
@@ -47,10 +49,19 @@ public class NsModule implements Serializable {
         this.regDate = regDate;
     }
 
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+
     @Override
     public String toString() {
         return "NsModule{" +
                 "moduleName='" + moduleName + '\'' +
+                ", projectName='" + projectName + '\'' +
                 ", basePackageName='" + basePackageName + '\'' +
                 ", regDate=" + regDate +
                 '}';
@@ -63,11 +74,12 @@ public class NsModule implements Serializable {
         NsModule nsModule = (NsModule) o;
         return regDate == nsModule.regDate &&
                 moduleName.equals(nsModule.moduleName) &&
+                Objects.equals(projectName, nsModule.projectName) &&
                 Objects.equals(basePackageName, nsModule.basePackageName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(moduleName, basePackageName, regDate);
+        return Objects.hash(moduleName, projectName, basePackageName, regDate);
     }
 }
