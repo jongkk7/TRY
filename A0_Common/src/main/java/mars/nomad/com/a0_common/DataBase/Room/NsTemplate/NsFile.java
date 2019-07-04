@@ -1,4 +1,4 @@
-package mars.nomad.com.b0_generaltemplate.DataModel;
+package mars.nomad.com.a0_common.DataBase.Room.NsTemplate;
 
 import java.io.Serializable;
 import java.util.Objects;

@@ -47,8 +47,7 @@ public class ActivityStart extends BaseApplicationActivity {
                         @Override
                         public void onPermissionGranted() {
 
-                            ActivityManager.goActivityWithoutExtra(getActivity(), null, null, false, "ActivityGeneralTemplate");
-                            //ActivityManager.goActivityWithoutExtra(getActivity(), null, null, false, "ActivityActivityTest");
+                            ActivityManager.goActivityWithoutExtra(getActivity(), null, null, false, "ActivityNsProject");
                             finish();
                         }
 
@@ -61,8 +60,6 @@ public class ActivityStart extends BaseApplicationActivity {
                     .setRationaleTitle("사용자 기기 접근 권한 요청")
                     .setRationaleMessage("필수접근 권한\n필수접근 권한 미동의 시, 어플리케이션을 사용하실 수 없습니다.")
                     .setDeniedMessage("해당 권한을 허용하지 않으면 서비스 이용이 불가합니다. 하단의 설정 버튼을 누르신 후 권한을 활성화주세요.")
-//                    .setPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA,
-//                            Manifest.permission.BLUETOOTH, Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION)
                     .setPermissions(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
                     .check();
 

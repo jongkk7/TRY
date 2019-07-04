@@ -3,16 +3,23 @@ package mars.nomad.com.a0_common.DataBase.Room;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+
 import android.content.Context;
 
 import mars.nomad.com.a0_common.DataBase.Room.LoginUser.LoginUser;
 import mars.nomad.com.a0_common.DataBase.Room.LoginUser.LoginUserDao;
+import mars.nomad.com.a0_common.DataBase.Room.NsModule.NsModule;
+import mars.nomad.com.a0_common.DataBase.Room.NsModule.NsModuleDao;
+import mars.nomad.com.a0_common.DataBase.Room.NsProject.NsProject;
+import mars.nomad.com.a0_common.DataBase.Room.NsProject.NsProjectDao;
+import mars.nomad.com.a0_common.DataBase.Room.NsTemplate.NsTemplate;
+import mars.nomad.com.a0_common.DataBase.Room.NsTemplate.NsTemplateDao;
 
 
 /**
  * Created by SJH, NomadSoft.Inc, 2019-01-07
  */
-@Database(entities = {LoginUser.class}, version = 3, exportSchema = false)
+@Database(entities = {LoginUser.class, NsTemplate.class, NsProject.class, NsModule.class}, version = 7, exportSchema = false)
 public abstract class NsDataBase extends RoomDatabase {
 
     private static NsDataBase instance;
@@ -46,4 +53,10 @@ public abstract class NsDataBase extends RoomDatabase {
      */
 
     public abstract LoginUserDao getLoginUserDao();
+
+    public abstract NsTemplateDao getNsTemplateDao();
+
+    public abstract NsProjectDao getNsProjectDao();
+
+    public abstract NsModuleDao getNsModuleDao();
 }

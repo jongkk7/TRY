@@ -3,8 +3,9 @@ package mars.nomad.com.b0_generaltemplate;
 import java.util.ArrayList;
 import java.util.List;
 
-import mars.nomad.com.b0_generaltemplate.DataModel.NsFile;
-import mars.nomad.com.b0_generaltemplate.DataModel.NsTemplate;
+import mars.nomad.com.a0_common.DataBase.Room.NsTemplate.NsFile;
+import mars.nomad.com.a0_common.DataBase.Room.NsTemplate.NsTemplate;
+import mars.nomad.com.a0_common.DataBase.Room.NsTemplate.NsTemplateRepository;
 import mars.nomad.com.l0_base.Logger.ErrorController;
 
 /**

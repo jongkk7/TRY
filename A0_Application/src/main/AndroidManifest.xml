@@ -17,11 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeInterface"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".Test.ActivityTest"
-            android:windowSoftInputMode="stateHidden|adjustPan"
-            android:configChanges="orientation|screenSize|keyboardHidden">
-        </activity>
+
         <activity android:name=".ActivityStart">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

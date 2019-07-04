@@ -637,8 +637,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         try {
 
-            setDarkStatusBar(getWindow().getDecorView(), this);
-            setStatusBarColor(R.color.colorTopBar1Background);
+            setLightStatusBar(getWindow().getDecorView(), this);
+            setStatusBarColor(R.color.colorWhite);
 
         } catch (Exception e) {
             ErrorController.showError(e);

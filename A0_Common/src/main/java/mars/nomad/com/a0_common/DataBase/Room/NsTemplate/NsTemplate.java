@@ -1,21 +1,25 @@
-package mars.nomad.com.b0_generaltemplate.DataModel;
+package mars.nomad.com.a0_common.DataBase.Room.NsTemplate;
 
 import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
 
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 
-
+@Entity(tableName = "NsTemplate")
 public class NsTemplate implements Serializable {
 
+    @PrimaryKey
     @NonNull
     private String templateName;
 
     private String description;
 
+    @TypeConverters(NsTemplateDataConverter.class)
     private List<NsFile> templateFiles;
 
     public String getTemplateName() {

@@ -16,9 +16,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import mars.nomad.com.a0_common.DataBase.Room.NsTemplate.NsFile;
+import mars.nomad.com.a0_common.DataBase.Room.NsTemplate.NsTemplate;
 import mars.nomad.com.b0_generaltemplate.DataModel.InputDataModel;
-import mars.nomad.com.b0_generaltemplate.DataModel.NsFile;
-import mars.nomad.com.b0_generaltemplate.DataModel.NsTemplate;
 import mars.nomad.com.b0_generaltemplate.GeneralTemplateEngine;
 import mars.nomad.com.b0_generaltemplate.R;
 import mars.nomad.com.b0_generaltemplate.Value.GeneralTemplateConstants;

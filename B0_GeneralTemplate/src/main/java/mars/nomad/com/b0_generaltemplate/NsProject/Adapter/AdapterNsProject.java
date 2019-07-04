@@ -1,37 +1,37 @@
-package mars.nomad.com.b0_generaltemplate.Adapter;
+package mars.nomad.com.b0_generaltemplate.NsProject.Adapter;
 
 import android.content.Context;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.Date;
 import java.util.List;
 
-
-import mars.nomad.com.a0_common.DataBase.Room.NsTemplate.NsTemplate;
-import mars.nomad.com.b0_generaltemplate.Adapter.ClickListener.NsTemplateClickListener;
+import mars.nomad.com.a0_common.DataBase.Room.NsProject.NsProject;
+import mars.nomad.com.b0_generaltemplate.NsProject.Adapter.ClickListener.NsProjectClickListener;
 import mars.nomad.com.b0_generaltemplate.R;
 import mars.nomad.com.c2_customview.Adapter.NsGeneralClickListener;
 import mars.nomad.com.c2_customview.Adapter.NsGeneralView;
 import mars.nomad.com.l0_base.Callback.CommonCallback;
 import mars.nomad.com.l0_base.Callback.SingleClickListener;
 import mars.nomad.com.l0_base.Logger.ErrorController;
+import mars.nomad.com.l12_applicationutil.Date.NSDate;
 
 
-public class AdapterNsTemplate extends NsGeneralView<NsTemplate> {
-
+public class AdapterNsProject extends NsGeneralView<NsProject> {
 
     private LinearLayout frameLayoutCell;
     private TextView textViewName;
-    private TextView textViewDescription;
+    private TextView textViewRegDate;
 
-    public AdapterNsTemplate(Context context) {
+    public AdapterNsProject(Context context) {
         super(context);
     }
 
     @Override
     public int initViewId() {
-        return R.layout.adapter_ns_template;
+        return R.layout.adapter_ns_project;
     }
 
     @Override
@@ -39,24 +39,23 @@ public class AdapterNsTemplate extends NsGeneralView<NsTemplate> {
 
         frameLayoutCell = (LinearLayout) view.findViewById(R.id.frameLayoutCell);
         textViewName = (TextView) view.findViewById(R.id.textViewName);
-        textViewDescription = (TextView) view.findViewById(R.id.textViewDescription);
+        textViewRegDate = (TextView) view.findViewById(R.id.textViewRegDate);
     }
 
     @Override
-    public void setEvent(List<NsTemplate> data, final NsTemplate item, NsGeneralClickListener<NsTemplate> mClickListener) {
+    public void setEvent(List<NsProject> NsProject, final NsProject item, final NsGeneralClickListener<NsProject> mClickListener) {
 
         try {
 
-            final NsTemplateClickListener clickListener = (NsTemplateClickListener) mClickListener;
+            final NsProjectClickListener clickListener = (NsProjectClickListener) mClickListener;
 
             frameLayoutCell.setOnClickListener(new SingleClickListener(new CommonCallback.SingleActionCallback() {
                 @Override
                 public void onAction() {
 
-                    clickListener.onClickTemplate(item);
+                    clickListener.onItemClick(item);
                 }
             }));
-
 
         } catch (Exception e) {
             ErrorController.showError(e);
@@ -65,13 +64,13 @@ public class AdapterNsTemplate extends NsGeneralView<NsTemplate> {
 
 
     @Override
-    public void onBindData(List<NsTemplate> data, NsTemplate item) {
+    public void onBindData(List<NsProject> data, NsProject item) {
 
         try {
 
-            textViewName.setText(item.getTemplateName());
+            textViewName.setText(item.getProjectName());
 
-            textViewDescription.setText(item.getDescription());
+            textViewRegDate.setText(NSDate.dateFormatDefault.format(new Date(item.getRegDate())));
 
         } catch (Exception e) {
             ErrorController.showError(e);

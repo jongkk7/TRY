@@ -18,8 +18,9 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import mars.nomad.com.b0_generaltemplate.DataModel.NsFile;
-import mars.nomad.com.b0_generaltemplate.DataModel.NsTemplate;
+
+import mars.nomad.com.a0_common.DataBase.Room.NsTemplate.NsFile;
+import mars.nomad.com.a0_common.DataBase.Room.NsTemplate.NsTemplate;
 import mars.nomad.com.b0_generaltemplate.Dialog.DialogDialogInput;
 import mars.nomad.com.b0_generaltemplate.Adapter.AdapterNsTemplate;
 import mars.nomad.com.b0_generaltemplate.Adapter.ClickListener.NsTemplateClickListener;
@@ -48,62 +49,16 @@ public class ActivityGeneralTemplate extends BaseActivity {
         initView();
         setEvent();
         setStatusBarWrapper();
-        checkAuth();
+        loadLiveData();
+        loadGeneralTemplate();
     }
 
-    private void checkAuth() {
-
-        try {
-
-            TedPermission.with(mContext)
-                    .setPermissionListener(new PermissionListener() {
-                        @Override
-                        public void onPermissionGranted() {
-
-                            createDirectory();
-                            loadLiveData();
-                            loadGeneralTemplate();
-
-                        }
-
-                        @Override
-                        public void onPermissionDenied(ArrayList<String> deniedPermissions) {
-
-                            finish();
-                        }
-                    })
-                    .setRationaleTitle("사용자 기기 접근 권한 요청")
-                    .setRationaleMessage("필수접근 권한\n필수접근 권한 미동의 시, 어플리케이션을 사용하실 수 없습니다.")
-                    .setDeniedMessage("해당 권한을 허용하지 않으면 서비스 이용이 불가합니다. 하단의 설정 버튼을 누르신 후 권한을 활성화주세요.")
-                    .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
-                    .check();
-
-        } catch (Exception e) {
-            ErrorController.showError(e);
-        }
-    }
 
     private void loadGeneralTemplate() {
 
         try {
 
             mViewModel.loadTemplateList();
-
-        } catch (Exception e) {
-            ErrorController.showError(e);
-        }
-    }
-
-    private void createDirectory() {
-
-        try {
-
-            File file = new File(GeneralTemplateConstants.templatePath);
-
-            if (!file.exists()) {
-
-                file.mkdir();
-            }
 
         } catch (Exception e) {
             ErrorController.showError(e);
@@ -165,6 +120,7 @@ public class ActivityGeneralTemplate extends BaseActivity {
 
                                             ErrorController.showMessage("Resource Name : " + value.string.toString().replace("res/raw/", ""));
                                         }
+
                                         showTemplateInputDialog(item);
 
                                     } catch (Exception e) {
