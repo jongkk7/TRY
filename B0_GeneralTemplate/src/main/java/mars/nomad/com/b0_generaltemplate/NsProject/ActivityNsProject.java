@@ -53,7 +53,7 @@ public class ActivityNsProject extends BaseActivity {
         initView();
         setEvent();
         setLiveData();
-        checkAuth();
+
     }
 
 

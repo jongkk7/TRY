@@ -266,7 +266,7 @@ public class GeneralTemplateEngine {
                 add(new NsFile(R.raw.java_adapter_viewpager, "/Adapter", "Adapter{$Data}Pager.java"));
                 add(new NsFile(R.raw.java_viewpager_view_model, "/Mvvm", "{$Data}ViewModel.java"));
                 add(new NsFile(R.raw.java_viewpager_fragment, "/Fragment", "Base{$Data}Fragment.java"));
-                add(new NsFile(R.raw.xml_void_fragment, "/layout", "fragment_viewpager_{$Data_low}.xml"));
+                add(new NsFile(R.raw.xml_void_fragment, "/layout", "fragment_viewpager_{$Data_lower}.xml"));
 
             }});
 

@@ -3,6 +3,7 @@ package mars.nomad.com.a0_common.DataBase.Room.NsModule;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.annotation.NonNull;
+import mars.nomad.com.l0_base.Logger.ErrorController;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -28,6 +29,23 @@ public class NsModule implements Serializable {
     @NonNull
     public String getModuleName() {
         return moduleName;
+    }
+
+    @NonNull
+    public String getModuleNameFolder() {
+
+        String result = moduleName;
+
+        try {
+
+            result = moduleName.toCharArray()[0] + moduleName.substring(1);
+
+
+        } catch (Exception e) {
+            ErrorController.showError(e);
+        }
+
+        return result;
     }
 
     public void setModuleName(@NonNull String moduleName) {

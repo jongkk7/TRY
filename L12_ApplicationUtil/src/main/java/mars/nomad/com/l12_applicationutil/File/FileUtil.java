@@ -301,7 +301,8 @@ public class FileUtil {
                 byte[] imageData = null;
                 try {
 
-                    int rotate = getCameraPhotoOrientation(context, Uri.fromFile(new File(fileName)), fileName);
+//                    int rotate = getCameraPhotoOrientation(context, Uri.fromFile(new File(fileName)), fileName);
+                    int rotate = processOrientation(fileName);
                     ErrorController.showMessage("ROTATE : " + rotate);
 
                     int width = 0;

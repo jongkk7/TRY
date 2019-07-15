@@ -35,7 +35,7 @@ dependencies {
     api 'de.hdodenhof:circleimageview:2.2.0'
 
     // photoVIew
-    api 'com.github.chrisbanes:PhotoView:1.3.0'
+    api 'com.github.chrisbanes:PhotoView:2.1.3'
 
     // SpinnerDatePicker
     api 'com.github.drawers:SpinnerDatePicker:1.0.6'
@@ -54,8 +54,8 @@ dependencies {
     // 유튜브 플레이어
     api files('libs/YouTubeAndroidPlayerApi.jar')
 
-    // pagerSlidingTabStrip
-    api 'com.astuetz:pagerslidingtabstrip:1.0.1'
+    // 로딩뷰
+    api 'com.github.ybq:Android-SpinKit:1.2.0'
 
     implementation 'com.google.code.gson:gson:2.8.2'
 

@@ -162,7 +162,7 @@ public class NsModuleViewModel extends ViewModel {
             String rootPath = GeneralTemplateConstants.templatePath + "/" + mProject.getProjectName();
 
             //모듈 패스 생성
-            String modulePath = rootPath + "/" + module.getModuleName();
+            String modulePath = rootPath + "/" + module.getModuleNameFolder();
 
             File moduleFile = new File(modulePath);
 
