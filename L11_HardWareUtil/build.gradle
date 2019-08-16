@@ -24,4 +24,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(path: ':L0_Base')
+
+    implementation 'androidx.biometric:biometric:1.0.0-alpha03'// 지문인식에 필요한 라이브러리
+    implementation 'com.airbnb.android:lottie:2.3.0'//Lottie 애니메이션
 }
