@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "34956867176",
+    "firebase_url": "https://tryproject-1ac9f.firebaseio.com",
+    "project_id": "tryproject-1ac9f",
+    "storage_bucket": "tryproject-1ac9f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:34956867176:android:70dda6b9f8ef23bcbaaddd",
+        "android_client_info": {
+          "package_name": "mars.nomad.com.a0_application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "34956867176-0net52es5scnl8t4l0qf0mit8tiqh3ss.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA967-Hcgu2cfruW_5m0G-eWFFs5D8xq8Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "34956867176-0net52es5scnl8t4l0qf0mit8tiqh3ss.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

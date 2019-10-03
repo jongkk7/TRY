@@ -58,6 +58,7 @@ dependencies {
     api project(path: ':C3_BaseAF')
 
     api project(path: ':L8_Room')
+    api project(path: ':L9_Social')
     api project(path: ':L12_ApplicationUtil')
 
     implementation project(path: ':L10_LitePal')

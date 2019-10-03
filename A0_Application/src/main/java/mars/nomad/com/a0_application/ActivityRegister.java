@@ -9,6 +9,9 @@ import mars.nomad.com.b0_generaltemplate.SingleModule.ActivityGeneralTemplateSin
 import mars.nomad.com.b3_commongallery.ActivityCommonGallery;
 import mars.nomad.com.c1_activitymanager.ActivityManager;
 import mars.nomad.com.l0_base.Logger.ErrorController;
+import nomad.com.a1_init.p1_intro.ActivityIntro;
+import nomad.com.a1_init.p2_login.ActivityLogin;
+import nomad.com.a1_init.p3_join.ActivityJoin;
 
 /**
  * Created by SJH, NomadSoft.Inc, 2019-02-12
@@ -26,6 +29,13 @@ public class ActivityRegister {
             ActivityManager.addClass("ActivityNsModule", ActivityNsModule.class);
             ActivityManager.addClass("ActivityNsPackage", ActivityNsPackage.class);
             ActivityManager.addClass("ActivityGeneralTemplateSingleModule", ActivityGeneralTemplateSingleModule.class);
+
+            // init
+            ActivityManager.addClass("ActivityIntro", ActivityIntro.class);
+            ActivityManager.addClass("ActivityLogin", ActivityLogin.class);
+            ActivityManager.addClass("ActivityJoin", ActivityJoin.class);
+
+            // main
 
 
 
